@@ -51,6 +51,10 @@ public class MetricCalculator {
         this.logger = logger;
     }
 
+    /**
+     * Executes the metrics calculation. First gather the info from the property files, then execute the metrics and
+     * finally generates the CSV file
+     */
     public void execute() {
         List<MetricData> metricData = getMetricData();
         String result = calculateMetrics(metricData);
@@ -67,6 +71,10 @@ public class MetricCalculator {
         }
     }
 
+    /**
+     * Traverses the directory with property files to know the conference names (and ranks).
+     * @return List with metric data
+     */
     private List<MetricData> getMetricData() {
         List<MetricData> metricDataList = new ArrayList<MetricData>();
 
@@ -120,6 +128,12 @@ public class MetricCalculator {
         return result;
     }
 
+    /**
+     * Main method calculating the metrics (maybe in the future we should split it)
+     * @param fullGraph Path to the main graph
+     * @param editions List of paths to the edition graph (should be of size 5)
+     * @return A CSV-formatted string
+     */
     public String calculateMetrics(File fullGraph, List<File> editions) {
         if(fullGraph == null)
             throw new IllegalArgumentException("A full graph has to be provided");
@@ -136,6 +150,11 @@ public class MetricCalculator {
         return avgDegreeFull + "," + avgDegreeEdition1 + "," + avgDegreeEdition2 + "," + avgDegreeEdition3 + "," + avgDegreeEdition4 + "," + avgDegreeEdition5;
     }
 
+    /**
+     * Calculates the average degree of a graph
+     * @param graph The path to the graph
+     * @return The result of the metric
+     */
     public String calculateAverageDegree(File graph) {
         ProjectController pc = Lookup.getDefault().lookup(ProjectController.class);
         pc.newProject();
