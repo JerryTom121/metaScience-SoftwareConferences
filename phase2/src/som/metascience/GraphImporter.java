@@ -52,9 +52,9 @@ public class GraphImporter {
     public GraphImporter(String dbHost, String dbName, String dbUser, String dbPass, int dbPort, File confPath, File outputPath, Phase2Logger logger) {
         if(dbHost == null || dbHost.equals("") || dbName == null || dbName.equals("") || dbUser == null || dbUser.equals("") || dbPass == null || dbPass.equals("") || dbPort < 0 || dbPort > Integer.MAX_VALUE)
             throw new IllegalArgumentException("The database configuration data is not correct");
-        if(!confPath.exists() || !confPath.isDirectory())
+        if(confPath == null || !confPath.exists() || !confPath.isDirectory())
             throw new IllegalArgumentException("The configuration path has to exists and be a directory");
-        if(!outputPath.exists() || !outputPath.isDirectory())
+        if(outputPath == null || !outputPath.exists() || !outputPath.isDirectory())
             throw new IllegalArgumentException("The output path has to exists and be a directory");
         if(logger == null)
             throw new IllegalArgumentException("The logger cannot be null");
@@ -151,15 +151,15 @@ public class GraphImporter {
             generateGraph(importData.getFullNodesQuery(), importData.getFullEdgesQuery(), fullGraph);
 
             // Exporting editions
-            int edition = 1;
+            int edition = 0;
             for(; edition < importData.getEditions(); edition++) {
                 String editionNodes = importData.getEditionNodesQuery(edition);
                 String editionEdges = importData.getEditionEdgesQuery(edition);
 
-                File graph = new File(outputPath.getAbsolutePath() + File.separator + importData.getName() + edition + EXTENSION);
+                File graph = new File(outputPath.getAbsolutePath() + File.separator + importData.getName() + (edition+1) + EXTENSION);
                 generateGraph(editionNodes, editionEdges, graph);
             }
-            logger.log("Added graph for " + importData.getName() + " and " + (edition-1) + " editions");
+            logger.log("Added graph for " + importData.getName() + " and " + edition + " editions");
             logger.control(importData.getSource().getAbsolutePath());
         }
     }

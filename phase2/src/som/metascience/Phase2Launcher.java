@@ -6,14 +6,13 @@ import java.io.FileNotFoundException;
 import java.util.Properties;
 
 /**
- *
  * As the data is obtained from the DBLP database, the connection properties have to be declared in the file
  * db.properties, thus including values for the keys: host, db, user, pass and port.
  */
 public class Phase2Launcher {
     public static final String dbPropertiesPath = "phase2/db.properties";
-    public static final String CONF = "phase2/importData";
-    public static final String OUTPUT = "phase2/graphs";
+    public static final String CONF = "data/importData";
+    public static final String OUTPUT = "data/graphs";
 
     public static void main(String[] args) throws Exception {
         Properties dbProperties = new Properties();
