@@ -1,0 +1,25 @@
+# Name of the conference (REQUIRED)
+conferenceName=ACM Multimedia
+#CORE rank (REQUIRED)
+rank=A*
+#total number of editions
+editions=24
+#dblp urls
+urls=db/conf/mm
+# Queries to get the full graph (REQUIRED)
+fullNodes=
+SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size
+ FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
+ WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' 
+GROUP BY airn.author_id;
+fullEdges=
+SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight
+FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id
+FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
+WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' ) AS source_authors
+JOIN ( SELECT pub.id AS pub, author, author_id
+FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
+WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings') AS target_authors
+ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id
+GROUP BY source_authors.author_id, target_authors.author_id) AS x
+GROUP BY connection_id
