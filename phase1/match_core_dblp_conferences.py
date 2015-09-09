@@ -1,7 +1,7 @@
 __author__ = 'valerio cosentino'
 
-#this script matches the acronym of the Computer Software (code 0803) conferences listed at http://www.core.edu.au/index.php/
-#with the conferences in DBLP. However, due to many mismatches between the two web-sites, the output file (output.json) has to be manually completed and refined.
+#This script matches the acronyms of the Computer Software (code 0803) conferences listed at http://www.core.edu.au/index.php/ with the conferences in DBLP.
+#However, due to many mismatches between the two web-sites, the output file (output.json) has to be manually checked and refined.
 
 import csv
 import mysql.connector
@@ -10,6 +10,7 @@ import re
 import db_connection
 import json
 
+#input/output data
 CVS_PATH = "data/CORE.csv"
 OUTPUT = 'data/output.json'
 

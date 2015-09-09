@@ -1,25 +1,25 @@
 # Name of the conference (REQUIRED)
-conferenceName=ACM Multimedia
+conferenceName=IEEE Symposium on Field Programmable Custom Computing Machines
 #CORE rank (REQUIRED)
-rank=A*
+rank=A
 #total number of editions
-editions=24
+editions=21
 #dblp urls
-urls=db/conf/mm
+urls=db/conf/fccm
 # Queries to get the full graph (REQUIRED)
 fullNodes=
 SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size
  FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
- WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' 
+ WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' 
 GROUP BY airn.author_id;
 fullEdges=
 SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight
 FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id
 FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' ) AS source_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' ) AS source_authors
 JOIN ( SELECT pub.id AS pub, author, author_id
 FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings') AS target_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings') AS target_authors
 ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id
 GROUP BY source_authors.author_id, target_authors.author_id) AS x
 GROUP BY connection_id;
@@ -27,56 +27,20 @@ GROUP BY connection_id;
 # Queries to get the evolution of the collaboration graph (OPTIONAL)
 # The format is editionUNTIL_YEAR_INCLUDEDnodes and editionUNTIL_YEAR_INCLUDEDedges
 #####-#####-#####-#####
-edition1993Nodes=
-SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size
- FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
- WHERE source IN ('ACM Multimedia') AND source_id IN ('mm')
- AND pub.type = 'inproceedings' AND pub.year <= 1993
-GROUP BY airn.author_id;
-edition1993Edges=
-SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight
-FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id
-FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 1993) AS source_authors
-JOIN ( SELECT pub.id AS pub, author, author_id
-FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 1993) AS target_authors
-ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id
-GROUP BY source_authors.author_id, target_authors.author_id) AS x
-GROUP BY connection_id;
-#####-#####-#####-#####
-edition1994Nodes=
-SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size
- FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
- WHERE source IN ('ACM Multimedia') AND source_id IN ('mm')
- AND pub.type = 'inproceedings' AND pub.year <= 1994
-GROUP BY airn.author_id;
-edition1994Edges=
-SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight
-FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id
-FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 1994) AS source_authors
-JOIN ( SELECT pub.id AS pub, author, author_id
-FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 1994) AS target_authors
-ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id
-GROUP BY source_authors.author_id, target_authors.author_id) AS x
-GROUP BY connection_id;
-#####-#####-#####-#####
 edition1995Nodes=
 SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size
  FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
- WHERE source IN ('ACM Multimedia') AND source_id IN ('mm')
+ WHERE source IN ('FCCM') AND source_id IN ('fccm')
  AND pub.type = 'inproceedings' AND pub.year <= 1995
 GROUP BY airn.author_id;
 edition1995Edges=
 SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight
 FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id
 FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 1995) AS source_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 1995) AS source_authors
 JOIN ( SELECT pub.id AS pub, author, author_id
 FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 1995) AS target_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 1995) AS target_authors
 ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id
 GROUP BY source_authors.author_id, target_authors.author_id) AS x
 GROUP BY connection_id;
@@ -84,17 +48,17 @@ GROUP BY connection_id;
 edition1996Nodes=
 SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size
  FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
- WHERE source IN ('ACM Multimedia') AND source_id IN ('mm')
+ WHERE source IN ('FCCM') AND source_id IN ('fccm')
  AND pub.type = 'inproceedings' AND pub.year <= 1996
 GROUP BY airn.author_id;
 edition1996Edges=
 SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight
 FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id
 FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 1996) AS source_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 1996) AS source_authors
 JOIN ( SELECT pub.id AS pub, author, author_id
 FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 1996) AS target_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 1996) AS target_authors
 ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id
 GROUP BY source_authors.author_id, target_authors.author_id) AS x
 GROUP BY connection_id;
@@ -102,17 +66,17 @@ GROUP BY connection_id;
 edition1997Nodes=
 SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size
  FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
- WHERE source IN ('ACM Multimedia') AND source_id IN ('mm')
+ WHERE source IN ('FCCM') AND source_id IN ('fccm')
  AND pub.type = 'inproceedings' AND pub.year <= 1997
 GROUP BY airn.author_id;
 edition1997Edges=
 SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight
 FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id
 FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 1997) AS source_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 1997) AS source_authors
 JOIN ( SELECT pub.id AS pub, author, author_id
 FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 1997) AS target_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 1997) AS target_authors
 ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id
 GROUP BY source_authors.author_id, target_authors.author_id) AS x
 GROUP BY connection_id;
@@ -120,17 +84,17 @@ GROUP BY connection_id;
 edition1998Nodes=
 SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size
  FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
- WHERE source IN ('ACM Multimedia') AND source_id IN ('mm')
+ WHERE source IN ('FCCM') AND source_id IN ('fccm')
  AND pub.type = 'inproceedings' AND pub.year <= 1998
 GROUP BY airn.author_id;
 edition1998Edges=
 SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight
 FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id
 FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 1998) AS source_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 1998) AS source_authors
 JOIN ( SELECT pub.id AS pub, author, author_id
 FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 1998) AS target_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 1998) AS target_authors
 ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id
 GROUP BY source_authors.author_id, target_authors.author_id) AS x
 GROUP BY connection_id;
@@ -138,35 +102,17 @@ GROUP BY connection_id;
 edition1999Nodes=
 SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size
  FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
- WHERE source IN ('ACM Multimedia') AND source_id IN ('mm')
+ WHERE source IN ('FCCM') AND source_id IN ('fccm')
  AND pub.type = 'inproceedings' AND pub.year <= 1999
 GROUP BY airn.author_id;
 edition1999Edges=
 SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight
 FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id
 FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 1999) AS source_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 1999) AS source_authors
 JOIN ( SELECT pub.id AS pub, author, author_id
 FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 1999) AS target_authors
-ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id
-GROUP BY source_authors.author_id, target_authors.author_id) AS x
-GROUP BY connection_id;
-#####-#####-#####-#####
-edition1999Nodes=
-SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size
- FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
- WHERE source IN ('ACM Multimedia') AND source_id IN ('mm')
- AND pub.type = 'inproceedings' AND pub.year <= 1999
-GROUP BY airn.author_id;
-edition1999Edges=
-SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight
-FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id
-FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 1999) AS source_authors
-JOIN ( SELECT pub.id AS pub, author, author_id
-FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 1999) AS target_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 1999) AS target_authors
 ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id
 GROUP BY source_authors.author_id, target_authors.author_id) AS x
 GROUP BY connection_id;
@@ -174,35 +120,17 @@ GROUP BY connection_id;
 edition2000Nodes=
 SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size
  FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
- WHERE source IN ('ACM Multimedia') AND source_id IN ('mm')
+ WHERE source IN ('FCCM') AND source_id IN ('fccm')
  AND pub.type = 'inproceedings' AND pub.year <= 2000
 GROUP BY airn.author_id;
 edition2000Edges=
 SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight
 FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id
 FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2000) AS source_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2000) AS source_authors
 JOIN ( SELECT pub.id AS pub, author, author_id
 FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2000) AS target_authors
-ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id
-GROUP BY source_authors.author_id, target_authors.author_id) AS x
-GROUP BY connection_id;
-#####-#####-#####-#####
-edition2000Nodes=
-SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size
- FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
- WHERE source IN ('ACM Multimedia') AND source_id IN ('mm')
- AND pub.type = 'inproceedings' AND pub.year <= 2000
-GROUP BY airn.author_id;
-edition2000Edges=
-SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight
-FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id
-FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2000) AS source_authors
-JOIN ( SELECT pub.id AS pub, author, author_id
-FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2000) AS target_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2000) AS target_authors
 ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id
 GROUP BY source_authors.author_id, target_authors.author_id) AS x
 GROUP BY connection_id;
@@ -210,17 +138,17 @@ GROUP BY connection_id;
 edition2001Nodes=
 SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size
  FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
- WHERE source IN ('ACM Multimedia') AND source_id IN ('mm')
+ WHERE source IN ('FCCM') AND source_id IN ('fccm')
  AND pub.type = 'inproceedings' AND pub.year <= 2001
 GROUP BY airn.author_id;
 edition2001Edges=
 SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight
 FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id
 FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2001) AS source_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2001) AS source_authors
 JOIN ( SELECT pub.id AS pub, author, author_id
 FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2001) AS target_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2001) AS target_authors
 ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id
 GROUP BY source_authors.author_id, target_authors.author_id) AS x
 GROUP BY connection_id;
@@ -228,17 +156,17 @@ GROUP BY connection_id;
 edition2002Nodes=
 SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size
  FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
- WHERE source IN ('ACM Multimedia') AND source_id IN ('mm')
+ WHERE source IN ('FCCM') AND source_id IN ('fccm')
  AND pub.type = 'inproceedings' AND pub.year <= 2002
 GROUP BY airn.author_id;
 edition2002Edges=
 SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight
 FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id
 FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2002) AS source_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2002) AS source_authors
 JOIN ( SELECT pub.id AS pub, author, author_id
 FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2002) AS target_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2002) AS target_authors
 ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id
 GROUP BY source_authors.author_id, target_authors.author_id) AS x
 GROUP BY connection_id;
@@ -246,17 +174,17 @@ GROUP BY connection_id;
 edition2003Nodes=
 SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size
  FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
- WHERE source IN ('ACM Multimedia') AND source_id IN ('mm')
+ WHERE source IN ('FCCM') AND source_id IN ('fccm')
  AND pub.type = 'inproceedings' AND pub.year <= 2003
 GROUP BY airn.author_id;
 edition2003Edges=
 SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight
 FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id
 FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2003) AS source_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2003) AS source_authors
 JOIN ( SELECT pub.id AS pub, author, author_id
 FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2003) AS target_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2003) AS target_authors
 ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id
 GROUP BY source_authors.author_id, target_authors.author_id) AS x
 GROUP BY connection_id;
@@ -264,17 +192,17 @@ GROUP BY connection_id;
 edition2004Nodes=
 SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size
  FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
- WHERE source IN ('ACM Multimedia') AND source_id IN ('mm')
+ WHERE source IN ('FCCM') AND source_id IN ('fccm')
  AND pub.type = 'inproceedings' AND pub.year <= 2004
 GROUP BY airn.author_id;
 edition2004Edges=
 SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight
 FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id
 FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2004) AS source_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2004) AS source_authors
 JOIN ( SELECT pub.id AS pub, author, author_id
 FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2004) AS target_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2004) AS target_authors
 ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id
 GROUP BY source_authors.author_id, target_authors.author_id) AS x
 GROUP BY connection_id;
@@ -282,17 +210,17 @@ GROUP BY connection_id;
 edition2005Nodes=
 SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size
  FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
- WHERE source IN ('ACM Multimedia') AND source_id IN ('mm')
+ WHERE source IN ('FCCM') AND source_id IN ('fccm')
  AND pub.type = 'inproceedings' AND pub.year <= 2005
 GROUP BY airn.author_id;
 edition2005Edges=
 SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight
 FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id
 FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2005) AS source_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2005) AS source_authors
 JOIN ( SELECT pub.id AS pub, author, author_id
 FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2005) AS target_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2005) AS target_authors
 ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id
 GROUP BY source_authors.author_id, target_authors.author_id) AS x
 GROUP BY connection_id;
@@ -300,17 +228,17 @@ GROUP BY connection_id;
 edition2006Nodes=
 SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size
  FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
- WHERE source IN ('ACM Multimedia') AND source_id IN ('mm')
+ WHERE source IN ('FCCM') AND source_id IN ('fccm')
  AND pub.type = 'inproceedings' AND pub.year <= 2006
 GROUP BY airn.author_id;
 edition2006Edges=
 SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight
 FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id
 FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2006) AS source_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2006) AS source_authors
 JOIN ( SELECT pub.id AS pub, author, author_id
 FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2006) AS target_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2006) AS target_authors
 ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id
 GROUP BY source_authors.author_id, target_authors.author_id) AS x
 GROUP BY connection_id;
@@ -318,17 +246,17 @@ GROUP BY connection_id;
 edition2007Nodes=
 SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size
  FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
- WHERE source IN ('ACM Multimedia') AND source_id IN ('mm')
+ WHERE source IN ('FCCM') AND source_id IN ('fccm')
  AND pub.type = 'inproceedings' AND pub.year <= 2007
 GROUP BY airn.author_id;
 edition2007Edges=
 SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight
 FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id
 FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2007) AS source_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2007) AS source_authors
 JOIN ( SELECT pub.id AS pub, author, author_id
 FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2007) AS target_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2007) AS target_authors
 ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id
 GROUP BY source_authors.author_id, target_authors.author_id) AS x
 GROUP BY connection_id;
@@ -336,17 +264,17 @@ GROUP BY connection_id;
 edition2008Nodes=
 SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size
  FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
- WHERE source IN ('ACM Multimedia') AND source_id IN ('mm')
+ WHERE source IN ('FCCM') AND source_id IN ('fccm')
  AND pub.type = 'inproceedings' AND pub.year <= 2008
 GROUP BY airn.author_id;
 edition2008Edges=
 SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight
 FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id
 FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2008) AS source_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2008) AS source_authors
 JOIN ( SELECT pub.id AS pub, author, author_id
 FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2008) AS target_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2008) AS target_authors
 ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id
 GROUP BY source_authors.author_id, target_authors.author_id) AS x
 GROUP BY connection_id;
@@ -354,17 +282,17 @@ GROUP BY connection_id;
 edition2009Nodes=
 SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size
  FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
- WHERE source IN ('ACM Multimedia') AND source_id IN ('mm')
+ WHERE source IN ('FCCM') AND source_id IN ('fccm')
  AND pub.type = 'inproceedings' AND pub.year <= 2009
 GROUP BY airn.author_id;
 edition2009Edges=
 SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight
 FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id
 FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2009) AS source_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2009) AS source_authors
 JOIN ( SELECT pub.id AS pub, author, author_id
 FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2009) AS target_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2009) AS target_authors
 ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id
 GROUP BY source_authors.author_id, target_authors.author_id) AS x
 GROUP BY connection_id;
@@ -372,17 +300,17 @@ GROUP BY connection_id;
 edition2010Nodes=
 SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size
  FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
- WHERE source IN ('ACM Multimedia') AND source_id IN ('mm')
+ WHERE source IN ('FCCM') AND source_id IN ('fccm')
  AND pub.type = 'inproceedings' AND pub.year <= 2010
 GROUP BY airn.author_id;
 edition2010Edges=
 SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight
 FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id
 FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2010) AS source_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2010) AS source_authors
 JOIN ( SELECT pub.id AS pub, author, author_id
 FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2010) AS target_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2010) AS target_authors
 ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id
 GROUP BY source_authors.author_id, target_authors.author_id) AS x
 GROUP BY connection_id;
@@ -390,17 +318,17 @@ GROUP BY connection_id;
 edition2011Nodes=
 SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size
  FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
- WHERE source IN ('ACM Multimedia') AND source_id IN ('mm')
+ WHERE source IN ('FCCM') AND source_id IN ('fccm')
  AND pub.type = 'inproceedings' AND pub.year <= 2011
 GROUP BY airn.author_id;
 edition2011Edges=
 SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight
 FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id
 FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2011) AS source_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2011) AS source_authors
 JOIN ( SELECT pub.id AS pub, author, author_id
 FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2011) AS target_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2011) AS target_authors
 ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id
 GROUP BY source_authors.author_id, target_authors.author_id) AS x
 GROUP BY connection_id;
@@ -408,17 +336,17 @@ GROUP BY connection_id;
 edition2012Nodes=
 SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size
  FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
- WHERE source IN ('ACM Multimedia') AND source_id IN ('mm')
+ WHERE source IN ('FCCM') AND source_id IN ('fccm')
  AND pub.type = 'inproceedings' AND pub.year <= 2012
 GROUP BY airn.author_id;
 edition2012Edges=
 SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight
 FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id
 FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2012) AS source_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2012) AS source_authors
 JOIN ( SELECT pub.id AS pub, author, author_id
 FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2012) AS target_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2012) AS target_authors
 ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id
 GROUP BY source_authors.author_id, target_authors.author_id) AS x
 GROUP BY connection_id;
@@ -426,17 +354,17 @@ GROUP BY connection_id;
 edition2013Nodes=
 SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size
  FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
- WHERE source IN ('ACM Multimedia') AND source_id IN ('mm')
+ WHERE source IN ('FCCM') AND source_id IN ('fccm')
  AND pub.type = 'inproceedings' AND pub.year <= 2013
 GROUP BY airn.author_id;
 edition2013Edges=
 SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight
 FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id
 FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2013) AS source_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2013) AS source_authors
 JOIN ( SELECT pub.id AS pub, author, author_id
 FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2013) AS target_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2013) AS target_authors
 ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id
 GROUP BY source_authors.author_id, target_authors.author_id) AS x
 GROUP BY connection_id;
@@ -444,17 +372,35 @@ GROUP BY connection_id;
 edition2014Nodes=
 SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size
  FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
- WHERE source IN ('ACM Multimedia') AND source_id IN ('mm')
+ WHERE source IN ('FCCM') AND source_id IN ('fccm')
  AND pub.type = 'inproceedings' AND pub.year <= 2014
 GROUP BY airn.author_id;
 edition2014Edges=
 SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight
 FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id
 FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2014) AS source_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2014) AS source_authors
 JOIN ( SELECT pub.id AS pub, author, author_id
 FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2014) AS target_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2014) AS target_authors
+ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id
+GROUP BY source_authors.author_id, target_authors.author_id) AS x
+GROUP BY connection_id;
+#####-#####-#####-#####
+edition2015Nodes=
+SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size
+ FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
+ WHERE source IN ('FCCM') AND source_id IN ('fccm')
+ AND pub.type = 'inproceedings' AND pub.year <= 2015
+GROUP BY airn.author_id;
+edition2015Edges=
+SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight
+FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id
+FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2015) AS source_authors
+JOIN ( SELECT pub.id AS pub, author, author_id
+FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2015) AS target_authors
 ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id
 GROUP BY source_authors.author_id, target_authors.author_id) AS x
 GROUP BY connection_id;
@@ -463,56 +409,20 @@ GROUP BY connection_id;
 # Queries to get the graph per edition (OPTIONAL)
 # The format is editionYEARnodes and editionYEARedges
 #####-#####-#####-#####
-edition1993Nodes=
-SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size
- FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
- WHERE source IN ('ACM Multimedia') AND source_id IN ('mm')
- AND pub.type = 'inproceedings' AND pub.year <= 1993
-GROUP BY airn.author_id;
-edition1993Edges=
-SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight
-FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id
-FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 1993) AS source_authors
-JOIN ( SELECT pub.id AS pub, author, author_id
-FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 1993) AS target_authors
-ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id
-GROUP BY source_authors.author_id, target_authors.author_id) AS x
-GROUP BY connection_id;
-#####-#####-#####-#####
-edition1994Nodes=
-SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size
- FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
- WHERE source IN ('ACM Multimedia') AND source_id IN ('mm')
- AND pub.type = 'inproceedings' AND pub.year <= 1994
-GROUP BY airn.author_id;
-edition1994Edges=
-SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight
-FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id
-FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 1994) AS source_authors
-JOIN ( SELECT pub.id AS pub, author, author_id
-FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 1994) AS target_authors
-ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id
-GROUP BY source_authors.author_id, target_authors.author_id) AS x
-GROUP BY connection_id;
-#####-#####-#####-#####
 edition1995Nodes=
 SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size
  FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
- WHERE source IN ('ACM Multimedia') AND source_id IN ('mm')
+ WHERE source IN ('FCCM') AND source_id IN ('fccm')
  AND pub.type = 'inproceedings' AND pub.year <= 1995
 GROUP BY airn.author_id;
 edition1995Edges=
 SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight
 FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id
 FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 1995) AS source_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 1995) AS source_authors
 JOIN ( SELECT pub.id AS pub, author, author_id
 FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 1995) AS target_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 1995) AS target_authors
 ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id
 GROUP BY source_authors.author_id, target_authors.author_id) AS x
 GROUP BY connection_id;
@@ -520,17 +430,17 @@ GROUP BY connection_id;
 edition1996Nodes=
 SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size
  FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
- WHERE source IN ('ACM Multimedia') AND source_id IN ('mm')
+ WHERE source IN ('FCCM') AND source_id IN ('fccm')
  AND pub.type = 'inproceedings' AND pub.year <= 1996
 GROUP BY airn.author_id;
 edition1996Edges=
 SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight
 FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id
 FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 1996) AS source_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 1996) AS source_authors
 JOIN ( SELECT pub.id AS pub, author, author_id
 FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 1996) AS target_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 1996) AS target_authors
 ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id
 GROUP BY source_authors.author_id, target_authors.author_id) AS x
 GROUP BY connection_id;
@@ -538,17 +448,17 @@ GROUP BY connection_id;
 edition1997Nodes=
 SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size
  FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
- WHERE source IN ('ACM Multimedia') AND source_id IN ('mm')
+ WHERE source IN ('FCCM') AND source_id IN ('fccm')
  AND pub.type = 'inproceedings' AND pub.year <= 1997
 GROUP BY airn.author_id;
 edition1997Edges=
 SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight
 FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id
 FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 1997) AS source_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 1997) AS source_authors
 JOIN ( SELECT pub.id AS pub, author, author_id
 FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 1997) AS target_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 1997) AS target_authors
 ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id
 GROUP BY source_authors.author_id, target_authors.author_id) AS x
 GROUP BY connection_id;
@@ -556,17 +466,17 @@ GROUP BY connection_id;
 edition1998Nodes=
 SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size
  FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
- WHERE source IN ('ACM Multimedia') AND source_id IN ('mm')
+ WHERE source IN ('FCCM') AND source_id IN ('fccm')
  AND pub.type = 'inproceedings' AND pub.year <= 1998
 GROUP BY airn.author_id;
 edition1998Edges=
 SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight
 FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id
 FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 1998) AS source_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 1998) AS source_authors
 JOIN ( SELECT pub.id AS pub, author, author_id
 FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 1998) AS target_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 1998) AS target_authors
 ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id
 GROUP BY source_authors.author_id, target_authors.author_id) AS x
 GROUP BY connection_id;
@@ -574,35 +484,17 @@ GROUP BY connection_id;
 edition1999Nodes=
 SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size
  FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
- WHERE source IN ('ACM Multimedia') AND source_id IN ('mm')
+ WHERE source IN ('FCCM') AND source_id IN ('fccm')
  AND pub.type = 'inproceedings' AND pub.year <= 1999
 GROUP BY airn.author_id;
 edition1999Edges=
 SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight
 FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id
 FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 1999) AS source_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 1999) AS source_authors
 JOIN ( SELECT pub.id AS pub, author, author_id
 FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 1999) AS target_authors
-ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id
-GROUP BY source_authors.author_id, target_authors.author_id) AS x
-GROUP BY connection_id;
-#####-#####-#####-#####
-edition1999Nodes=
-SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size
- FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
- WHERE source IN ('ACM Multimedia') AND source_id IN ('mm')
- AND pub.type = 'inproceedings' AND pub.year <= 1999
-GROUP BY airn.author_id;
-edition1999Edges=
-SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight
-FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id
-FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 1999) AS source_authors
-JOIN ( SELECT pub.id AS pub, author, author_id
-FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 1999) AS target_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 1999) AS target_authors
 ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id
 GROUP BY source_authors.author_id, target_authors.author_id) AS x
 GROUP BY connection_id;
@@ -610,35 +502,17 @@ GROUP BY connection_id;
 edition2000Nodes=
 SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size
  FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
- WHERE source IN ('ACM Multimedia') AND source_id IN ('mm')
+ WHERE source IN ('FCCM') AND source_id IN ('fccm')
  AND pub.type = 'inproceedings' AND pub.year <= 2000
 GROUP BY airn.author_id;
 edition2000Edges=
 SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight
 FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id
 FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2000) AS source_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2000) AS source_authors
 JOIN ( SELECT pub.id AS pub, author, author_id
 FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2000) AS target_authors
-ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id
-GROUP BY source_authors.author_id, target_authors.author_id) AS x
-GROUP BY connection_id;
-#####-#####-#####-#####
-edition2000Nodes=
-SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size
- FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
- WHERE source IN ('ACM Multimedia') AND source_id IN ('mm')
- AND pub.type = 'inproceedings' AND pub.year <= 2000
-GROUP BY airn.author_id;
-edition2000Edges=
-SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight
-FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id
-FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2000) AS source_authors
-JOIN ( SELECT pub.id AS pub, author, author_id
-FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2000) AS target_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2000) AS target_authors
 ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id
 GROUP BY source_authors.author_id, target_authors.author_id) AS x
 GROUP BY connection_id;
@@ -646,17 +520,17 @@ GROUP BY connection_id;
 edition2001Nodes=
 SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size
  FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
- WHERE source IN ('ACM Multimedia') AND source_id IN ('mm')
+ WHERE source IN ('FCCM') AND source_id IN ('fccm')
  AND pub.type = 'inproceedings' AND pub.year <= 2001
 GROUP BY airn.author_id;
 edition2001Edges=
 SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight
 FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id
 FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2001) AS source_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2001) AS source_authors
 JOIN ( SELECT pub.id AS pub, author, author_id
 FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2001) AS target_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2001) AS target_authors
 ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id
 GROUP BY source_authors.author_id, target_authors.author_id) AS x
 GROUP BY connection_id;
@@ -664,17 +538,17 @@ GROUP BY connection_id;
 edition2002Nodes=
 SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size
  FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
- WHERE source IN ('ACM Multimedia') AND source_id IN ('mm')
+ WHERE source IN ('FCCM') AND source_id IN ('fccm')
  AND pub.type = 'inproceedings' AND pub.year <= 2002
 GROUP BY airn.author_id;
 edition2002Edges=
 SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight
 FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id
 FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2002) AS source_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2002) AS source_authors
 JOIN ( SELECT pub.id AS pub, author, author_id
 FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2002) AS target_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2002) AS target_authors
 ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id
 GROUP BY source_authors.author_id, target_authors.author_id) AS x
 GROUP BY connection_id;
@@ -682,17 +556,17 @@ GROUP BY connection_id;
 edition2003Nodes=
 SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size
  FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
- WHERE source IN ('ACM Multimedia') AND source_id IN ('mm')
+ WHERE source IN ('FCCM') AND source_id IN ('fccm')
  AND pub.type = 'inproceedings' AND pub.year <= 2003
 GROUP BY airn.author_id;
 edition2003Edges=
 SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight
 FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id
 FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2003) AS source_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2003) AS source_authors
 JOIN ( SELECT pub.id AS pub, author, author_id
 FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2003) AS target_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2003) AS target_authors
 ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id
 GROUP BY source_authors.author_id, target_authors.author_id) AS x
 GROUP BY connection_id;
@@ -700,17 +574,17 @@ GROUP BY connection_id;
 edition2004Nodes=
 SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size
  FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
- WHERE source IN ('ACM Multimedia') AND source_id IN ('mm')
+ WHERE source IN ('FCCM') AND source_id IN ('fccm')
  AND pub.type = 'inproceedings' AND pub.year <= 2004
 GROUP BY airn.author_id;
 edition2004Edges=
 SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight
 FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id
 FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2004) AS source_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2004) AS source_authors
 JOIN ( SELECT pub.id AS pub, author, author_id
 FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2004) AS target_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2004) AS target_authors
 ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id
 GROUP BY source_authors.author_id, target_authors.author_id) AS x
 GROUP BY connection_id;
@@ -718,17 +592,17 @@ GROUP BY connection_id;
 edition2005Nodes=
 SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size
  FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
- WHERE source IN ('ACM Multimedia') AND source_id IN ('mm')
+ WHERE source IN ('FCCM') AND source_id IN ('fccm')
  AND pub.type = 'inproceedings' AND pub.year <= 2005
 GROUP BY airn.author_id;
 edition2005Edges=
 SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight
 FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id
 FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2005) AS source_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2005) AS source_authors
 JOIN ( SELECT pub.id AS pub, author, author_id
 FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2005) AS target_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2005) AS target_authors
 ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id
 GROUP BY source_authors.author_id, target_authors.author_id) AS x
 GROUP BY connection_id;
@@ -736,17 +610,17 @@ GROUP BY connection_id;
 edition2006Nodes=
 SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size
  FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
- WHERE source IN ('ACM Multimedia') AND source_id IN ('mm')
+ WHERE source IN ('FCCM') AND source_id IN ('fccm')
  AND pub.type = 'inproceedings' AND pub.year <= 2006
 GROUP BY airn.author_id;
 edition2006Edges=
 SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight
 FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id
 FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2006) AS source_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2006) AS source_authors
 JOIN ( SELECT pub.id AS pub, author, author_id
 FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2006) AS target_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2006) AS target_authors
 ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id
 GROUP BY source_authors.author_id, target_authors.author_id) AS x
 GROUP BY connection_id;
@@ -754,17 +628,17 @@ GROUP BY connection_id;
 edition2007Nodes=
 SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size
  FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
- WHERE source IN ('ACM Multimedia') AND source_id IN ('mm')
+ WHERE source IN ('FCCM') AND source_id IN ('fccm')
  AND pub.type = 'inproceedings' AND pub.year <= 2007
 GROUP BY airn.author_id;
 edition2007Edges=
 SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight
 FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id
 FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2007) AS source_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2007) AS source_authors
 JOIN ( SELECT pub.id AS pub, author, author_id
 FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2007) AS target_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2007) AS target_authors
 ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id
 GROUP BY source_authors.author_id, target_authors.author_id) AS x
 GROUP BY connection_id;
@@ -772,17 +646,17 @@ GROUP BY connection_id;
 edition2008Nodes=
 SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size
  FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
- WHERE source IN ('ACM Multimedia') AND source_id IN ('mm')
+ WHERE source IN ('FCCM') AND source_id IN ('fccm')
  AND pub.type = 'inproceedings' AND pub.year <= 2008
 GROUP BY airn.author_id;
 edition2008Edges=
 SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight
 FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id
 FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2008) AS source_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2008) AS source_authors
 JOIN ( SELECT pub.id AS pub, author, author_id
 FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2008) AS target_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2008) AS target_authors
 ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id
 GROUP BY source_authors.author_id, target_authors.author_id) AS x
 GROUP BY connection_id;
@@ -790,17 +664,17 @@ GROUP BY connection_id;
 edition2009Nodes=
 SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size
  FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
- WHERE source IN ('ACM Multimedia') AND source_id IN ('mm')
+ WHERE source IN ('FCCM') AND source_id IN ('fccm')
  AND pub.type = 'inproceedings' AND pub.year <= 2009
 GROUP BY airn.author_id;
 edition2009Edges=
 SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight
 FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id
 FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2009) AS source_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2009) AS source_authors
 JOIN ( SELECT pub.id AS pub, author, author_id
 FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2009) AS target_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2009) AS target_authors
 ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id
 GROUP BY source_authors.author_id, target_authors.author_id) AS x
 GROUP BY connection_id;
@@ -808,17 +682,17 @@ GROUP BY connection_id;
 edition2010Nodes=
 SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size
  FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
- WHERE source IN ('ACM Multimedia') AND source_id IN ('mm')
+ WHERE source IN ('FCCM') AND source_id IN ('fccm')
  AND pub.type = 'inproceedings' AND pub.year <= 2010
 GROUP BY airn.author_id;
 edition2010Edges=
 SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight
 FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id
 FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2010) AS source_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2010) AS source_authors
 JOIN ( SELECT pub.id AS pub, author, author_id
 FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2010) AS target_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2010) AS target_authors
 ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id
 GROUP BY source_authors.author_id, target_authors.author_id) AS x
 GROUP BY connection_id;
@@ -826,17 +700,17 @@ GROUP BY connection_id;
 edition2011Nodes=
 SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size
  FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
- WHERE source IN ('ACM Multimedia') AND source_id IN ('mm')
+ WHERE source IN ('FCCM') AND source_id IN ('fccm')
  AND pub.type = 'inproceedings' AND pub.year <= 2011
 GROUP BY airn.author_id;
 edition2011Edges=
 SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight
 FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id
 FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2011) AS source_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2011) AS source_authors
 JOIN ( SELECT pub.id AS pub, author, author_id
 FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2011) AS target_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2011) AS target_authors
 ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id
 GROUP BY source_authors.author_id, target_authors.author_id) AS x
 GROUP BY connection_id;
@@ -844,17 +718,17 @@ GROUP BY connection_id;
 edition2012Nodes=
 SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size
  FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
- WHERE source IN ('ACM Multimedia') AND source_id IN ('mm')
+ WHERE source IN ('FCCM') AND source_id IN ('fccm')
  AND pub.type = 'inproceedings' AND pub.year <= 2012
 GROUP BY airn.author_id;
 edition2012Edges=
 SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight
 FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id
 FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2012) AS source_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2012) AS source_authors
 JOIN ( SELECT pub.id AS pub, author, author_id
 FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2012) AS target_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2012) AS target_authors
 ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id
 GROUP BY source_authors.author_id, target_authors.author_id) AS x
 GROUP BY connection_id;
@@ -862,17 +736,17 @@ GROUP BY connection_id;
 edition2013Nodes=
 SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size
  FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
- WHERE source IN ('ACM Multimedia') AND source_id IN ('mm')
+ WHERE source IN ('FCCM') AND source_id IN ('fccm')
  AND pub.type = 'inproceedings' AND pub.year <= 2013
 GROUP BY airn.author_id;
 edition2013Edges=
 SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight
 FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id
 FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2013) AS source_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2013) AS source_authors
 JOIN ( SELECT pub.id AS pub, author, author_id
 FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2013) AS target_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2013) AS target_authors
 ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id
 GROUP BY source_authors.author_id, target_authors.author_id) AS x
 GROUP BY connection_id;
@@ -880,17 +754,35 @@ GROUP BY connection_id;
 edition2014Nodes=
 SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size
  FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
- WHERE source IN ('ACM Multimedia') AND source_id IN ('mm')
+ WHERE source IN ('FCCM') AND source_id IN ('fccm')
  AND pub.type = 'inproceedings' AND pub.year <= 2014
 GROUP BY airn.author_id;
 edition2014Edges=
 SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight
 FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id
 FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2014) AS source_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2014) AS source_authors
 JOIN ( SELECT pub.id AS pub, author, author_id
 FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
-WHERE source IN ('ACM Multimedia') AND source_id IN ('mm') AND pub.type = 'inproceedings' AND pub.year <= 2014) AS target_authors
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2014) AS target_authors
+ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id
+GROUP BY source_authors.author_id, target_authors.author_id) AS x
+GROUP BY connection_id;
+#####-#####-#####-#####
+edition2015Nodes=
+SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size
+ FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
+ WHERE source IN ('FCCM') AND source_id IN ('fccm')
+ AND pub.type = 'inproceedings' AND pub.year <= 2015
+GROUP BY airn.author_id;
+edition2015Edges=
+SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight
+FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id
+FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2015) AS source_authors
+JOIN ( SELECT pub.id AS pub, author, author_id
+FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id
+WHERE source IN ('FCCM') AND source_id IN ('fccm') AND pub.type = 'inproceedings' AND pub.year <= 2015) AS target_authors
 ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id
 GROUP BY source_authors.author_id, target_authors.author_id) AS x
 GROUP BY connection_id;
