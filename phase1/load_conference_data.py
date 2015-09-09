@@ -8,6 +8,7 @@ import mysql.connector
 from mysql.connector import errorcode
 import db_connection
 import json
+import re
 
 cnx = mysql.connector.connect(**db_connection.CONFIG)
 
@@ -25,8 +26,13 @@ ACTIVATE_QUERIES_PER_EDITION = True
 ACTIVATE_QUERIES_CONFERENCE_EVOLUTION = True
 
 
+def create_file_name(title):
+    title = re.sub('(\s|\W)+', '-', title)
+    return title
+
+
 def create_config_file(title, source, source_id, years, num_editions, url, rank):
-    f = open(DESTINATION_FOLDER + '/' + title.replace('/', '-') + '.txt', 'w')
+    f = open(DESTINATION_FOLDER + '/' + create_file_name(title) + '.txt', 'w')
     f.write('# Name of the conference (REQUIRED)\n')
     f.write('conferenceName=' + title + '\n')
     f.write('#CORE rank (REQUIRED)\n')
@@ -173,7 +179,7 @@ def serialize_conference_info(conferences):
                             "last edition: " + str(last_edition) + " [>=" + str(THRESHOLD_LAST_EDITION) + "])"
 
     print str(serialized) + " out of " + str(len(conferences.keys())) + " conferences have been selected!"
-    
+
 
 def main():
     conferences = {}
