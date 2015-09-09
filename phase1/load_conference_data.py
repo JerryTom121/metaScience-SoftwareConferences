@@ -97,7 +97,7 @@ def get_year_editions(source, source_id):
     query = "SELECT year " \
             "FROM dblp_pub_new " \
             "WHERE source IN (" + source + ") AND source_id IN (" + source_id + ") AND type = 'proceedings' " \
-            "ORDER BY year ASC"
+            "ORDER BY year DESC"
     cursor.execute(query)
     row = cursor.fetchone()
 
