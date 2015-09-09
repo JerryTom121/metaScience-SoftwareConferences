@@ -15,10 +15,7 @@ import org.gephi.project.api.Workspace;
 import org.gephi.statistics.plugin.Degree;
 import org.openide.util.Lookup;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -57,15 +54,18 @@ public class MetricCalculator {
      */
     public void execute() {
         List<MetricData> metricData = getMetricData();
-        String result = calculateMetrics(metricData);
 
-        String firstLine = "ConfName,AvgDegree_allEditions,AvgDegree_1_LastEdition,AvgDegree_2_LastEdition,AvgDegree_3_LastEdition,AvgDegree_4_LastEdition,AvgDegree_5_LastEdition\n";
+        String firstLine = "ConfName,Rank,AvgDegree_allEditions,AvgDegree_1_LastEdition,AvgDegree_2_LastEdition,AvgDegree_3_LastEdition,AvgDegree_4_LastEdition,AvgDegree_5_LastEdition\n";
+        writeResult(firstLine);
+
+        calculateMetrics(metricData);
+    }
+
+    public void writeResult(String msg) {
         try {
-            FileOutputStream fos = new FileOutputStream(outputPath);
-            fos.write(firstLine.getBytes());
-            fos.write(result.getBytes());
-            fos.flush();
-            fos.close();
+            FileWriter fw = new FileWriter(outputPath, true);
+            fw.write(msg);
+            fw.close();
         } catch (Exception e) {
             logger.log("Error when storing results");
         }
@@ -103,8 +103,7 @@ public class MetricCalculator {
         return metricDataList;
     }
 
-    public String calculateMetrics(List<MetricData> metricDataList) {
-        String result = "";
+    public void calculateMetrics(List<MetricData> metricDataList) {
         for(MetricData metricData : metricDataList) {
             File fullGraph = new File(inputGraphs.getAbsolutePath() + File.separator + metricData.getName() + EXTENSION);
 
@@ -116,10 +115,9 @@ public class MetricCalculator {
             }
             logger.log("Metrics for " + inputGraphs.getName() + " calculated");
             String metrics = calculateMetrics(fullGraph, editions);
-            String line = metricData.getName() + "," + metricData.getRank() + "," + metrics;
-            result = result + line + "\n";
+            String line = metricData.getName() + "," + metricData.getRank() + "," + metrics + "\n";
+            writeResult(line);
         }
-        return result;
     }
 
     /**

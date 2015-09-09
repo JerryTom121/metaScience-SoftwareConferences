@@ -122,10 +122,10 @@ public class GraphImporter {
                         String editions = properties.getProperty("editionQueries");
                         if(editions != null) {
                             String editionList[] = editions.split(",");
+                            int counter = 0;
                             for(String edition : editionList) {
-                                int counter = 0;
-                                String nodesKey = "edition" + edition + "Nodes";
-                                String edgesKey = "edition" + edition + "Edges";
+                                String nodesKey = "single_edition" + edition + "Nodes";
+                                String edgesKey = "single_edition" + edition + "Edges";
                                 if(properties.containsKey(nodesKey) && properties.containsKey(edgesKey)) {
                                     String editionNodes = properties.getProperty(nodesKey);
                                     String editionEdges = properties.getProperty(edgesKey);
