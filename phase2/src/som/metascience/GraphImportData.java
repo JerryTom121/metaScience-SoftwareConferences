@@ -11,6 +11,7 @@ import java.util.List;
  */
 public class GraphImportData {
     private String name;
+    private String fullName;
     private File source;
 
     private String fullNodesQuery;
@@ -25,15 +26,18 @@ public class GraphImportData {
      * @param fullNodesQuery The query to get the full graph nodes
      * @param fullEdgesQuery The query to get the full graph edges
      */
-    GraphImportData(String name, File source, String fullNodesQuery, String fullEdgesQuery) {
+    GraphImportData(String name, String fullName, File source, String fullNodesQuery, String fullEdgesQuery) {
         if(name == null)
             throw new IllegalArgumentException("The name of the import data cannot be null");
+        if(fullName == null)
+            throw new IllegalArgumentException("The fullName of the import data cannot be null");
         if(source == null)
             throw new IllegalArgumentException("The source file cannot be null");
         if(fullNodesQuery == null || fullNodesQuery.equals("") || fullEdgesQuery == null || fullEdgesQuery.equals(""))
             throw new IllegalArgumentException("The queries to get nodes/edges cannot be null or empty");
 
         this.name = name;
+        this.fullName = fullName;
         this.source = source;
         this.fullNodesQuery = fullNodesQuery;
         this.fullEdgesQuery = fullEdgesQuery;
@@ -52,6 +56,10 @@ public class GraphImportData {
 
     public String getName() {
         return name;
+    }
+
+    public String getFullName() {
+        return fullName;
     }
 
     public File getSource() {

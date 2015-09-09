@@ -84,20 +84,14 @@ public class MetricCalculator {
                     Properties properties = new Properties();
                     properties.load(new FileInputStream(file));
 
-                    String name = properties.getProperty("conferenceName");
+                    String name = file.getName().replaceFirst("[.][^.]+$", "");
+                    String fullName = properties.getProperty("conferenceName");
                     String rank = properties.getProperty("rank");
 
                     // Retrieving data for specific editions
-
-                    int counter = 1;
-                    String nodesKey = "edition" + counter + "Nodes";
-                    String edgesKey = "edition" + counter + "Edges";
-                    while(properties.containsKey(nodesKey) && properties.containsKey(edgesKey)) {
-                        counter++;
-                        nodesKey = "edition" + counter + "Nodes";
-                        edgesKey = "edition" + counter + "Edges";
-                    }
-                    MetricData metricData = new MetricData(name, rank, file, counter -1);
+                    String editions = properties.getProperty("editionQueries");
+                    int numEditions = editions.split(",").length;
+                    MetricData metricData = new MetricData(name, fullName, rank, file, numEditions);
                     metricDataList.add(metricData);
                 } catch (IOException e) {
                     logger.log("! The file " + file.getAbsolutePath() + " could not be loaded");

@@ -94,46 +94,51 @@ public class GraphImporter {
         for(File file : confPath.listFiles()) {
             if(file.getName().endsWith(".properties")) {
 
-                // Cheking with the last file analyzed
+                // Checking with the last file analyzed
                 if(lastControl != null && !file.getAbsolutePath().equals(lastControl)) {
-                    // The last file is not the last one and therefore was already analyzed
-                    logger.log("Skipping [" + file.getAbsolutePath() + "]");
-                    continue;
-                } else if (lastControl != null && file.getAbsolutePath().equals(lastControl)) {
-                    // The last file is last one and therefore the last one analyzed, we log
-                    logger.log("Control found [" + file.getAbsolutePath() + "]");
-                    lastControl = null;
-                    continue;
-                }
-
-                try {
-                    Properties properties = new Properties();
-                    properties.load(new FileInputStream(file));
-
-                    String name = properties.getProperty("conferenceName");
-                    String fullNodes = properties.getProperty("fullNodes");
-                    String fullEdges = properties.getProperty("fullEdges");
-
-                    GraphImportData importData = new GraphImportData(name, file, fullNodes, fullEdges);
-
-                    // Retrieving data for specific editions
-                    int counter = 1;
-                    String nodesKey = "edition" + counter + "Nodes";
-                    String edgesKey = "edition" + counter + "Edges";
-                    while(properties.containsKey(nodesKey) && properties.containsKey(edgesKey)) {
-                        String editionNodes = properties.getProperty(nodesKey);
-                        String editionEdges = properties.getProperty(edgesKey);
-                        importData.addEditionQuery(editionNodes, editionEdges);
-
-                        counter++;
-                        nodesKey = "edition" + counter + "Nodes";
-                        edgesKey = "edition" + counter + "Edges";
+                        // The last file is not the last one and therefore was already analyzed
+                        logger.log("Skipping [" + file.getAbsolutePath() + "]");
+                        continue;
+                    } else if (lastControl != null && file.getAbsolutePath().equals(lastControl)) {
+                        // The last file is last one and therefore the last one analyzed, we log
+                        logger.log("Control found [" + file.getAbsolutePath() + "]");
+                        lastControl = null;
+                        continue;
                     }
 
-                    importDataList.add(importData);
-                } catch (IOException e) {
-                    logger.log("! The file " + file.getAbsolutePath() + " could not be loaded");
-                }
+                    try {
+                        Properties properties = new Properties();
+                        properties.load(new FileInputStream(file));
+
+                        String name = file.getName().replaceFirst("[.][^.]+$", "");
+                        String fullName = properties.getProperty("conferenceName");
+                        String fullNodes = properties.getProperty("fullNodes");
+                        String fullEdges = properties.getProperty("fullEdges");
+
+                        GraphImportData importData = new GraphImportData(name, fullName, file, fullNodes, fullEdges);
+
+                        // Retrieving data for specific editions
+
+                        String editions = properties.getProperty("editionQueries");
+                        if(editions != null) {
+                            String editionList[] = editions.split(",");
+                            for(String edition : editionList) {
+                                int counter = 0;
+                                String nodesKey = "edition" + edition + "Nodes";
+                                String edgesKey = "edition" + edition + "Edges";
+                                if(properties.containsKey(nodesKey) && properties.containsKey(edgesKey)) {
+                                    String editionNodes = properties.getProperty(nodesKey);
+                                    String editionEdges = properties.getProperty(edgesKey);
+                                    importData.addEditionQuery(editionNodes, editionEdges);
+                                    counter++;
+                                    if(counter == 5) break;
+                                }
+                            }
+                        }
+                        importDataList.add(importData);
+                    } catch (IOException e) {
+                        logger.log("! The file " + file.getAbsolutePath() + " could not be loaded");
+                    }
                 logger.log("Added import data from file " + file.getAbsolutePath());
             }
         }
