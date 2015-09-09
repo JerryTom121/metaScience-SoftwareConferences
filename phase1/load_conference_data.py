@@ -32,81 +32,39 @@ def create_file_name(title):
 
 
 def create_config_file(title, source, source_id, years, num_editions, url, rank):
-    f = open(DESTINATION_FOLDER + '/' + create_file_name(title) + '.txt', 'w')
+    f = open(DESTINATION_FOLDER + '/' + create_file_name(title) + '.properties', 'w')
     f.write('# Name of the conference (REQUIRED)\n')
     f.write('conferenceName=' + title + '\n')
     f.write('#CORE rank (REQUIRED)\n')
     f.write('rank=' + rank + '\n')
     f.write('#total number of editions\n')
     f.write('editions=' + str(num_editions) + '\n')
+    f.write("#list of editions\n")
+    f.write("editionQueries=" + ",".join(str(e) for e in years) + "\n")
     f.write('#dblp urls\n')
     f.write('urls=' + ','.join(url) + '\n')
     f.write('# Queries to get the full graph (REQUIRED)\n')
-    f.write("fullNodes=\n"
-            "SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size\n "
-            "FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id\n "
-            "WHERE source IN (" + source.encode('utf-8') + ") AND source_id IN (" + source_id.encode('utf-8') + ") AND pub.type = 'inproceedings' \n"
-            "GROUP BY airn.author_id;\n")
-    f.write("fullEdges=\n"
-        "SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight\n"
-        "FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id\n"
-        "FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id\n"
-        "WHERE source IN (" + source.encode('utf-8') + ") AND source_id IN (" + source_id.encode('utf-8') + ") AND pub.type = 'inproceedings' ) AS source_authors\n"
-        "JOIN ( SELECT pub.id AS pub, author, author_id\n"
-        "FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id\n"
-        "WHERE source IN (" + source.encode('utf-8') + ") AND source_id IN (" + source_id.encode('utf-8') + ") AND pub.type = 'inproceedings') AS target_authors\n"
-        "ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id\n"
-        "GROUP BY source_authors.author_id, target_authors.author_id) AS x\n"
-        "GROUP BY connection_id;\n")
+    f.write("fullNodes=SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id WHERE source IN (" + source.encode('utf-8') + ") AND source_id IN (" + source_id.encode('utf-8') + ") AND pub.type = 'inproceedings' GROUP BY airn.author_id;\n")
+    f.write("fullEdges=SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id WHERE source IN (" + source.encode('utf-8') + ") AND source_id IN (" + source_id.encode('utf-8') + ") AND pub.type = 'inproceedings' ) AS source_authors JOIN ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id WHERE source IN (" + source.encode('utf-8') + ") AND source_id IN (" + source_id.encode('utf-8') + ") AND pub.type = 'inproceedings') AS target_authors ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id GROUP BY source_authors.author_id, target_authors.author_id) AS x GROUP BY connection_id;\n")
 
     if ACTIVATE_QUERIES_PER_EDITION:
         f.write("#####-#####-#####-#####\n")
         f.write("# Queries to get the evolution of the collaboration graph (OPTIONAL)\n")
-        f.write("# The format is editionUNTIL_YEAR_INCLUDEDnodes and editionUNTIL_YEAR_INCLUDEDedges\n")
+        f.write("# The format is single_editionUNTIL_YEAR_INCLUDEDnodes and single_editionUNTIL_YEAR_INCLUDEDedges\n")
         for y in years:
             f.write("#####-#####-#####-#####\n")
-            f.write("edition" + str(y) + "Nodes=\n"
-                    "SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size\n "
-                    "FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id\n "
-                    "WHERE source IN (" + source.encode('utf-8') + ") AND source_id IN (" + source_id.encode('utf-8') + ")\n "
-                    "AND pub.type = 'inproceedings' AND pub.year <= " + str(y) + "\n"
-                    "GROUP BY airn.author_id;\n")
-            f.write("edition" + str(y) + "Edges=\n"
-                    "SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight\n"
-                    "FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id\n"
-                    "FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id\n"
-                    "WHERE source IN (" + source.encode('utf-8') + ") AND source_id IN (" + source_id.encode('utf-8') + ") AND pub.type = 'inproceedings' AND pub.year <= " + str(y) + ") AS source_authors\n"
-                    "JOIN ( SELECT pub.id AS pub, author, author_id\n"
-                    "FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id\n"
-                    "WHERE source IN (" + source.encode('utf-8') + ") AND source_id IN (" + source_id.encode('utf-8') + ") AND pub.type = 'inproceedings' AND pub.year <= " + str(y) + ") AS target_authors\n"
-                    "ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id\n"
-                    "GROUP BY source_authors.author_id, target_authors.author_id) AS x\n"
-                    "GROUP BY connection_id;\n")
+            f.write("single_edition" + str(y) + "Nodes=SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id WHERE source IN (" + source.encode('utf-8') + ") AND source_id IN (" + source_id.encode('utf-8') + ") AND pub.type = 'inproceedings' AND pub.year <= " + str(y) + " GROUP BY airn.author_id;\n")
+            f.write("single_edition" + str(y) + "Edges=SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id WHERE source IN (" + source.encode('utf-8') + ") AND source_id IN (" + source_id.encode('utf-8') + ") AND pub.type = 'inproceedings' AND pub.year <= " + str(y) + ") AS source_authors JOIN ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id WHERE source IN (" + source.encode('utf-8') + ") AND source_id IN (" + source_id.encode('utf-8') + ") AND pub.type = 'inproceedings' AND pub.year <= " + str(y) + ") AS target_authors ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id GROUP BY source_authors.author_id, target_authors.author_id) AS x GROUP BY connection_id;\n")
         f.write("#####-#####-#####-#####\n")
 
     if ACTIVATE_QUERIES_CONFERENCE_EVOLUTION:
         f.write("#####-#####-#####-#####\n")
         f.write("# Queries to get the graph per edition (OPTIONAL)\n")
-        f.write("# The format is editionYEARnodes and editionYEARedges\n")
+        f.write("# The format is until_editionYEARnodes and until_editionYEARedges\n")
         for y in years:
             f.write("#####-#####-#####-#####\n")
-            f.write("edition" + str(y) + "Nodes=\n"
-                    "SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size\n "
-                    "FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id\n "
-                    "WHERE source IN (" + source.encode('utf-8') + ") AND source_id IN (" + source_id.encode('utf-8') + ")\n "
-                    "AND pub.type = 'inproceedings' AND pub.year <= " + str(y) + "\n"
-                    "GROUP BY airn.author_id;\n")
-            f.write("edition" + str(y) + "Edges=\n"
-                    "SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight\n"
-                    "FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id\n"
-                    "FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id\n"
-                    "WHERE source IN (" + source.encode('utf-8') + ") AND source_id IN (" + source_id.encode('utf-8') + ") AND pub.type = 'inproceedings' AND pub.year <= " + str(y) + ") AS source_authors\n"
-                    "JOIN ( SELECT pub.id AS pub, author, author_id\n"
-                    "FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id\n"
-                    "WHERE source IN (" + source.encode('utf-8') + ") AND source_id IN (" + source_id.encode('utf-8') + ") AND pub.type = 'inproceedings' AND pub.year <= " + str(y) + ") AS target_authors\n"
-                    "ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id\n"
-                    "GROUP BY source_authors.author_id, target_authors.author_id) AS x\n"
-                    "GROUP BY connection_id;\n")
+            f.write("until_edition" + str(y) + "Nodes=SELECT airn.author_id AS id, airn.author AS label, COUNT(pub.id) AS size FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id WHERE source IN (" + source.encode('utf-8') + ") AND source_id IN (" + source_id.encode('utf-8') + ") AND pub.type = 'inproceedings' AND pub.year <= " + str(y) + " GROUP BY airn.author_id;\n")
+            f.write("until_edition" + str(y) + "Edges=SELECT source_author_id AS source, target_author_id AS target, relation_strength AS weight FROM ( SELECT source_authors.author AS source_author_name, source_authors.author_id AS source_author_id, target_authors.author AS target_author_name, target_authors.author_id AS target_author_id, COUNT(*) AS relation_strength, CONCAT(GREATEST(source_authors.author_id, target_authors.author_id), '-', LEAST(source_authors.author_id, target_authors.author_id)) AS connection_id FROM  ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id WHERE source IN (" + source.encode('utf-8') + ") AND source_id IN (" + source_id.encode('utf-8') + ") AND pub.type = 'inproceedings' AND pub.year <= " + str(y) + ") AS source_authors JOIN ( SELECT pub.id AS pub, author, author_id FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id WHERE source IN (" + source.encode('utf-8') + ") AND source_id IN (" + source_id.encode('utf-8') + ") AND pub.type = 'inproceedings' AND pub.year <= " + str(y) + ") AS target_authors ON source_authors.pub = target_authors.pub AND source_authors.author_id <> target_authors.author_id GROUP BY source_authors.author_id, target_authors.author_id) AS x GROUP BY connection_id;\n")
         f.write("#####-#####-#####-#####\n")
 
     f.close()
