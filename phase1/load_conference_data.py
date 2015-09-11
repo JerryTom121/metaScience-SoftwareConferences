@@ -49,6 +49,10 @@ def create_config_file(title, source, source_id, years, num_editions, url, rank)
     f.write("editionQueries=" + ",".join(str(e) for e in years) + "\n")
     f.write('#dblp urls\n')
     f.write('urls=' + ','.join(url) + '\n')
+    f.write('#acronym of the conference\n')
+    f.write('sources=' + source + '\n')
+    f.write('#acronym of the conference in dblp\n')
+    f.write('source_ids=' + source_id + '\n')
 
     if ACTIVATE_QUERY_ALL_EDITIONS:
         f.write('# Queries to get the full graph\n')

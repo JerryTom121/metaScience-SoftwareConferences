@@ -112,8 +112,8 @@ public class GraphImporter {
 
                         String name = file.getName().replaceFirst("[.][^.]+$", "");
                         String fullName = properties.getProperty("conferenceName");
-                        String fullNodes = properties.getProperty("fullNodes");
-                        String fullEdges = properties.getProperty("fullEdges");
+                        String fullNodes = properties.getProperty("fullNodesLast5Editions");
+                        String fullEdges = properties.getProperty("fullEdgesLast5Editions");
 
                         GraphImportData importData = new GraphImportData(name, fullName, file, fullNodes, fullEdges);
 
@@ -124,8 +124,8 @@ public class GraphImporter {
                             String editionList[] = editions.split(",");
                             int counter = 0;
                             for(String edition : editionList) {
-                                String nodesKey = "single_edition" + edition + "Nodes";
-                                String edgesKey = "single_edition" + edition + "Edges";
+                                String nodesKey = "SingleEditionLast5Editions" + edition + "Nodes";
+                                String edgesKey = "SingleEditionLast5Editions" + edition + "Edges";
                                 if(properties.containsKey(nodesKey) && properties.containsKey(edgesKey)) {
                                     String editionNodes = properties.getProperty(nodesKey);
                                     String editionEdges = properties.getProperty(edgesKey);

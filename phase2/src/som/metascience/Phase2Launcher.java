@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Properties;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /**
  * As the data is obtained from the DBLP database, the connection properties have to be declared in the file
@@ -26,6 +29,6 @@ public class Phase2Launcher {
 
         GraphImporter importer = new GraphImporter(host, db, user, pass, port, new File(CONF), new File(OUTPUT), new Phase2Logger());
         importer.execute();
-
     }
 }
+
