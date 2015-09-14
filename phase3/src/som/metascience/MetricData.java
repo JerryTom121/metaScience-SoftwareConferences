@@ -4,15 +4,43 @@ import java.io.File;
 import java.util.List;
 
 /**
- * Created by jcanovasi on 07/09/2015.
+ * This class encapsulates the info needed to calculate the metrics for each conference
+ *
  */
 public class MetricData {
+    /**
+     * Short name for the conference
+     */
     private String name;
+
+    /**
+     * Full name of the conference
+     */
     private String fullName;
+
+    /**
+     * Rank of the conference
+     */
     private String rank;
+
+    /**
+     * The file which populates this class
+     */
     private File sourceFile;
+
+    /**
+     * Acronym of the conference
+     */
     private String sourceInfo;
+
+    /**
+     * Acronym of the conference in DBLP
+     */
     private String sourceIdInfo;
+
+    /**
+     * List of years of previous editions
+     */
     private List<Integer> editions;
 
     public MetricData(String name, String fullName, String rank, File sourceFile, String sourceInfo, String sourceIdInfo, List<Integer> editions) {
@@ -30,7 +58,8 @@ public class MetricData {
         this.name = name;
         this.fullName = fullName;
         this.sourceFile = sourceFile;
-        //selecting only the last 5 editions
+
+        // selecting only the last 5 editions
         this.editions = editions.subList(0, 5);
         this.sourceInfo = sourceInfo;
         this.sourceIdInfo = sourceIdInfo;

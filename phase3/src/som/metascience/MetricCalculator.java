@@ -94,7 +94,14 @@ public class MetricCalculator {
         calculateMetrics(metricData);
     }
 
+    /**
+     * Appends a new line in the result file
+     * @param msg The message to append
+     */
     public void writeResult(String msg) {
+        if(msg == null)
+            throw new IllegalArgumentException("The message cannot be null");
+
         try {
             FileWriter fw = new FileWriter(outputPath, true);
             fw.write(msg);
@@ -117,6 +124,7 @@ public class MetricCalculator {
                     Properties properties = new Properties();
                     properties.load(new FileInputStream(file));
 
+                    // Getting basic info
                     String name = file.getName().replaceFirst("[.][^.]+$", "");
                     String fullName = properties.getProperty("conferenceName");
                     String rank = properties.getProperty("rank");
@@ -124,13 +132,13 @@ public class MetricCalculator {
                     // Retrieving data for specific editions
                     List<String> editions = Arrays.asList(properties.getProperty("editionQueries").split(","));
 
-                    String sourceInfo = properties.getProperty("sources");
-                    String sourceIdInfo = properties.getProperty("source_ids");
-
                     List<Integer> listEditions = new LinkedList<Integer>();
                     for (String edition : editions)
                         listEditions.add(Integer.parseInt(edition));
 
+                    // Getting acronyms
+                    String sourceInfo = properties.getProperty("sources");
+                    String sourceIdInfo = properties.getProperty("source_ids");
 
                     MetricData metricData = new MetricData(name, fullName, rank, file, sourceInfo, sourceIdInfo, listEditions);
                     metricDataList.add(metricData);
