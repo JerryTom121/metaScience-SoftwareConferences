@@ -5,18 +5,44 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class encapsules the info needed to retrieve the graph data for each conference.
+ * This class encapsulates the info needed to retrieve the graph data for each conference.
  *
  * Queries to get the full graph are required but queries to get specific editions are optional
  */
 public class GraphImportData {
+    /**
+     * Short name for the conference
+     */
     private String name;
+
+    /**
+     * Full name of the conference
+     */
     private String fullName;
+
+    /**
+     * The file which populates this class
+     */
     private File source;
 
+    /**
+     * The query to execute to get the full graph (nodes)
+     */
     private String fullNodesQuery;
+
+    /**
+     * The query to execute to get the full graph (edges)
+     */
     private String fullEdgesQuery;
+
+    /**
+     * The queries to get particular editions (nodes)
+     */
     private List<String> editionNodesQuery;
+
+    /**
+     * The queries to get particular editions (edges)
+     */
     private List<String> editionEdgesQuery;
 
     /**
