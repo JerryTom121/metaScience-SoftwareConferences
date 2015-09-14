@@ -22,8 +22,9 @@ public class Phase3Launcher {
         String user = dbProperties.getProperty("user");
         String pass = dbProperties.getProperty("pass");
         int port = Integer.valueOf(dbProperties.getProperty("port"));
+        DBInfo dbInfo = new DBInfo(host, db, user, pass, port);
 
-        MetricCalculator calculator = new MetricCalculator(host, db, user, pass, port, new File(CONF), new File(GRAPHS), new File(OUTPUT), new Phase3Logger());
+        MetricCalculator calculator = new MetricCalculator(new File(CONF), new File(GRAPHS), new File(OUTPUT), dbInfo, new Phase3Logger());
         calculator.execute();
     }
 

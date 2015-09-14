@@ -169,8 +169,20 @@ public class GraphImporter {
         }
     }
 
-
+    /**
+     * Uses Gephi to create a graph and serializes it as a GEXF
+     * @param nodes The query to get the nodes from the database
+     * @param edges The query to get the edges from the database
+     * @param outputPath The File path to serialize the GEXF
+     */
     private void generateGraph(String nodes, String edges, File outputPath) {
+        if(nodes == null || nodes.equals(""))
+            throw new IllegalArgumentException("The query for nodes cannot be null or empty");
+        if(edges == null || edges.equals(""))
+            throw new IllegalArgumentException("The query for nodes cannot be null or empty");
+        if(outputPath == null)
+            throw new IllegalArgumentException("The output file cannot be null");
+
         EdgeListDatabaseImpl db = new EdgeListDatabaseImpl();
         db.setDBName(dbName);
         db.setHost(dbHost);

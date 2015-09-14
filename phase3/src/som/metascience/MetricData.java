@@ -43,7 +43,17 @@ public class MetricData {
      */
     private List<Integer> editions;
 
-    public MetricData(String name, String fullName, String rank, File sourceFile, String sourceInfo, String sourceIdInfo, List<Integer> editions) {
+    /**
+     * Path to the full graph
+     */
+    private File fullGraph;
+
+    /**
+     * Path to the edition graphs
+     */
+    private List<File> editionGraphs;
+
+    public MetricData(String name, String fullName, String rank, File sourceFile, String sourceInfo, String sourceIdInfo, List<Integer> editions, File fullGraph, List<File> editionGraphs) {
         if(name == null)
             throw new IllegalArgumentException("The name of the import data cannot be null");
         if(fullName == null)
@@ -58,6 +68,9 @@ public class MetricData {
         this.name = name;
         this.fullName = fullName;
         this.sourceFile = sourceFile;
+
+        this.fullGraph = fullGraph;
+        this.editionGraphs = editionGraphs;
 
         // selecting only the last 5 editions
         this.editions = editions.subList(0, 5);
@@ -89,4 +102,12 @@ public class MetricData {
     public String getSourceInfo() { return sourceInfo; }
 
     public String getSourceIdInfo() { return sourceIdInfo; }
+
+    public File getFullGraph() {
+        return fullGraph;
+    }
+
+    public List<File> getEditionGraphs() {
+        return editionGraphs;
+    }
 }
