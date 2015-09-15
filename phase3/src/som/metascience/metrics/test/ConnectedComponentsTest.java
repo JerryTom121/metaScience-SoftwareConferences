@@ -9,14 +9,15 @@ import java.io.File;
 import static org.junit.Assert.*;
 
 public class ConnectedComponentsTest extends MetricTest {
-    public static final File TEST_FILE = new File("testData/graphs/OCL@Models.gexf");
+    public static final File GRAPHS = new File("testData/graphs");
+    public static final File TEST_FILE = new File("testData/importData/OCL-Models.properties");
 
     @Test
     public void testCalculateGraphComponents() throws Exception {
-        MetricData md = buildTestMetricData();
-        ConnectedComponents cc = new ConnectedComponents(md);
+        MetricData metricData = buildMetricData(GRAPHS, TEST_FILE);
+        ConnectedComponents cc = new ConnectedComponents(metricData);
 
-        Integer result = Integer.valueOf(cc.calculateGraphComponents(new File(TEST_FILE.getCanonicalPath())));
-        assertEquals(10, result.intValue());
+        Integer result = Integer.valueOf(cc.calculateGraphComponents(metricData.getFullGraph()));
+        assertEquals(19, result.intValue());
     }
 }
