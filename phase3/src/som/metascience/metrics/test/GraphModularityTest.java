@@ -9,7 +9,7 @@ import java.io.File;
 import static org.junit.Assert.*;
 
 public class GraphModularityTest extends MetricTest {
-    public static final File TEST_FILE = new File("../testData/graphs/OCL@Models.gexf");
+    public static final File TEST_FILE = new File("testData/graphs/OCL@Models.gexf");
 
     @Test
     public void testCalcualteGraphModularity() throws Exception {
