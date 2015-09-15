@@ -44,7 +44,8 @@ public class MetricBuilder {
             AverageCommunityGrowthRate.class,
             AverageDegree.class,
             Density.class,
-            GraphModularity.class
+            GraphModularity.class,
+            ConnectedComponents.class
     };
 
     public MetricBuilder(MetricData metricData, DBInfo dbInfo) {
@@ -92,6 +93,8 @@ public class MetricBuilder {
             result = "GraphDensity_allEditions,GraphDensity_1_LastEdition,GraphDensity_2_LastEdition,GraphDensity_3_LastEdition,GraphDensity_4_LastEdition,GraphDensity_5_LastEdition";
         } else if (m == GraphModularity.class) {
             result = "GraphModularity_allEditions,GraphModularity_1_LastEdition,GraphModularity_2_LastEdition,GraphModularity_3_LastEdition,GraphModularity_4_LastEdition,GraphModularity_5_LastEdition";
+        } else if (m == ConnectedComponents.class) {
+            result = "ConnectedComponents_allEditions,ConnectedComponents_1_LastEdition,ConnectedComponents_2_LastEdition,ConnectedComponents_3_LastEdition,ConnectedComponents_4_LastEdition,ConnectedComponents_5_LastEdition";
         } else
             throw new IllegalArgumentException("There is no category for such a metric");
         return result;
@@ -128,6 +131,8 @@ public class MetricBuilder {
             result = new Density(metricData);
         } else if (m == GraphModularity.class) {
             result = new GraphModularity(metricData);
+        } else if (m == ConnectedComponents.class) {
+            result = new ConnectedComponents(metricData);
         } else
             throw new IllegalArgumentException("There is no builder for such a metric");
         return result;
