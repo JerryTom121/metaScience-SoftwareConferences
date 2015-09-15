@@ -36,13 +36,13 @@ public class MetricBuilder {
     private static Class[] metrics = {
             AllPapers.class,
             AllAuthors.class,
-            AverageDegree.class,
             AverageNumberOfPapers.class,
             AverageNumberOfAuthors.class,
             AverageNumberOfAuthorsPerPaper.class,
             AverageNumberOfPapersPerAuthor.class,
             AverageOpennessRate.class,
             AverageCommunityGrowthRate.class,
+            AverageDegree.class,
             Density.class,
             GraphModularity.class
     };
