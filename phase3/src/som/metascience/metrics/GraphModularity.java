@@ -71,6 +71,9 @@ public class GraphModularity extends Metric {
 
         // Graph modularity
         Modularity modularity = new Modularity();
+        modularity.setRandom(true);
+        modularity.setUseWeight(true);
+        modularity.setResolution(1.0);
         modularity.execute(gm, am);
 
         AttributeTable at = am.getTable(ATTRIBUTE_TABLE);
