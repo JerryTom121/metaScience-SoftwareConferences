@@ -45,7 +45,8 @@ public class MetricBuilder {
             AverageDegree.class,
             Density.class,
             GraphModularity.class,
-            ConnectedComponents.class
+            ConnectedComponents.class,
+            AveragePathLength.class
     };
 
     public MetricBuilder(MetricData metricData, DBInfo dbInfo) {
@@ -95,6 +96,8 @@ public class MetricBuilder {
             result = "GraphModularity_allEditions,GraphModularity_1_LastEdition,GraphModularity_2_LastEdition,GraphModularity_3_LastEdition,GraphModularity_4_LastEdition,GraphModularity_5_LastEdition";
         } else if (m == ConnectedComponents.class) {
             result = "ConnectedComponents_allEditions,ConnectedComponents_1_LastEdition,ConnectedComponents_2_LastEdition,ConnectedComponents_3_LastEdition,ConnectedComponents_4_LastEdition,ConnectedComponents_5_LastEdition";
+        } else if (m == AveragePathLength.class) {
+            result = "AveragePathLength_allEditions,AveragePathLength_1_LastEdition,AveragePathLength_2_LastEdition,AveragePathLength_3_LastEdition,AveragePathLength_4_LastEdition,AveragePathLength_5_LastEdition";
         } else
             throw new IllegalArgumentException("There is no category for such a metric");
         return result;
@@ -133,6 +136,8 @@ public class MetricBuilder {
             result = new GraphModularity(metricData);
         } else if (m == ConnectedComponents.class) {
             result = new ConnectedComponents(metricData);
+        } else if (m == AveragePathLength.class) {
+            result = new AveragePathLength(metricData);
         } else
             throw new IllegalArgumentException("There is no builder for such a metric");
         return result;
