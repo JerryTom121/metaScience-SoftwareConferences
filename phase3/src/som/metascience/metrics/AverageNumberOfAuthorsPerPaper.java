@@ -31,6 +31,8 @@ public class AverageNumberOfAuthorsPerPaper extends SQLMetric {
 
             rs.first();
             average = rs.getInt("avg");
+            rs.close();
+            stmt.close();
 
         }
         catch (Exception e) {

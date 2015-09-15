@@ -30,6 +30,8 @@ public class AllPapers extends SQLMetric {
 
             rs.first();
             allPapers = rs.getInt("numPapers");
+            rs.close();
+            stmt.close();
 
         }
         catch (Exception e) {

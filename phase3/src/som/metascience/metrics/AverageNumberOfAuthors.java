@@ -31,6 +31,8 @@ public class AverageNumberOfAuthors extends SQLMetric {
 
             rs.first();
             averageNumberOfAuthors = rs.getInt("avg");
+            rs.close();
+            stmt.close();
 
         }
         catch (Exception e) {

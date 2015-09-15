@@ -32,6 +32,8 @@ public class AllAuthors extends SQLMetric {
 
             rs.first();
             allAuthors = rs.getInt("numAuthors");
+            rs.close();
+            stmt.close();
 
         }
         catch (Exception e) {

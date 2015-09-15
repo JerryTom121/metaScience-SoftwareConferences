@@ -31,6 +31,8 @@ public class AverageNumberOfPapers extends SQLMetric {
 
             rs.first();
             averageNumberOfPapers = rs.getInt("avg");
+            rs.close();
+            stmt.close();
 
         }
         catch (Exception e) {
