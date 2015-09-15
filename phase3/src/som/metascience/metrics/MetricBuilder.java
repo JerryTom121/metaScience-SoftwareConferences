@@ -33,7 +33,7 @@ public class MetricBuilder {
      * The set of metrics to consider
      * (add here yours if you want to add another one, recall the steps to follows in the description of this class)
      */
-    private static Class[] metrics = { AllPapers.class, AllAuthors.class, AverageDegree.class };
+    private static Class[] metrics = { AllPapers.class, AllAuthors.class, AverageDegree.class, Density.class };
 
     public MetricBuilder(MetricData metricData, DBInfo dbInfo) {
         this.metricData = metricData;
@@ -64,6 +64,8 @@ public class MetricBuilder {
             result = "Num_authors";
         } else if (m == AverageDegree.class) {
             result = "AvgDegree_allEditions,AvgDegree_1_LastEdition,AvgDegree_2_LastEdition,AvgDegree_3_LastEdition,AvgDegree_4_LastEdition,AvgDegree_5_LastEdition";
+        } else if (m == Density.class) {
+            result = "GraphDensity_allEditions,GraphDensity_1_LastEdition,GraphDensity_2_LastEdition,GraphDensity_3_LastEdition,GraphDensity_4_LastEdition,GraphDensity_5_LastEdition";
         } else
             throw new IllegalArgumentException("There is no category for such a metric");
         return result;
@@ -84,6 +86,8 @@ public class MetricBuilder {
             result = new AllAuthors(metricData, dbInfo);
         } else if (m == AverageDegree.class) {
             result = new AverageDegree(metricData);
+        } else if (m == Density.class) {
+            result = new Density(metricData);
         }  else
             throw new IllegalArgumentException("There is no builder for such a metric");
         return result;
