@@ -62,8 +62,8 @@ public class MetricData {
             throw new IllegalArgumentException("The rank of the import data cannot be null");
         if(sourceFile == null)
             throw new IllegalArgumentException("The source file cannot be null");
-        if(editions.isEmpty())
-            throw new IllegalArgumentException("The number of editions must be positive");
+        if(editions.isEmpty() || editions.size() < 5)
+            throw new IllegalArgumentException("The number of editions must be positive and at least 5");
 
         this.name = name;
         this.fullName = fullName;
