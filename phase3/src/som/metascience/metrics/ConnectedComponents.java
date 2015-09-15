@@ -26,17 +26,22 @@ public class ConnectedComponents extends Metric {
 
     @Override
     public String getResult() {
-        String graphComponentsFull = calcualteGraphComponents(metricData.getFullGraph());
-        String graphComponentsEdition1 = calcualteGraphComponents(metricData.getEditionGraphs().get(0));
-        String graphComponentsEdition2 = calcualteGraphComponents(metricData.getEditionGraphs().get(1));
-        String graphComponentsEdition3 = calcualteGraphComponents(metricData.getEditionGraphs().get(2));
-        String graphComponentsEdition4 = calcualteGraphComponents(metricData.getEditionGraphs().get(3));
-        String graphComponentsEdition5 = calcualteGraphComponents(metricData.getEditionGraphs().get(4));
+        String graphComponentsFull = calculateGraphComponents(metricData.getFullGraph());
+        String graphComponentsEdition1 = calculateGraphComponents(metricData.getEditionGraphs().get(0));
+        String graphComponentsEdition2 = calculateGraphComponents(metricData.getEditionGraphs().get(1));
+        String graphComponentsEdition3 = calculateGraphComponents(metricData.getEditionGraphs().get(2));
+        String graphComponentsEdition4 = calculateGraphComponents(metricData.getEditionGraphs().get(3));
+        String graphComponentsEdition5 = calculateGraphComponents(metricData.getEditionGraphs().get(4));
 
         return graphComponentsFull + "," + graphComponentsEdition1 + "," + graphComponentsEdition2 + "," + graphComponentsEdition3 + "," + graphComponentsEdition4 + "," + graphComponentsEdition5;
     }
 
-    private String calcualteGraphComponents(File graph) {
+    /**
+     * Calculates the graph componens
+     * @param graph The path to the graph
+     * @return The result of the metric
+     */
+    public String calculateGraphComponents(File graph) {
         ProjectController pc = Lookup.getDefault().lookup(ProjectController.class);
         pc.newProject();
         Workspace workspace = pc.getCurrentWorkspace();

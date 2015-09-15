@@ -20,9 +20,6 @@ import java.io.File;
  * Calculate the average path lenght
  */
 public class AveragePathLength extends Metric{
-
-
-
     public AveragePathLength(MetricData metricData) {
         super(metricData);
     }
@@ -39,7 +36,12 @@ public class AveragePathLength extends Metric{
         return graphDistanceFull + "," + graphDistanceEdition1 + "," + graphDistanceEdition2 + "," + graphDistanceEdition3 + "," + graphDistanceEdition4 + "," + graphDistanceEdition5;
     }
 
-    private String calculateGraphDistance(File graph) {
+    /**
+     * Calculates the average path length
+     * @param graph The path to the graph
+     * @return The result of the metric
+     */
+    public String calculateGraphDistance(File graph) {
         ProjectController pc = Lookup.getDefault().lookup(ProjectController.class);
         pc.newProject();
         Workspace workspace = pc.getCurrentWorkspace();

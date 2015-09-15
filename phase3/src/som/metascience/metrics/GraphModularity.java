@@ -49,7 +49,12 @@ public class GraphModularity extends Metric {
         return graphModularityFull + "," + graphModularityEdition1 + "," + graphModularityEdition2 + "," + graphModularityEdition3 + "," + graphModularityEdition4 + "," + graphModularityEdition5;
     }
 
-    private String calcualteGraphModularity(File graph) {
+    /**
+     * Calculates the graph modularity classes
+     * @param graph The path to the graph
+     * @return The result of the metric
+     */
+    public String calcualteGraphModularity(File graph) {
         ProjectController pc = Lookup.getDefault().lookup(ProjectController.class);
         pc.newProject();
         Workspace workspace = pc.getCurrentWorkspace();
@@ -71,9 +76,9 @@ public class GraphModularity extends Metric {
 
         // Graph modularity
         Modularity modularity = new Modularity();
-        modularity.setRandom(true);
-        modularity.setUseWeight(true);
-        modularity.setResolution(1.0);
+        //modularity.setRandom(true);
+        //modularity.setUseWeight(true);
+        //modularity.setResolution(1.0);
         modularity.execute(gm, am);
 
         AttributeTable at = am.getTable(ATTRIBUTE_TABLE);

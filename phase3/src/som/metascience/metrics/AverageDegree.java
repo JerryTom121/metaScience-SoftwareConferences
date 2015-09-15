@@ -42,7 +42,7 @@ public class AverageDegree extends Metric {
      * @param graph The path to the graph
      * @return The result of the metric
      */
-    public String calculateAverageDegree(File graph) {
+     public String calculateAverageDegree(File graph) {
         ProjectController pc = Lookup.getDefault().lookup(ProjectController.class);
         pc.newProject();
         Workspace workspace = pc.getCurrentWorkspace();

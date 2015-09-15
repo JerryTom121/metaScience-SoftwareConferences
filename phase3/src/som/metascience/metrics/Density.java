@@ -37,7 +37,13 @@ public class Density extends Metric {
         return graphDensityFull + "," + graphDensityEdition1 + "," + graphDensityEdition2 + "," + graphDensityEdition3 + "," + graphDensityEdition4 + "," + graphDensityEdition5;
     }
 
-    private String calculateGraphDensity(File graph) {
+
+    /**
+     * Calculates the graph density
+     * @param graph The path to the graph
+     * @return The result of the metric
+     */
+    public String calculateGraphDensity(File graph) {
         ProjectController pc = Lookup.getDefault().lookup(ProjectController.class);
         pc.newProject();
         Workspace workspace = pc.getCurrentWorkspace();
