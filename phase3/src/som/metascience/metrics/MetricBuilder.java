@@ -33,7 +33,12 @@ public class MetricBuilder {
      * The set of metrics to consider
      * (add here yours if you want to add another one, recall the steps to follows in the description of this class)
      */
-    private static Class[] metrics = { AllPapers.class, AllAuthors.class, AverageDegree.class };
+    private static Class[] metrics = {
+            AllPapers.class, AllAuthors.class, AverageDegree.class,
+            AverageNumberOfPapers.class, AverageNumberOfAuthors.class,
+            AverageNumberOfAuthorsPerPaper.class, AverageNumberOfPapersPerAuthor.class,
+            AverageOpennessRate.class, AverageCommunityGrowthRate.class
+    };
 
     public MetricBuilder(MetricData metricData, DBInfo dbInfo) {
         this.metricData = metricData;
@@ -62,6 +67,18 @@ public class MetricBuilder {
             result = "Num_Papers";
         } else if (m == AllAuthors.class) {
             result = "Num_authors";
+        } else if (m == AverageNumberOfPapers.class) {
+            result = "Avg_papers";
+        } else if (m == AverageNumberOfAuthors.class) {
+            result = "Avg_authors";
+        } else if (m == AverageNumberOfAuthorsPerPaper.class) {
+            result = "Avg_authors_per_paper";
+        } else if (m == AverageNumberOfPapersPerAuthor.class) {
+            result = "Avg_papers_per_author";
+        } else if (m == AverageOpennessRate.class) {
+            result = "Avg_newcomers_rate,Average_community_papers";
+        } else if (m == AverageCommunityGrowthRate.class) {
+            result = "Avg_community_grow_rate";
         } else if (m == AverageDegree.class) {
             result = "AvgDegree_allEditions,AvgDegree_1_LastEdition,AvgDegree_2_LastEdition,AvgDegree_3_LastEdition,AvgDegree_4_LastEdition,AvgDegree_5_LastEdition";
         } else
@@ -82,6 +99,18 @@ public class MetricBuilder {
             result = new AllPapers(metricData, dbInfo);
         } else if (m == AllAuthors.class) {
             result = new AllAuthors(metricData, dbInfo);
+        } else if (m == AverageNumberOfPapers.class) {
+            result = new AverageNumberOfPapers(metricData, dbInfo);
+        } else if (m == AverageNumberOfAuthors.class) {
+            result = new AverageNumberOfAuthors(metricData, dbInfo);
+        } else if (m == AverageNumberOfAuthorsPerPaper.class) {
+            result = new AverageNumberOfAuthorsPerPaper(metricData, dbInfo);
+        } else if (m == AverageNumberOfPapersPerAuthor.class) {
+            result = new AverageNumberOfPapersPerAuthor(metricData, dbInfo);
+        } else if (m == AverageOpennessRate.class) {
+            result = new AverageOpennessRate(metricData, dbInfo);
+        } else if (m == AverageCommunityGrowthRate.class) {
+            result = new AverageCommunityGrowthRate(metricData, dbInfo);
         } else if (m == AverageDegree.class) {
             result = new AverageDegree(metricData);
         }  else
