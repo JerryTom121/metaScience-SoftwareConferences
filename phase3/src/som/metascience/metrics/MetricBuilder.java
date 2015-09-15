@@ -33,16 +33,12 @@ public class MetricBuilder {
      * The set of metrics to consider
      * (add here yours if you want to add another one, recall the steps to follows in the description of this class)
      */
-<<<<<<< HEAD
     private static Class[] metrics = {
             AllPapers.class, AllAuthors.class, AverageDegree.class,
             AverageNumberOfPapers.class, AverageNumberOfAuthors.class,
             AverageNumberOfAuthorsPerPaper.class, AverageNumberOfPapersPerAuthor.class,
-            AverageOpennessRate.class, AverageCommunityGrowthRate.class
+            AverageOpennessRate.class, AverageCommunityGrowthRate.class, Density.class
     };
-=======
-    private static Class[] metrics = { AllPapers.class, AllAuthors.class, AverageDegree.class, Density.class };
->>>>>>> 3d36691b539425991e559ba60bb13687f13f8ff3
 
     public MetricBuilder(MetricData metricData, DBInfo dbInfo) {
         this.metricData = metricData;
