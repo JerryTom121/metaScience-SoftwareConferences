@@ -33,7 +33,7 @@ public class MetricBuilder {
      * The set of metrics to consider
      * (add here yours if you want to add another one, recall the steps to follows in the description of this class)
      */
-    private static Class[] metrics = { AllPapers.class, AllAuthors.class, AverageDegree.class, Density.class };
+    private static Class[] metrics = { AllPapers.class, AllAuthors.class, AverageDegree.class, Density.class, GraphModularity.class };
 
     public MetricBuilder(MetricData metricData, DBInfo dbInfo) {
         this.metricData = metricData;
@@ -66,6 +66,8 @@ public class MetricBuilder {
             result = "AvgDegree_allEditions,AvgDegree_1_LastEdition,AvgDegree_2_LastEdition,AvgDegree_3_LastEdition,AvgDegree_4_LastEdition,AvgDegree_5_LastEdition";
         } else if (m == Density.class) {
             result = "GraphDensity_allEditions,GraphDensity_1_LastEdition,GraphDensity_2_LastEdition,GraphDensity_3_LastEdition,GraphDensity_4_LastEdition,GraphDensity_5_LastEdition";
+        } else if (m == GraphModularity.class) {
+            result = "GraphModularity_allEditions,GraphModularity_1_LastEdition,GraphModularity_2_LastEdition,GraphModularity_3_LastEdition,GraphModularity_4_LastEdition,GraphModularity_5_LastEdition";
         } else
             throw new IllegalArgumentException("There is no category for such a metric");
         return result;
@@ -88,7 +90,9 @@ public class MetricBuilder {
             result = new AverageDegree(metricData);
         } else if (m == Density.class) {
             result = new Density(metricData);
-        }  else
+        } else if (m == GraphModularity.class) {
+            result = new GraphModularity(metricData);
+        } else
             throw new IllegalArgumentException("There is no builder for such a metric");
         return result;
     }
