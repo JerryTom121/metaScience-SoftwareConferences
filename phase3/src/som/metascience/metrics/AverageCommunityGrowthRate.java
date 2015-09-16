@@ -102,5 +102,6 @@ public class AverageCommunityGrowthRate extends SQLMetric {
             results = String.format("%.2f", growthRate).replace(",", ".") + "," + results;
         }
         return results + String.format("%.2f", sumGrowthRates/(metricData.getEditions().size()-1)).replace(",", ".");
+
     }
 }
