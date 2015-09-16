@@ -41,12 +41,12 @@ public class MetricBuilder {
             AverageNumberOfAuthorsPerPaper.class,
             AverageNumberOfPapersPerAuthor.class,
             AverageOpennessRate.class,
-            AverageCommunityGrowthRate.class//,
-            //AverageDegree.class,
-            //Density.class,
-            //GraphModularity.class,
-            //ConnectedComponents.class,
-            //AveragePathLength.class
+            AverageCommunityGrowthRate.class,
+            AverageDegree.class,
+            Density.class,
+            GraphModularity.class,
+            ConnectedComponents.class,
+            AveragePathLength.class
     };
 
     public MetricBuilder(MetricData metricData, DBInfo dbInfo) {
