@@ -21,7 +21,7 @@ public class AverageNumberOfAuthorsPerPaper extends SQLMetric {
     public String getResult() {
         Statement stmt = null;
         ResultSet rs = null;
-        int average = 0;
+        float average = 0;
         try {
             String query = "SELECT ROUND(AVG(avg_author_per_paper), 2) as avg " +
                            "FROM _avg_number_authors_per_paper_per_conf_per_year " +
@@ -30,7 +30,7 @@ public class AverageNumberOfAuthorsPerPaper extends SQLMetric {
             rs = stmt.executeQuery(query);
 
             rs.first();
-            average = rs.getInt("avg");
+            average = rs.getFloat("avg");
             rs.close();
             stmt.close();
 
@@ -39,6 +39,6 @@ public class AverageNumberOfAuthorsPerPaper extends SQLMetric {
             e.printStackTrace();
         }
 
-        return String.valueOf(average);
+        return String.format("%.2f", average).replace(",", ".");
     }
 }

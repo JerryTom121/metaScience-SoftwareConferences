@@ -41,12 +41,12 @@ public class MetricBuilder {
             AverageNumberOfAuthorsPerPaper.class,
             AverageNumberOfPapersPerAuthor.class,
             AverageOpennessRate.class,
-            AverageCommunityGrowthRate.class,
-            AverageDegree.class,
-            Density.class,
-            GraphModularity.class,
-            ConnectedComponents.class,
-            AveragePathLength.class
+            AverageCommunityGrowthRate.class//,
+            //AverageDegree.class,
+            //Density.class,
+            //GraphModularity.class,
+            //ConnectedComponents.class,
+            //AveragePathLength.class
     };
 
     public MetricBuilder(MetricData metricData, DBInfo dbInfo) {
@@ -87,7 +87,7 @@ public class MetricBuilder {
         } else if (m == AverageOpennessRate.class) {
             result = "Avg_newcomers_rate,Average_community_papers";
         } else if (m == AverageCommunityGrowthRate.class) {
-            result = "Avg_community_grow_rate";
+            result = "GrowthRate_12_LastEdition,GrowthRate_23_LastEdition,GrowthRate_34_LastEdition,GrowthRate_45_LastEdition,Avg_communityGrowthRate";
         } else if (m == AverageDegree.class) {
             result = "AvgDegree_allEditions,AvgDegree_1_LastEdition,AvgDegree_2_LastEdition,AvgDegree_3_LastEdition,AvgDegree_4_LastEdition,AvgDegree_5_LastEdition";
         } else if (m == Density.class) {

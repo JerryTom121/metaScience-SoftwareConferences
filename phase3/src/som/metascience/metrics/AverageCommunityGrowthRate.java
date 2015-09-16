@@ -81,7 +81,8 @@ public class AverageCommunityGrowthRate extends SQLMetric {
     @Override
     //Note that the result is a percentage. Ex.: Models has on average 28.69% of new authors per edition
     public String getResult() {
-        float sumGrowthRates = 0;
+        List<Float> growthRates = new LinkedList<Float>();
+
         Collections.reverse(metricData.getEditions());
         int firstEdition = metricData.getEditions().get(0);
         int previousEdition = firstEdition;
@@ -89,11 +90,17 @@ public class AverageCommunityGrowthRate extends SQLMetric {
             int authors = getDistinctAuthorsYear(edition);
             int newAuthors = getNewAuthorsYear(previousEdition, edition, firstEdition);
 
-            sumGrowthRates = sumGrowthRates + ((((float)newAuthors)/authors)*100);
+            growthRates.add(((((float)newAuthors)/authors)*100));
 
             previousEdition = edition;
         }
 
-        return String.format("%.2f", sumGrowthRates/(metricData.getEditions().size()-1));
+        String results = "";
+        float sumGrowthRates = 0;
+        for (float growthRate : growthRates) {
+            sumGrowthRates = sumGrowthRates + growthRate;
+            results = String.format("%.2f", growthRate).replace(",", ".") + "," + results;
+        }
+        return results + String.format("%.2f", sumGrowthRates/(metricData.getEditions().size()-1)).replace(",", ".");
     }
 }

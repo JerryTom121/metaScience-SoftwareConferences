@@ -129,7 +129,8 @@ def get_year_editions(source, source_id):
     cursor = cnx.cursor()
     query = "SELECT year " \
             "FROM dblp_pub_new " \
-            "WHERE source IN (" + source + ") AND source_id IN (" + source_id + ") AND type = 'proceedings' " \
+            "WHERE source IN (" + source + ") AND source_id IN (" + source_id + ") AND type = 'inproceedings' " \
+            "GROUP BY year " \
             "ORDER BY year DESC"
     cursor.execute(query)
     row = cursor.fetchone()

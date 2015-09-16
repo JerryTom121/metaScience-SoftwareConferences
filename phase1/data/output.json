@@ -12,6 +12,7 @@
 {"url": "db/conf/fse", "source": "FSE", "source_id": "fse", "rank": "A", "title": "ACM SIGSOFT International Symposium on the Foundations of Software Engineering"}
 {"url": "db/conf/middleware", "source": "Middleware", "source_id": "middleware", "rank": "A", "title": "ACM/IFIP/USENIX International Middleware Conference"}
 {"url": "db/conf/acsac", "source": "ACSAC", "source_id": "acsac", "rank": "A", "title": "Annual Computer Security Applications Conference"}
+{"url": "db/conf/aPcsac", "source": "ACSAC", "source_id": "aPcsac", "rank": "A", "title": "Annual Computer Security Applications Conference"}
 {"url": "db/conf/aosd", "source": "AOSD", "source_id": "aosd", "rank": "A", "title": "Aspect-Oriented Software Development"}
 {"url": "db/conf/kbse", "source": "ASE", "source_id": "kbse", "rank": "A", "title": "Automated Software Engineering Conference"}
 {"url": "db/conf/ecoop", "source": "ECOOP", "source_id": "ecoop", "rank": "A", "title": "European Conference on Object-Oriented Programming"}
@@ -39,13 +40,16 @@
 {"url": "db/conf/atva", "source": "ATVA", "source_id": "atva", "rank": "A", "title": "International Symposium on Automated Technology for Verification and Analysis"}
 {"url": "db/conf/cgo", "source": "CGO", "source_id": "cgo", "rank": "A", "title": "International Symposium on Code Generation and Optimization"}
 {"url": "db/conf/esem", "source": "ESEM", "source_id": "esem", "rank": "A", "title": "International Symposium on Empirical Software Engineering and Measurement"}
+{"url": "db/conf/ismm", "source": "ISMM", "source_id": "ismm", "rank": "A", "title": "International Symposium on Memory Management"}
 {"url": "db/conf/iwmm", "source": "ISMM", "source_id": "iwmm", "rank": "A", "title": "International Symposium on Memory Management"}
 {"url": "db/conf/issre", "source": "ISSRE", "source_id": "issre", "rank": "A", "title": "International Symposium on Software Reliability Engineering"}
+{"url": "db/conf/dmkd", "source": "ISSTA", "source_id": "issta", "rank": "A", "title": "International Symposium on Software Testing and Analysis"}
 {"url": "db/conf/issta", "source": "ISSTA", "source_id": "issta", "rank": "A", "title": "International Symposium on Software Testing and Analysis"}
 {"url": "db/conf/tacas", "source": "TACAS", "source_id": "tacas", "rank": "A", "title": "Tools and Algorithms for Construction and Analysis of Systems"}
 {"url": "db/conf/ndss", "source": "NDSS", "source_id": "ndss", "rank": "A", "title": "Usenix Network and Distributed System Security Symposium"}
 {"url": "db/conf/fccm", "source": "FCCM", "source_id": "fccm", "rank": "A", "title": "IEEE Symposium on Field Programmable Custom Computing Machines"}
 {"url": "db/conf/iccl", "source": "ICCL", "source_id": "iccl", "rank": "A", "title": "IEEE International Conference on Computer Languages"}
+{"url": "db/conf/iccl2", "source": "ICCL", "source_id": "iccl2", "rank": "A", "title": "IEEE International Conference on Computer Languages"}
 {"url": "db/conf/dbsec", "source": "DBSec", "source_id": "dbsec", "rank": "A", "title": "IFIP WG 11.3 Working Conference on Data and Applications Security "}
 {"url": "db/conf/micro", "source": "MICRO", "source_id": "micro", "rank": "A", "title": "International Symposium on Microarchitecture"}
 {"url": "db/conf/performance", "source": "Performance", "source_id": "performance", "rank": "A", "title": "IFIP International Symposium on Computing Performance, Modelling, Measurement and Evaluation "}
@@ -57,6 +61,7 @@
 {"url": "db/conf/apbc", "source": "APBC", "source_id": "apbc", "rank": "B", "title": "Asia-Pacific Bioinformatics Conference"}
 {"url": "db/conf/apsec", "source": "APSEC", "source_id": "apsec", "rank": "B", "title": "Asia-Pacific Software Engineering Conference"}
 {"url": "db/conf/cisis", "source": "CISIS", "source_id": "cisis", "rank": "B", "title": "Computational Intelligence in Security for Information Systems"}
+{"url": "db/conf/cisis-spain", "source": "CISIS", "source_id": "cisis-spain", "rank": "B", "title": "Computational Intelligence in Security for Information Systems"}
 {"url": "db/conf/agiledc", "source": "AGILE", "source_id": "agiledc", "rank": "B", "title": "Conference on Agile Software Development"}
 {"url": "db/conf/scn", "source": "SCN", "source_id": "scn", "rank": "B", "title": "Conference on Security and Cryptography for Networks"}
 {"url": "db/conf/qosa", "source": "QoSA", "source_id": "qosa", "rank": "B", "title": "Conference on the Quality of Software Architectures"}
@@ -90,8 +95,8 @@
 {"url": "db/conf/sle", "source": "SLE", "source_id": "sle", "rank": "B", "title": "International Conference on Software Language Engineering"}
 {"url": "db/conf/somet", "source": "SoMeT", "source_id": "somet", "rank": "B", "title": "International Conference on Software Methods and Tools"}
 {"url": "db/conf/tap", "source": "TAP", "source_id": "tap", "rank": "B", "title": "International Conference on Tests and Proofs"}
-{"url": "db/conf/models", "source": "MoDELS", "source_id": "models", "rank": "B", "title": "International Conference on Model Driven Engineering Languages and Systems (was\r\nInternational Conference on the Unified Modelling Language, UML, pre 2005)"}
-{"url": "db/conf/uml", "source": "MoDELS", "source_id": "uml", "rank": "B", "title": "International Conference on Model Driven Engineering Languages and Systems (was\r\nInternational Conference on the Unified Modelling Language, UML, pre 2005)"}
+{"url": "db/conf/models", "source": "MoDELS", "source_id": "models", "rank": "B", "title": "International Conference on Model Driven Engineering Languages and Systems "}
+{"url": "db/conf/uml", "source": "MoDELS", "source_id": "uml", "rank": "B", "title": "International Conference on Model Driven Engineering Languages and Systems "}
 {"url": "db/conf/trustbus", "source": "TrustBus", "source_id": "trustbus", "rank": "B", "title": "International Conference on Trust, Privacy and Security in Digital Business"}
 {"url": "db/conf/cbse", "source": "CBSE", "source_id": "cbse", "rank": "B", "title": "International Symposium Component-Based Software Engineering"}
 {"url": "db/conf/isese", "source": "ISESE", "source_id": "isese", "rank": "B", "title": "International Symposium on Empirical Software Engineering"}
@@ -116,7 +121,9 @@
 {"url": "db/conf/bibe", "source": "BIBE", "source_id": "bibe", "rank": "C", "title": "IEEE Bioinformatics and Bioengineering"}
 {"url": "db/conf/iccbss", "source": "ICCBSS", "source_id": "iccbss", "rank": "C", "title": "IEEE International Conference on COTS-Based Software Systems"}
 {"url": "db/conf/icgse", "source": "ICGSE", "source_id": "icgse", "rank": "C", "title": "IEEE International Conference on Global Software Engineering"}
+{"url": "db/conf/intelligent", "source": "ISI", "source_id": "intelligent", "rank": "C", "title": "IEEE International Conference on Intelligence and Security Informatics"}
 {"url": "db/conf/isi", "source": "ISI", "source_id": "isi", "rank": "C", "title": "IEEE International Conference on Intelligence and Security Informatics"}
+{"url": "db/conf/isiwi", "source": "ISI", "source_id": "isiwi", "rank": "C", "title": "IEEE International Conference on Intelligence and Security Informatics"}
 {"url": "db/conf/iolts", "source": "IOLTS", "source_id": "iolts", "rank": "C", "title": "IEEE International On-Line Testing Symposium"}
 {"url": "db/conf/ispass", "source": "ISPASS", "source_id": "ispass", "rank": "C", "title": "IEEE International Symposium on Performance Analysis of Systems and Software"}
 {"url": "db/conf/rsp", "source": "RSP", "source_id": "rsp", "rank": "C", "title": "IEEE Symposium on Rapid Prototyping"}
@@ -127,7 +134,8 @@
 {"url": "db/conf/cis", "source": "CIS", "source_id": "cis", "rank": "C", "title": "International Conference on Computational Intelligence and Security"}
 {"url": "db/conf/dasc", "source": "DASC", "source_id": "dasc", "rank": "C", "title": "International Conference on Dependable, Autonomic and Secure Computing"}
 {"url": "db/conf/gis", "source": "ISA", "source_id": "gis", "rank": "C", "title": "International Conference on Information Security and Assurance"}
-{"url": "db/conf/IEEEias", "source": "IAS", "source_id": "IEEEias", "rank": "C", "title": "International Conference on Information Security and Assurance"}
+{"url": "db/conf/isa", "source": "ISA", "source_id": "isa", "rank": "C", "title": "International Conference on Information Security and Assurance"}
+{"url": "db/conf/sersc-isa", "source": "ISA", "source_id": "sersc-isa", "rank": "C", "title": "International Conference on Information Security and Assurance"}
 {"url": "db/conf/itcc", "source": "ITCC", "source_id": "itcc", "rank": "C", "title": "International Conference on Information Technology: Coding and Computing"}
 {"url": "db/conf/icits", "source": "ICITS", "source_id": "icits", "rank": "C", "title": "International Conference on Information Theoretic Security"}
 {"url": "db/conf/iwpc", "source": "ICPC", "source_id": "iwpc", "rank": "C", "title": "International Conference on Program Comprehension "}
@@ -144,31 +152,4 @@
 {"url": "db/conf/pppj", "source": "PPPJ", "source_id": "pppj", "rank": "C", "title": "Principles and Practice of Programming in Java"}
 {"url": "db/conf/planx", "source": "PLAN-X", "source_id": "planX", "rank": "C", "title": "Programming Language Techniques for XML"}
 {"url": "db/conf/ecoop", "source": "RAM-SE", "source_id": "ecoop", "rank": "C", "title": "Reflection, AOP and Meta-Data for Software Evolution"}
-{"url": "db/conf/mm", "source": "ACM Multimedia", "source_id": "mm", "rank": "A*", "title": "ACM Multimedia"}
-{"url": "db/conf/ccs", "source": "ACM Conference on Computer and Communications Security", "source_id": "ccs", "rank": "A*", "title": "ACM Conference on Computer and Communications Security"}
-{"url": "db/conf/sp", "source": "IEEE Symposium on Security and Privacy", "source_id": "sp", "rank": "A*", "title": "IEEE Symposium on Security and Privacy"}
-{"url": "db/conf/uss", "source": "USENIX Security", "source_id": "uss", "rank": "A*", "title": "Usenix Security Symposium"}
-{"url": "db/conf/adaEurope", "source": "Ada-Europe", "source_id": "adaEurope", "rank": "B", "title": "International Conference on Reliable Software Technologies"}
-{"url": "db/conf/securecomm", "source": "SecureComm", "source_id": "securecomm", "rank": "A", "title": "Security and Privacy for Communication Networks"}
-{"url": "db/conf/cpe", "source": "Computer Performance Evaluation", "source_id": "cpe", "rank": "A", "title": "Computer Performance Evaluation"}
 {"url": "db/conf/eccb", "source": "ECCB (Supplement of Bioinformatics)", "source_id": "eccb", "rank": "B", "title": "European Conference on Computational Biology"}
-{"url": "db/conf/cd", "source": "Component Deployment", "source_id": "cd", "rank": "B", "title": "IFIP/ACM Working Conference on Component Deployment"}
-{"url": "db/conf/ima", "source": "IMA Int. Conf.", "source_id": "ima", "rank": "B", "title": "IMA Conference on Cryptography and Coding"}
-{"url": "db/conf/icfem", "source": "ICFEM", "source_id": "icfem", "rank": "B", "title": "International Conference on Formal Engineering Methods"}
-{"url": "db/conf/tools", "source": "TOOLS", "source_id": "tools", "rank": "B", "title": "Technology of Object-Oriented Languages and Systems"}
-{"url": "db/conf/sigada", "source": "SIGAda", "source_id": "sigada", "rank": "C", "title": "Annual International Conference on Ada"}
-{"url": "db/conf/euromicro", "source": "EUROMICRO", "source_id": "euromicro", "rank": "C", "title": "EUROMICRO"}
-{"url": "db/conf/extreme", "source": "Extreme Markup Languages®", "source_id": "extreme", "rank": "C", "title": "Extreme Markup Languages"}
-{"url": "db/conf/ndss", "source": "NDSS", "source_id": "ndss", "rank": "C", "title": "Network and Distributed System Security Symposium"}
-{"url": "db/conf/arith", "source": "IEEE Symposium on Computer Arithmetic", "source_id": "arith", "rank": "C", "title": "IEEE Symposium on Computer Arithmetic"}
-{"url": "db/conf/sec", "source": "ISC", "source_id": "isw", "rank": "C", "title": "Information Security"}
-{"url": "db/conf/zum", "source": "ZUM", "source_id": "zum", "rank": "C", "title": "Z Users Conference"}
-{"url": "db/conf/icdf2c", "source": "ICDF2C", "source_id": "icdf2c", "rank": "C", "title": "International ICST Conference on Digital Forensics & Cyber Crime"}
-{"url": "db/conf/depcos", "source": "DepCoS-RELCOMEX", "source_id": "depcos", "rank": "C", "title": "International Conference on Dependability of Computer Systems"}
-{"url": "db/conf/icseng", "source": "ICSEng", "source_id": "icseng", "rank": "C", "title": "International Conference on Systems Engineering"}
-{"url": "db/conf/cms", "source": "Communications and Multimedia Security", "source_id": "cms", "rank": "C", "title": "Joint Working Conference on Secure Information Networks: Communications and Multimedia Security"}
-{"url": "db/conf/oopsla", "source": "Onward!", "source_id": "oopsla", "rank": "C", "title": "Onward Software Engineering"}
-{"url": "db/conf/psb", "source": "Pacific Symposium on Biocomputing", "source_id": "psb", "rank": "C", "title": "Pacific Symposium on Biocomputing"}
-{"url": "db/conf/csee", "source": "CSEE&T", "source_id": "csee", "rank": "C", "title": "Conference on Software Engineering Education (and Training)"}
-{"url": "db/conf/csee", "source": "CSEE", "source_id": "csee", "rank": "C", "title": "Conference on Software Engineering Education (and Training)"}
-

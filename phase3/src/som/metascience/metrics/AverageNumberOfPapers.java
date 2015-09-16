@@ -21,7 +21,7 @@ public class AverageNumberOfPapers extends SQLMetric {
     public String getResult() {
         Statement stmt = null;
         ResultSet rs = null;
-        int averageNumberOfPapers = 0;
+        float averageNumberOfPapers = 0;
         try {
             String averageNumberOfPapersQuery = "SELECT ROUND(AVG(num_papers), 2) as avg " +
                                                 "FROM _num_of_papers_per_conference_per_year " +
@@ -30,7 +30,7 @@ public class AverageNumberOfPapers extends SQLMetric {
             rs = stmt.executeQuery(averageNumberOfPapersQuery);
 
             rs.first();
-            averageNumberOfPapers = rs.getInt("avg");
+            averageNumberOfPapers = rs.getFloat("avg");
             rs.close();
             stmt.close();
 
@@ -39,6 +39,6 @@ public class AverageNumberOfPapers extends SQLMetric {
             e.printStackTrace();
         }
 
-        return String.valueOf(averageNumberOfPapers);
+        return String.format("%.2f", averageNumberOfPapers).replace(",", ".");
     }
 }
