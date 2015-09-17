@@ -25,7 +25,7 @@ public class GraphModularity extends Metric {
     /**
      * Attribute table in the graph holding the info for the nodes (it depends on the language of the system)
      */
-    public static final String ATTRIBUTE_TABLE = "Nodos";
+    public static final String ATTRIBUTE_TABLE = "Noeuds";
 
     /**
      * The column to get from the table
