@@ -85,6 +85,7 @@ public class AverageOpennessRate extends SQLMetric {
                 query = "{call dblp.get_openness_conf(" + source + ")}";
                 cs = conn.prepareCall(query);
                 cs.execute();
+                cs.close();
             }
         } catch (SQLException e) {
             e.printStackTrace();
