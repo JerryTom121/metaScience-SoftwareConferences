@@ -81,13 +81,13 @@ public class GraphModularity extends Metric {
         //modularity.setResolution(1.0);
         modularity.execute(gm, am);
 
-        AttributeTable at = am.getTable(ATTRIBUTE_TABLE);
-        AttributeColumn ac = at.getColumn(ATTRIBUTE_COLUMN);
+        //AttributeTable at = am.getTable(ATTRIBUTE_TABLE);
+        //AttributeColumn ac = at.getColumn(ATTRIBUTE_COLUMN);
 
         NodeIterable ni = gm.getGraph().getNodes();
         HashMap<Integer, Integer> classes = new HashMap<>();
         for(Node node : ni.toArray()) {
-            Integer modularityClass = (Integer) node.getAttributes().getValue(ac.getId());
+            Integer modularityClass = (Integer) node.getAttributes().getValue(ATTRIBUTE_COLUMN);
             classes.put(modularityClass, null);
         }
         int totalClasses = classes.keySet().size();
