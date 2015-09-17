@@ -115,8 +115,10 @@ def to_string(list):
 def get_editions_count(source, source_id):
     cursor = cnx.cursor()
     query = "SELECT COUNT(*) AS editions " \
-            "FROM dblp_pub_new " \
-            "WHERE source IN (" + source + ") AND source_id IN (" + source_id + ") AND type = 'proceedings'"
+            "FROM (" \
+            "SELECT year FROM dblp_pub_new " \
+            "WHERE source IN (" + source + ") AND source_id IN (" + source_id + ") AND type = 'inproceedings' " \
+            "GROUP BY year) AS x"
     cursor.execute(query)
     row = cursor.fetchone()
     cursor.close()
