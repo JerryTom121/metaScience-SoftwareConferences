@@ -25,7 +25,8 @@ public class AverageNumberOfAuthors extends SQLMetric {
         try {
             String averageNumberOfAuthorsQuery = "SELECT ROUND(AVG(num_unique_authors), 2) as avg " +
                                                  "FROM _num_authors_per_conf_per_year " +
-                                                 "WHERE source IN (" + metricData.getSourceInfo() + ") AND source_id IN (" + metricData.getSourceIdInfo() + ")";
+                                                 "WHERE source IN (" + metricData.getSourceInfo() + ") AND source_id IN (" + metricData.getSourceIdInfo() + ") AND year IN (" + toCommaSeparated(metricData.getEditions()) + ") " +
+                                                 "ORDER BY year ASC";
             stmt = conn.createStatement();
             rs = stmt.executeQuery(averageNumberOfAuthorsQuery);
 

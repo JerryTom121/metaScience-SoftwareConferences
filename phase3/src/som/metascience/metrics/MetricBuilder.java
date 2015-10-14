@@ -73,19 +73,19 @@ public class MetricBuilder {
     public static String getCategory(Class m) {
         String result = null;
         if (m == AllPapers.class) {
-            result = "Num_Papers";
+            result = "Papers_1_Edition,Papers_2_Edition,Papers_3_Edition,Papers_4_Edition,Papers_5_Edition,Num_Papers";
         } else if (m == AllAuthors.class) {
-            result = "Num_authors";
+            result = "Authors_1_Edition,Authors_2_Edition,Authors_3_Edition,Authors_4_Edition,Authors_5_Edition,Num_authors";
         } else if (m == AverageNumberOfPapers.class) {
             result = "Avg_papers";
         } else if (m == AverageNumberOfAuthors.class) {
             result = "Avg_authors";
         } else if (m == AverageNumberOfAuthorsPerPaper.class) {
-            result = "Avg_authors_per_paper";
+            result = "Authors_per_paper_1_Edition,Authors_per_paper_2_Edition,Authors_per_paper_3_Edition,Authors_per_paper_4_Edition,Authors_per_paper_5_Edition,Avg_authors_per_paper";
         } else if (m == AverageNumberOfPapersPerAuthor.class) {
-            result = "Avg_papers_per_author";
+            result = "Papers_per_author_1_Edition,Papers_per_author_2_Edition,Papers_per_author_3_Edition,Papers_per_author_4_Edition,Papers_per_author_5_Edition,Avg_papers_per_author";
         } else if (m == AverageOpennessRate.class) {
-            result = "Avg_newcomers_rate,Average_community_papers";
+            result = "Newcomer_rate_1_Edition,Newcomer_rate_2_Edition,Newcomer_rate_3_Edition,Newcomer_rate_4_Edition,Newcomer_rate_5_Edition,Avg_newcomers_rate,Community_papers_1_Edition,Community_papers_2_Edition,Community_papers_3_Edition,Community_papers_4_Edition,Community_papers_5_Edition,Average_community_papers";
         } else if (m == AverageCommunityGrowthRate.class) {
             result = "GrowthRate_12_LastEdition,GrowthRate_23_LastEdition,GrowthRate_34_LastEdition,GrowthRate_45_LastEdition,Avg_communityGrowthRate";
         } else if (m == AverageDegree.class) {

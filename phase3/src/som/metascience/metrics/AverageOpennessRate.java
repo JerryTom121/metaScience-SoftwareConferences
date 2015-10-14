@@ -26,33 +26,12 @@ public class AverageOpennessRate extends SQLMetric {
         Statement stmt = null;
         ResultSet rs = null;
         float average = 0;
+        List<Float> yearValue = new LinkedList<Float>();
         try {
             String query = "SELECT ROUND(AVG(o.from_outsiders/o.number_of_papers)*100,2) as avg " +
                     "FROM _openness_conf o  " +
-                    "WHERE conf IN (" + metricData.getSourceInfo() + ")";
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery(query);
-
-            rs.first();
-            average = rs.getFloat("avg");
-
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return String.format("%.2f", average).replace(",", ".");
-    }
-
-
-    public String getPercentageCommunityPapers() {
-        Statement stmt = null;
-        ResultSet rs = null;
-        float average = 0;
-        try {
-            String query = "SELECT ROUND(AVG(o.from_community/o.number_of_papers)*100,2) as avg " +
-                    "FROM _openness_conf o  " +
-                    "WHERE conf IN (" + metricData.getSourceInfo() + ")";
+                    "WHERE conf IN (" + metricData.getSourceInfo() + ") AND year IN (" + toCommaSeparated(metricData.getEditions()) + ") " +
+                    "ORDER BY year ASC";
             stmt = conn.createStatement();
             rs = stmt.executeQuery(query);
 
@@ -61,12 +40,76 @@ public class AverageOpennessRate extends SQLMetric {
             rs.close();
             stmt.close();
 
+            query = "SELECT ROUND(SUM((o.from_outsiders/o.number_of_papers)*100),2) as x, year " +
+                    "FROM _openness_conf o  " +
+                    "WHERE conf IN (" + metricData.getSourceInfo() + ") AND year IN (" + toCommaSeparated(metricData.getEditions()) + ") " +
+                    "GROUP BY year " +
+                    "ORDER BY year ASC";
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(query);
+
+            while (rs.next())
+                yearValue.add(rs.getFloat("x"));
+
+            rs.close();
+            stmt.close();
+
         }
         catch (Exception e) {
             e.printStackTrace();
         }
 
-        return String.format("%.2f", average).replace(",", ".");
+        String results = "";
+        for (Float ya : yearValue)
+            results += String.format("%.2f", ya).replace(",", ".") + ",";
+
+        return results + String.format("%.2f", average).replace(",", ".");
+    }
+
+
+    public String getPercentageCommunityPapers() {
+        Statement stmt = null;
+        ResultSet rs = null;
+        float average = 0;
+        List<Float> yearValue = new LinkedList<Float>();
+        try {
+            String query = "SELECT ROUND(AVG(o.from_community/o.number_of_papers)*100,2) as avg " +
+                    "FROM _openness_conf o  " +
+                    "WHERE conf IN (" + metricData.getSourceInfo() + ") AND year IN (" + toCommaSeparated(metricData.getEditions()) + ") " +
+                    "ORDER BY year ASC";
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(query);
+
+            rs.first();
+            average = rs.getFloat("avg");
+            rs.close();
+            stmt.close();
+
+            query = "SELECT ROUND(SUM((o.from_community/o.number_of_papers)*100),2) as x, year " +
+                    "FROM _openness_conf o  " +
+                    "WHERE conf IN (" + metricData.getSourceInfo() + ") AND year IN (" + toCommaSeparated(metricData.getEditions()) + ") " +
+                    "GROUP BY year " +
+                    "ORDER BY year ASC";
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(query);
+
+            while (rs.next())
+                yearValue.add(rs.getFloat("x"));
+
+            rs.close();
+            stmt.close();
+
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        String results = "";
+        for (Float ya : yearValue)
+            results += String.format("%.2f", ya).replace(",", ".") + ",";
+
+        return results + String.format("%.2f", average).replace(",", ".");
+
     }
 
     public void callStoredProcedure() {

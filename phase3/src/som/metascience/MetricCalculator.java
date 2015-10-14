@@ -76,6 +76,7 @@ public class MetricCalculator {
 
         // Calculating metrics for each conference
         for(MetricData metricData : metricDataList) {
+
             // Initializing line for the results
             String line = metricData.getName() + "," + metricData.getRank() + ",";
 
