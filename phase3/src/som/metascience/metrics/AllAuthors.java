@@ -43,7 +43,7 @@ public class AllAuthors extends SQLMetric {
                     "WHERE source IN (" + metricData.getSourceInfo() + ") AND source_id IN (" + metricData.getSourceIdInfo() + ") AND pub.type = 'inproceedings' AND pub.year IN (" + toCommaSeparated(metricData.getEditions()) + ") " +
                     "GROUP BY airn.author_id, pub.year) AS x " +
                     "GROUP BY year " +
-                    "ORDER BY year ASC;";
+                    "ORDER BY year DESC;";
             stmt = conn.createStatement();
             rs = stmt.executeQuery(authorsQuery);
 

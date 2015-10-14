@@ -28,10 +28,15 @@ public class AverageOpennessRate extends SQLMetric {
         float average = 0;
         List<Float> yearValue = new LinkedList<Float>();
         try {
-            String query = "SELECT ROUND(AVG(o.from_outsiders/o.number_of_papers)*100,2) as avg " +
-                    "FROM _openness_conf o  " +
-                    "WHERE conf IN (" + metricData.getSourceInfo() + ") AND year IN (" + toCommaSeparated(metricData.getEditions()) + ") " +
-                    "ORDER BY year ASC";
+            String query =  "SELECT ROUND(AVG(x),2) as avg FROM (" +
+                            "SELECT SUM((o.from_outsiders/o.number_of_papers)*100) as x, year " +
+                            "FROM _openness_conf o  " +
+                            "WHERE conf IN (" + metricData.getSourceInfo() + ") AND year IN (" + toCommaSeparated(metricData.getEditions()) + ") " +
+                            "GROUP BY year) AS aux";
+//                    "SELECT ROUND(AVG(o.from_outsiders/o.number_of_papers)*100,2) as avg " +
+//                    "FROM _openness_conf o  " +
+//                    "WHERE conf IN (" + metricData.getSourceInfo() + ") AND year IN (" + toCommaSeparated(metricData.getEditions()) + ") " +
+//                    "ORDER BY year DESC";
             stmt = conn.createStatement();
             rs = stmt.executeQuery(query);
 
@@ -44,7 +49,7 @@ public class AverageOpennessRate extends SQLMetric {
                     "FROM _openness_conf o  " +
                     "WHERE conf IN (" + metricData.getSourceInfo() + ") AND year IN (" + toCommaSeparated(metricData.getEditions()) + ") " +
                     "GROUP BY year " +
-                    "ORDER BY year ASC";
+                    "ORDER BY year DESC";
             stmt = conn.createStatement();
             rs = stmt.executeQuery(query);
 
@@ -73,10 +78,16 @@ public class AverageOpennessRate extends SQLMetric {
         float average = 0;
         List<Float> yearValue = new LinkedList<Float>();
         try {
-            String query = "SELECT ROUND(AVG(o.from_community/o.number_of_papers)*100,2) as avg " +
-                    "FROM _openness_conf o  " +
-                    "WHERE conf IN (" + metricData.getSourceInfo() + ") AND year IN (" + toCommaSeparated(metricData.getEditions()) + ") " +
-                    "ORDER BY year ASC";
+            String query =
+                            "SELECT ROUND(AVG(x),2) as avg FROM (" +
+                            "SELECT SUM((o.from_community/o.number_of_papers)*100) as x, year " +
+                            "FROM _openness_conf o  " +
+                            "WHERE conf IN (" + metricData.getSourceInfo() + ") AND year IN (" + toCommaSeparated(metricData.getEditions()) + ") " +
+                            "GROUP BY year) AS aux";
+//                    "SELECT ROUND(AVG(o.from_community/o.number_of_papers)*100,2) as avg " +
+//                    "FROM _openness_conf o  " +
+//                    "WHERE conf IN (" + metricData.getSourceInfo() + ") AND year IN (" + toCommaSeparated(metricData.getEditions()) + ") " +
+//                    "ORDER BY year DESC";
             stmt = conn.createStatement();
             rs = stmt.executeQuery(query);
 
@@ -89,7 +100,7 @@ public class AverageOpennessRate extends SQLMetric {
                     "FROM _openness_conf o  " +
                     "WHERE conf IN (" + metricData.getSourceInfo() + ") AND year IN (" + toCommaSeparated(metricData.getEditions()) + ") " +
                     "GROUP BY year " +
-                    "ORDER BY year ASC";
+                    "ORDER BY year DESC";
             stmt = conn.createStatement();
             rs = stmt.executeQuery(query);
 

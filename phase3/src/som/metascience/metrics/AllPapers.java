@@ -27,7 +27,7 @@ public class AllPapers extends SQLMetric {
                     "FROM dblp_pub_new " +
                     "WHERE source IN (" + metricData.getSourceInfo() + ") AND source_id IN (" + metricData.getSourceIdInfo() + ") AND type = 'inproceedings' AND year IN (" + toCommaSeparated(metricData.getEditions()) + ") " +
                     "GROUP BY year " +
-                    "ORDER BY year ASC;";
+                    "ORDER BY year DESC;";
             stmt = conn.createStatement();
             rs = stmt.executeQuery(allPapersQuery);
 

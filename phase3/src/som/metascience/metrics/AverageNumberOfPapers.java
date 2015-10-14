@@ -26,7 +26,7 @@ public class AverageNumberOfPapers extends SQLMetric {
             String averageNumberOfPapersQuery = "SELECT ROUND(AVG(num_papers), 2) as avg " +
                                                 "FROM _num_of_papers_per_conference_per_year " +
                                                 "WHERE source IN (" + metricData.getSourceInfo() + ") AND source_id IN (" + metricData.getSourceIdInfo() + ") AND year IN (" + toCommaSeparated(metricData.getEditions()) + ") " +
-                                                "ORDER BY year ASC";
+                                                "ORDER BY year DESC";
             stmt = conn.createStatement();
             rs = stmt.executeQuery(averageNumberOfPapersQuery);
 

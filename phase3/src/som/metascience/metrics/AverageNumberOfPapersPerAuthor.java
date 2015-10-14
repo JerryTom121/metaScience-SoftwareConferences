@@ -40,7 +40,7 @@ public class AverageNumberOfPapersPerAuthor extends SQLMetric {
             query = "SELECT avg_num_paper_per_author, year " +
                     "FROM _avg_number_papers_per_author_per_conf_per_year  " +
                     "WHERE source IN (" + metricData.getSourceInfo() + ") AND source_id IN (" + metricData.getSourceIdInfo() + ") AND year IN (" + toCommaSeparated(metricData.getEditions()) + ") " +
-                    "ORDER BY year ASC";
+                    "ORDER BY year DESC";
             stmt = conn.createStatement();
             rs = stmt.executeQuery(query);
 
