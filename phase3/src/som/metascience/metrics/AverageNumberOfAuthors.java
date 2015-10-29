@@ -23,7 +23,7 @@ public class AverageNumberOfAuthors extends SQLMetric {
         ResultSet rs = null;
         float averageNumberOfAuthors = 0;
         try {
-            String averageNumberOfAuthorsQuery = "SELECT ROUND(AVG(num_unique_authors), 2) as avg " +
+            String averageNumberOfAuthorsQuery = "SELECT ROUND(AVG(num_unique_authors), 3) as avg " +
                                                  "FROM _num_authors_per_conf_per_year " +
                                                  "WHERE source IN (" + metricData.getSourceInfo() + ") AND source_id IN (" + metricData.getSourceIdInfo() + ") AND year IN (" + toCommaSeparated(metricData.getEditions()) + ") ";
             stmt = conn.createStatement();
@@ -39,6 +39,6 @@ public class AverageNumberOfAuthors extends SQLMetric {
             e.printStackTrace();
         }
 
-        return String.format("%.2f", averageNumberOfAuthors).replace(",", ".");
+        return String.format("%.3f", averageNumberOfAuthors).replace(",", ".");
     }
 }

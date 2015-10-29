@@ -26,7 +26,7 @@ public class AverageNumberOfPapersPerAuthor extends SQLMetric {
         float average = 0;
         List<Float> yearValue = new LinkedList<Float>();
         try {
-            String query = "SELECT ROUND(AVG(avg_num_paper_per_author), 2) as avg " +
+            String query = "SELECT ROUND(AVG(avg_num_paper_per_author), 3) as avg " +
                            "FROM _avg_number_papers_per_author_per_conf_per_year  " +
                            "WHERE source IN (" + metricData.getSourceInfo() + ") AND source_id IN (" + metricData.getSourceIdInfo() + ")";
             stmt = conn.createStatement();
@@ -57,9 +57,9 @@ public class AverageNumberOfPapersPerAuthor extends SQLMetric {
 
         String results = "";
         for (Float ya : yearValue)
-            results += String.format("%.2f", ya).replace(",", ".") + ",";
+            results += String.format("%.3f", ya).replace(",", ".") + ",";
 
-        return results + String.format("%.2f", average).replace(",", ".");
+        return results + String.format("%.3f", average).replace(",", ".");
 
     }
 }
