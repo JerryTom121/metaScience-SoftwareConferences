@@ -4,11 +4,9 @@ package som.metascience.metrics;
 import som.metascience.DBInfo;
 import som.metascience.MetricData;
 
-import java.sql.CallableStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -22,40 +20,44 @@ public class AverageOpennessRate extends SQLMetric {
     }
 
 
-    private String getPercentageNewComerPapers() {
+    private int[] getPapersYear(int currentYear, int firstYear) {
         Statement stmt = null;
         ResultSet rs = null;
-        float average = 0;
-        List<Float> yearValue = new LinkedList<Float>();
+        int[] result = new int[3];
+        int papers = 0;
+        int papersFromNewComers = 0;
+        int papersFromCommunity = 0;
         try {
-            String query =  "SELECT ROUND(AVG(x),3) as avg FROM (" +
-                            "SELECT SUM((o.from_outsiders/o.number_of_papers)*100) as x, year " +
-                            "FROM _openness_conf o  " +
-                            "WHERE conf IN (" + metricData.getSourceInfo() + ") AND year IN (" + toCommaSeparated(metricData.getEditions()) + ") " +
-                            "GROUP BY year) AS aux";
-//                    "SELECT ROUND(AVG(o.from_outsiders/o.number_of_papers)*100,2) as avg " +
-//                    "FROM _openness_conf o  " +
-//                    "WHERE conf IN (" + metricData.getSourceInfo() + ") AND year IN (" + toCommaSeparated(metricData.getEditions()) + ") " +
-//                    "ORDER BY year DESC";
+            String query =  "SELECT count(*) as papers, " +
+                            "SUM(IF (num_of_previous_authors = 0, 1, 0)) AS paper_from_newcomers, " +
+                            "SUM(IF (num_of_authors = num_of_previous_authors, 1, 0)) AS paper_from_community " +
+                            "FROM (" +
+                                "SELECT paper_id, COUNT(x_year.author_id) AS num_of_authors, COUNT(previous_years.author_id) AS num_of_previous_authors, year " +
+                                "FROM (" +
+                                    "SELECT auth.id AS paper_id, auth.author_id, year " +
+                                    "FROM dblp_pub_new pub " +
+                                    "JOIN " +
+                                    "dblp_authorid_ref_new auth " +
+                                    "ON pub.id = auth.id " +
+                                    "WHERE type = 'inproceedings' AND year = " + currentYear + " AND source IN (" + metricData.getSourceInfo() + ") AND source_id IN (" + metricData.getSourceIdInfo() + ")) as x_year " +
+                                "LEFT JOIN " +
+                                    "(SELECT auth.author_id " +
+                                    "FROM dblp_pub_new pub " +
+                                    "JOIN " +
+                                    "dblp_authorid_ref_new auth " +
+                                    "ON pub.id = auth.id " +
+                                    "WHERE type = 'inproceedings' AND year < " + currentYear + " AND year >= " + firstYear + " AND source IN (" + metricData.getSourceInfo() + ") AND source_id IN (" + metricData.getSourceIdInfo() + ") " +
+                                    "GROUP BY auth.author_id) AS previous_years " +
+                                "ON x_year.author_id = previous_years.author_id " +
+                                "GROUP BY paper_id) AS openness;";
+
             stmt = conn.createStatement();
             rs = stmt.executeQuery(query);
 
             rs.first();
-            average = rs.getFloat("avg");
-            rs.close();
-            stmt.close();
-
-            query = "SELECT ROUND(SUM((o.from_outsiders/o.number_of_papers)*100),3) as x, year " +
-                    "FROM _openness_conf o  " +
-                    "WHERE conf IN (" + metricData.getSourceInfo() + ") AND year IN (" + toCommaSeparated(metricData.getEditions()) + ") " +
-                    "GROUP BY year " +
-                    "ORDER BY year DESC";
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery(query);
-
-            while (rs.next())
-                yearValue.add(rs.getFloat("x"));
-
+            papers = rs.getInt("papers");
+            papersFromNewComers = rs.getInt("paper_from_newcomers");
+            papersFromCommunity = rs.getInt("paper_from_community");
             rs.close();
             stmt.close();
 
@@ -64,91 +66,46 @@ public class AverageOpennessRate extends SQLMetric {
             e.printStackTrace();
         }
 
-        String results = "";
-        for (Float ya : yearValue)
-            results += String.format("%.3f", ya).replace(",", ".") + ",";
+        result[0] = papers;
+        result[1] = papersFromNewComers;
+        result[2] = papersFromCommunity;
 
-        return results + String.format("%.3f", average).replace(",", ".");
-    }
-
-
-    public String getPercentageCommunityPapers() {
-        Statement stmt = null;
-        ResultSet rs = null;
-        float average = 0;
-        List<Float> yearValue = new LinkedList<Float>();
-        try {
-            String query =
-                            "SELECT ROUND(AVG(x),3) as avg FROM (" +
-                            "SELECT SUM((o.from_community/o.number_of_papers)*100) as x, year " +
-                            "FROM _openness_conf o  " +
-                            "WHERE conf IN (" + metricData.getSourceInfo() + ") AND year IN (" + toCommaSeparated(metricData.getEditions()) + ") " +
-                            "GROUP BY year) AS aux";
-//                    "SELECT ROUND(AVG(o.from_community/o.number_of_papers)*100,2) as avg " +
-//                    "FROM _openness_conf o  " +
-//                    "WHERE conf IN (" + metricData.getSourceInfo() + ") AND year IN (" + toCommaSeparated(metricData.getEditions()) + ") " +
-//                    "ORDER BY year DESC";
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery(query);
-
-            rs.first();
-            average = rs.getFloat("avg");
-            rs.close();
-            stmt.close();
-
-            query = "SELECT ROUND(SUM((o.from_community/o.number_of_papers)*100),3) as x, year " +
-                    "FROM _openness_conf o  " +
-                    "WHERE conf IN (" + metricData.getSourceInfo() + ") AND year IN (" + toCommaSeparated(metricData.getEditions()) + ") " +
-                    "GROUP BY year " +
-                    "ORDER BY year DESC";
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery(query);
-
-            while (rs.next())
-                yearValue.add(rs.getFloat("x"));
-
-            rs.close();
-            stmt.close();
-
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        String results = "";
-        for (Float ya : yearValue)
-            results += String.format("%.3f", ya).replace(",", ".") + ",";
-
-        return results + String.format("%.3f", average).replace(",", ".");
-
-    }
-
-    public void callStoredProcedure() {
-        try {
-            CallableStatement cs = null;
-            String source = metricData.getSourceInfo();
-            String query = "";
-            if (source.contains(",")) {
-                for (String s: Arrays.asList(source.split(","))) {
-                        query = "{call dblp.get_openness_conf(" + s + ")}";
-                        cs = conn.prepareCall(query);
-                        cs.execute();
-                }
-            }
-            else {
-                query = "{call dblp.get_openness_conf(" + source + ")}";
-                cs = conn.prepareCall(query);
-                cs.execute();
-                cs.close();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        return result;
     }
 
     @Override
     public String getResult() {
-        callStoredProcedure();
-        return getPercentageNewComerPapers() + "," + getPercentageCommunityPapers();
+        List<Float> papersFromNewComersPerc = new LinkedList<Float>();
+        List<Float> papersFromCommunityPerc = new LinkedList<Float>();
+
+        int firstEdition = metricData.getEditions().get(metricData.getEditions().size()-1);
+        for (int edition: metricData.getEditions().subList(0, metricData.getEditions().size()-1)) {
+            int[] output = getPapersYear(edition, firstEdition);
+            int papers = output[0];
+            int papersFromNewComers = output[1];
+            int papersFromCommunity = output[2];
+
+            papersFromNewComersPerc.add(((((float)papersFromNewComers)/papers)*100));
+            papersFromCommunityPerc.add(((((float)papersFromCommunity)/papers)*100));
+
+        }
+
+        String resultPapersFromNewComers = serializeResults(papersFromNewComersPerc);
+        String resultPapersFromCommunity = serializeResults(papersFromCommunityPerc);
+
+
+        return resultPapersFromNewComers + "," + resultPapersFromCommunity;
+
+    }
+
+    private String serializeResults(List<Float> list) {
+        String output = "";
+        float sum = 0;
+        Collections.reverse(list);
+        for (float e : list) {
+            sum = sum + e;
+            output = String.format("%.3f", e).replace(",", ".") + "," + output;
+        }
+        return output + String.format("%.3f", sum/(metricData.getEditions().size()-1)).replace(",", ".");
     }
 }
