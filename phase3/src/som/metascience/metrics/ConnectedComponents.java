@@ -2,8 +2,7 @@ package som.metascience.metrics;
 
 import org.gephi.data.attributes.api.AttributeController;
 import org.gephi.data.attributes.api.AttributeModel;
-import org.gephi.graph.api.GraphController;
-import org.gephi.graph.api.GraphModel;
+import org.gephi.graph.api.*;
 import org.gephi.io.importer.api.Container;
 import org.gephi.io.importer.api.EdgeDefault;
 import org.gephi.io.importer.api.ImportController;
@@ -14,6 +13,9 @@ import org.openide.util.Lookup;
 import som.metascience.MetricData;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * Calculates the number of connected components
@@ -66,5 +68,43 @@ public class ConnectedComponents extends Metric {
         cc.execute(gm, am);
 
         return String.valueOf(cc.getConnectedComponentsCount());
+    }
+    /**
+     * Calculates the graph components and counts those one with more than a threshold of nodes
+     * @param graph The path to the graph
+     * @param size The threshold (component size must be bigger than this number)
+     * @return The result of the metric
+     */
+    public String calculateGraphComponents(File graph, int size) {
+        ProjectController pc = Lookup.getDefault().lookup(ProjectController.class);
+        pc.newProject();
+        Workspace workspace = pc.getCurrentWorkspace();
+
+        // Import file
+        ImportController importController = Lookup.getDefault().lookup(ImportController.class);
+        Container container;
+        try {
+            container = importController.importFile(graph);
+            container.getLoader().setEdgeDefault(EdgeDefault.UNDIRECTED);   //Force DIRECTED
+            container.setAllowAutoNode(false);  //Don't create missing nodes
+            importController.process(container, new DefaultProcessor(), workspace);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        GraphModel gm = Lookup.getDefault().lookup(GraphController.class).getModel();
+        AttributeModel am = Lookup.getDefault().lookup(AttributeController.class).getModel();
+
+        // Graph Connected Components
+        org.gephi.statistics.plugin.ConnectedComponents cc = new org.gephi.statistics.plugin.ConnectedComponents();
+        cc.execute(gm, am);
+
+        int solution = 0;
+        for(int componentSize : cc.getComponentsSize()) {
+            if(componentSize > 3)
+                solution++;
+        }
+
+        return String.valueOf(solution);
     }
 }
