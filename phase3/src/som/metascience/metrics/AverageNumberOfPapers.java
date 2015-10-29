@@ -23,7 +23,7 @@ public class AverageNumberOfPapers extends SQLMetric {
         ResultSet rs = null;
         float averageNumberOfPapers = 0;
         try {
-            String averageNumberOfPapersQuery = "SELECT ROUND(AVG(num_papers), 2) as avg " +
+            String averageNumberOfPapersQuery = "SELECT ROUND(AVG(num_papers), 3) as avg " +
                                                 "FROM _num_of_papers_per_conference_per_year " +
                                                 "WHERE source IN (" + metricData.getSourceInfo() + ") AND source_id IN (" + metricData.getSourceIdInfo() + ") AND year IN (" + toCommaSeparated(metricData.getEditions()) + ") " +
                                                 "ORDER BY year DESC";
@@ -40,6 +40,6 @@ public class AverageNumberOfPapers extends SQLMetric {
             e.printStackTrace();
         }
 
-        return String.format("%.2f", averageNumberOfPapers).replace(",", ".");
+        return String.format("%.3f", averageNumberOfPapers).replace(",", ".");
     }
 }

@@ -22,13 +22,13 @@ public class AverageOpennessRate extends SQLMetric {
     }
 
 
-    private String getPercentageNewAuthors() {
+    private String getPercentageNewComerPapers() {
         Statement stmt = null;
         ResultSet rs = null;
         float average = 0;
         List<Float> yearValue = new LinkedList<Float>();
         try {
-            String query =  "SELECT ROUND(AVG(x),2) as avg FROM (" +
+            String query =  "SELECT ROUND(AVG(x),3) as avg FROM (" +
                             "SELECT SUM((o.from_outsiders/o.number_of_papers)*100) as x, year " +
                             "FROM _openness_conf o  " +
                             "WHERE conf IN (" + metricData.getSourceInfo() + ") AND year IN (" + toCommaSeparated(metricData.getEditions()) + ") " +
@@ -45,7 +45,7 @@ public class AverageOpennessRate extends SQLMetric {
             rs.close();
             stmt.close();
 
-            query = "SELECT ROUND(SUM((o.from_outsiders/o.number_of_papers)*100),2) as x, year " +
+            query = "SELECT ROUND(SUM((o.from_outsiders/o.number_of_papers)*100),3) as x, year " +
                     "FROM _openness_conf o  " +
                     "WHERE conf IN (" + metricData.getSourceInfo() + ") AND year IN (" + toCommaSeparated(metricData.getEditions()) + ") " +
                     "GROUP BY year " +
@@ -66,9 +66,9 @@ public class AverageOpennessRate extends SQLMetric {
 
         String results = "";
         for (Float ya : yearValue)
-            results += String.format("%.2f", ya).replace(",", ".") + ",";
+            results += String.format("%.3f", ya).replace(",", ".") + ",";
 
-        return results + String.format("%.2f", average).replace(",", ".");
+        return results + String.format("%.3f", average).replace(",", ".");
     }
 
 
@@ -79,7 +79,7 @@ public class AverageOpennessRate extends SQLMetric {
         List<Float> yearValue = new LinkedList<Float>();
         try {
             String query =
-                            "SELECT ROUND(AVG(x),2) as avg FROM (" +
+                            "SELECT ROUND(AVG(x),3) as avg FROM (" +
                             "SELECT SUM((o.from_community/o.number_of_papers)*100) as x, year " +
                             "FROM _openness_conf o  " +
                             "WHERE conf IN (" + metricData.getSourceInfo() + ") AND year IN (" + toCommaSeparated(metricData.getEditions()) + ") " +
@@ -96,7 +96,7 @@ public class AverageOpennessRate extends SQLMetric {
             rs.close();
             stmt.close();
 
-            query = "SELECT ROUND(SUM((o.from_community/o.number_of_papers)*100),2) as x, year " +
+            query = "SELECT ROUND(SUM((o.from_community/o.number_of_papers)*100),3) as x, year " +
                     "FROM _openness_conf o  " +
                     "WHERE conf IN (" + metricData.getSourceInfo() + ") AND year IN (" + toCommaSeparated(metricData.getEditions()) + ") " +
                     "GROUP BY year " +
@@ -117,9 +117,9 @@ public class AverageOpennessRate extends SQLMetric {
 
         String results = "";
         for (Float ya : yearValue)
-            results += String.format("%.2f", ya).replace(",", ".") + ",";
+            results += String.format("%.3f", ya).replace(",", ".") + ",";
 
-        return results + String.format("%.2f", average).replace(",", ".");
+        return results + String.format("%.3f", average).replace(",", ".");
 
     }
 
@@ -149,6 +149,6 @@ public class AverageOpennessRate extends SQLMetric {
     @Override
     public String getResult() {
         callStoredProcedure();
-        return getPercentageNewAuthors() + "," + getPercentageCommunityPapers();
+        return getPercentageNewComerPapers() + "," + getPercentageCommunityPapers();
     }
 }

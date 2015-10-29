@@ -85,7 +85,7 @@ public class MetricBuilder {
         } else if (m == AverageNumberOfPapersPerAuthor.class) {
             result = "Papers_per_author_1_Edition,Papers_per_author_2_Edition,Papers_per_author_3_Edition,Papers_per_author_4_Edition,Papers_per_author_5_Edition,Avg_papers_per_author";
         } else if (m == AverageOpennessRate.class) {
-            result = "Newcomer_rate_1_Edition,Newcomer_rate_2_Edition,Newcomer_rate_3_Edition,Newcomer_rate_4_Edition,Newcomer_rate_5_Edition,Avg_newcomers_rate,Community_papers_1_Edition,Community_papers_2_Edition,Community_papers_3_Edition,Community_papers_4_Edition,Community_papers_5_Edition,Average_community_papers";
+            result = "Newcomer_papers_rate_1_Edition,Newcomer_papers_rate_2_Edition,Newcomer_papers_rate_3_Edition,Newcomer_papers_rate_4_Edition,Newcomer_papers_rate_5_Edition,Avg_newcomers_papers_rate,Community_papers_1_Edition,Community_papers_2_Edition,Community_papers_3_Edition,Community_papers_4_Edition,Community_papers_5_Edition,Average_community_papers";
         } else if (m == AverageCommunityGrowthRate.class) {
             result = "GrowthRate_12_LastEdition,GrowthRate_23_LastEdition,GrowthRate_34_LastEdition,GrowthRate_45_LastEdition,Avg_communityGrowthRate";
         } else if (m == AverageDegree.class) {
