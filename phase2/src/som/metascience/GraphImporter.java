@@ -1,8 +1,8 @@
 package som.metascience;
 
-import org.gephi.graph.api.GraphController;
-import org.gephi.graph.api.GraphModel;
-import org.gephi.graph.api.UndirectedGraph;
+import org.gephi.data.attributes.api.AttributeController;
+import org.gephi.data.attributes.api.AttributeModel;
+import org.gephi.graph.api.*;
 import org.gephi.io.database.drivers.MySQLDriver;
 import org.gephi.io.exporter.api.ExportController;
 import org.gephi.io.importer.api.Container;
@@ -19,10 +19,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 
 /**
  * This class connects to MySQL and creates a Gephi graph.
@@ -37,6 +34,8 @@ import java.util.Properties;
  */
 public class GraphImporter {
     public static final String EXTENSION = ".gexf";
+
+    public static final int SIZE = 3;
 
     private String dbHost;
     private String dbName;
@@ -155,6 +154,9 @@ public class GraphImporter {
             File fullGraph = new File(outputPath.getAbsolutePath() + File.separator + importData.getName() + EXTENSION);
             generateGraph(importData.getFullNodesQuery(), importData.getFullEdgesQuery(), fullGraph);
 
+            File reducedfullGraph = new File(outputPath.getAbsolutePath() + File.separator + importData.getName() + "_reduced_" + EXTENSION);
+            generateReducedGraph(importData.getFullNodesQuery(), importData.getFullEdgesQuery(), SIZE, reducedfullGraph);
+
             // Exporting editions
             int edition = 0;
             for(; edition < importData.getEditions(); edition++) {
@@ -163,6 +165,9 @@ public class GraphImporter {
 
                 File graph = new File(outputPath.getAbsolutePath() + File.separator + importData.getName() + (edition+1) + EXTENSION);
                 generateGraph(editionNodes, editionEdges, graph);
+
+                File reducedGraph = new File(outputPath.getAbsolutePath() + File.separator + importData.getName() + "_reduced_" + (edition+1) + EXTENSION);
+                generateReducedGraph(editionNodes, editionEdges, SIZE, reducedGraph);
             }
             logger.log("Added graph for " + importData.getName() + " and " + edition + " editions");
             logger.control(importData.getSource().getAbsolutePath());
@@ -205,6 +210,90 @@ public class GraphImporter {
 
         // Append imported data to GraphAPI
         ic.process(container, new DefaultProcessor(), workspace);
+
+        // Export full graph
+        ExportController ec = Lookup.getDefault().lookup(ExportController.class);
+        try {
+            ec.exportFile(outputPath);
+        } catch (IOException ex) {
+            logger.log("Error serializing at " + outputPath);
+        }
+
+    }
+
+    /**
+     * Uses Gephi to create a graph and serializes it as a GEXF. Removes components smaller than a specific
+     * size
+     * @param nodes The query to get the nodes from the database
+     * @param edges The query to get the edges from the database
+     * @param size The size for the components (they must be bigger than this number)
+     * @param outputPath The File path to serialize the GEXF
+     */
+    private void generateReducedGraph(String nodes, String edges, int size, File outputPath) {
+        if(nodes == null || nodes.equals(""))
+            throw new IllegalArgumentException("The query for nodes cannot be null or empty");
+        if(edges == null || edges.equals(""))
+            throw new IllegalArgumentException("The query for nodes cannot be null or empty");
+        if(outputPath == null)
+            throw new IllegalArgumentException("The output file cannot be null");
+
+        EdgeListDatabaseImpl db = new EdgeListDatabaseImpl();
+        db.setDBName(dbName);
+        db.setHost(dbHost);
+        db.setUsername(dbUser);
+        db.setPasswd(dbPass);
+        db.setSQLDriver(new MySQLDriver());
+        db.setPort(dbPort);
+
+        ProjectController pc = Lookup.getDefault().lookup(ProjectController.class);
+        pc.newProject();
+        Workspace workspace = pc.getCurrentWorkspace();
+        db.setNodeQuery(nodes);
+        db.setEdgeQuery(edges);
+
+        // Importing full graph
+        ImportController ic = Lookup.getDefault().lookup(ImportController.class);
+        Container container = ic.importDatabase(db, new ImporterEdgeList());
+        container.setAllowAutoNode(false);  // Don't create missing nodes
+        container.getLoader().setEdgeDefault(EdgeDefault.UNDIRECTED);   //Force UNDIRECTED
+
+        // Append imported data to GraphAPI
+        ic.process(container, new DefaultProcessor(), workspace);
+
+        // Graph Connected Components
+        GraphModel gm = Lookup.getDefault().lookup(GraphController.class).getModel();
+        AttributeModel am = Lookup.getDefault().lookup(AttributeController.class).getModel();
+        org.gephi.statistics.plugin.ConnectedComponents cc = new org.gephi.statistics.plugin.ConnectedComponents();
+        cc.execute(gm, am);
+
+        NodeIterable ni = gm.getGraph().getNodes();
+        HashMap<Integer, List<String>> components = new HashMap<>();
+        for(Node node : ni.toArray()) {
+            Attributes atts = node.getAttributes();
+            Integer componentNumber = (Integer) atts.getValue("componentnumber");
+            List<String> nodeList = components.get(componentNumber);
+            if(nodeList == null) {
+                nodeList = new ArrayList<String>();
+                components.put(componentNumber, nodeList);
+            }
+            String nodeId = (String) atts.getValue("id");
+            nodeList.add(nodeId);
+        }
+
+        List<Node> nodes2remove = new ArrayList<>();
+        for(Integer key : components.keySet()) {
+            List<String> nodeList = components.get(key);
+            if(nodeList.size() <= size) {
+                for(String nodeId : nodeList) {
+                    Node node = gm.getGraph().getNode(nodeId);
+                    nodes2remove.add(node);
+                }
+            }
+        }
+
+        for(Node node : nodes2remove) {
+            gm.getGraph().removeNode(node);
+        }
 
         // Export full graph
         ExportController ec = Lookup.getDefault().lookup(ExportController.class);

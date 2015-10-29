@@ -20,6 +20,9 @@ public class ConnectedComponentsTest extends MetricTest {
 
         Integer result = Integer.valueOf(cc.calculateGraphComponents(metricData.getFullGraph()));
         assertEquals(19, result.intValue());
+
+        Integer result2 = Integer.valueOf(cc.calculateGraphComponents(metricData.getFullGraph(), 3));
+        assertEquals(4, result2.intValue());
     }
 
     @Test
