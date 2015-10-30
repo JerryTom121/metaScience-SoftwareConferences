@@ -41,7 +41,7 @@ public class MetricBuilder {
             AverageNumberOfAuthorsPerPaper.class,
             AverageNumberOfPapersPerAuthor.class,
             AverageOpennessRate.class,
-            AverageCommunityGrowthRate.class,
+            AverageNewComersRate.class,
             AverageDegree.class,
             Density.class,
             GraphModularity.class,
@@ -86,8 +86,8 @@ public class MetricBuilder {
             result = "Papers_per_author_1_Edition,Papers_per_author_2_Edition,Papers_per_author_3_Edition,Papers_per_author_4_Edition,Papers_per_author_5_Edition,Avg_papers_per_author";
         } else if (m == AverageOpennessRate.class) {
             result = "Newcomer_papers_rate_12_Edition,Newcomer_papers_rate_23_Edition,Newcomer_papers_rate_34_Edition,Newcomer_papers_rate_45_Edition,Avg_newcomers_papers_rate,Community_papers_12_Edition,Community_papers_23_Edition,Community_papers_34_Edition,Community_papers_45_Edition,Average_community_papers";
-        } else if (m == AverageCommunityGrowthRate.class) {
-            result = "GrowthRate_12_LastEdition,GrowthRate_23_LastEdition,GrowthRate_34_LastEdition,GrowthRate_45_LastEdition,Avg_communityGrowthRate";
+        } else if (m == AverageNewComersRate.class) {
+            result = "Newcomers_rate_12_Edition,Newcomers_rate_23_Edition,Newcomers_rate_34_Edition,Newcomers_rate_45_Edition,Avg_newcomers_rate";
         } else if (m == AverageDegree.class) {
             result = "AvgDegree_allEditions,AvgDegree_1_LastEdition,AvgDegree_2_LastEdition,AvgDegree_3_LastEdition,AvgDegree_4_LastEdition,AvgDegree_5_LastEdition";
         } else if (m == Density.class) {
@@ -126,8 +126,8 @@ public class MetricBuilder {
             result = new AverageNumberOfPapersPerAuthor(metricData, dbInfo);
         } else if (m == AverageOpennessRate.class) {
             result = new AverageOpennessRate(metricData, dbInfo);
-        } else if (m == AverageCommunityGrowthRate.class) {
-            result = new AverageCommunityGrowthRate(metricData, dbInfo);
+        } else if (m == AverageNewComersRate.class) {
+            result = new AverageNewComersRate(metricData, dbInfo);
         } else if (m == AverageDegree.class) {
             result = new AverageDegree(metricData);
         } else if (m == Density.class) {

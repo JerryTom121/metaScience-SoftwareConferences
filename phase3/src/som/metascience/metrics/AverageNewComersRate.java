@@ -13,9 +13,9 @@ import java.util.List;
 /**
  * Created by valerio cosentino <valerio.cosentino@gmail.com> on 15/09/2015.
  */
-public class AverageCommunityGrowthRate extends SQLMetric {
+public class AverageNewComersRate extends SQLMetric {
 
-    public AverageCommunityGrowthRate(MetricData metricData, DBInfo dbInfo) {
+    public AverageNewComersRate(MetricData metricData, DBInfo dbInfo) {
         super(metricData, dbInfo);
     }
 
@@ -83,8 +83,8 @@ public class AverageCommunityGrowthRate extends SQLMetric {
     public String getResult() {
         List<Float> growthRates = new LinkedList<Float>();
 
-        if(metricData.getSourceInfo().contains("MoDELS"))
-            System.out.print("a");
+        //if(metricData.getSourceInfo().contains("MoDELS"))
+        //    System.out.print("a");
 
         int firstEdition = metricData.getEditions().get(metricData.getEditions().size()-1);
         for (int edition: metricData.getEditions().subList(0, metricData.getEditions().size()-1)) {
