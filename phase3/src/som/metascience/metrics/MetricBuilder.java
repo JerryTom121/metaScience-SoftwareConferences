@@ -47,7 +47,8 @@ public class MetricBuilder {
             GraphModularity.class,
             ConnectedComponents.class,
             AveragePathLength.class,
-            ProminentFigures.class
+            ProminentFigures.class,
+            CommunitySize.class
     };
 
     public MetricBuilder(MetricData metricData, DBInfo dbInfo) {
@@ -101,6 +102,8 @@ public class MetricBuilder {
             result = "AveragePathLength_1_LastEdition,AveragePathLength_2_LastEdition,AveragePathLength_3_LastEdition,AveragePathLength_4_LastEdition,AveragePathLength_5_LastEdition,Avg_Path_Length";
         } else if (m == ProminentFigures.class) {
             result = "ProminentFigures_1_LastEdition,ProminentFigures_2_LastEdition,ProminentFigures_3_LastEdition,ProminentFigures_4_LastEdition,ProminentFigures_5_LastEdition,Prominent_Figures";
+        } else if (m == CommunitySize.class) {
+            result = "Community_Size";
         } else
             throw new IllegalArgumentException("There is no category for such a metric");
         return result;
@@ -143,6 +146,8 @@ public class MetricBuilder {
             result = new AveragePathLength(metricData);
         } else if (m == ProminentFigures.class) {
             result = new ProminentFigures(metricData);
+        } else if (m == CommunitySize.class) {
+            result = new CommunitySize(metricData);
         } else
             throw new IllegalArgumentException("There is no builder for such a metric");
         return result;
