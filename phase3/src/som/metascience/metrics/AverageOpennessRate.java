@@ -39,14 +39,14 @@ public class AverageOpennessRate extends SQLMetric {
                                     "JOIN " +
                                     "dblp_authorid_ref_new auth " +
                                     "ON pub.id = auth.id " +
-                                    "WHERE type = 'inproceedings' AND year = " + currentYear + " AND source IN (" + metricData.getSourceInfo() + ") AND source_id IN (" + metricData.getSourceIdInfo() + ")) as x_year " +
+                                    "WHERE type = 'inproceedings' AND calculate_num_of_pages(pages) >= " + Integer.toString(super.filter_num_pages) + " AND year = " + currentYear + " AND source IN (" + metricData.getSourceInfo() + ") AND source_id IN (" + metricData.getSourceIdInfo() + ")) as x_year " +
                                 "LEFT JOIN " +
                                     "(SELECT auth.author_id " +
                                     "FROM dblp_pub_new pub " +
                                     "JOIN " +
                                     "dblp_authorid_ref_new auth " +
                                     "ON pub.id = auth.id " +
-                                    "WHERE type = 'inproceedings' AND year < " + currentYear + " AND year >= " + firstYear + " AND source IN (" + metricData.getSourceInfo() + ") AND source_id IN (" + metricData.getSourceIdInfo() + ") " +
+                                    "WHERE type = 'inproceedings' AND calculate_num_of_pages(pages) >= " + Integer.toString(super.filter_num_pages) + " AND year < " + currentYear + " AND year >= " + firstYear + " AND source IN (" + metricData.getSourceInfo() + ") AND source_id IN (" + metricData.getSourceIdInfo() + ") " +
                                     "GROUP BY auth.author_id) AS previous_years " +
                                 "ON x_year.author_id = previous_years.author_id " +
                                 "GROUP BY paper_id) AS openness;";

@@ -24,8 +24,12 @@ public class AverageNumberOfPapers extends SQLMetric {
         float averageNumberOfPapers = 0;
         try {
             String averageNumberOfPapersQuery = "SELECT ROUND(AVG(num_papers), 3) as avg " +
-                                                "FROM _num_of_papers_per_conference_per_year " +
-                                                "WHERE source IN (" + metricData.getSourceInfo() + ") AND source_id IN (" + metricData.getSourceIdInfo() + ") AND year IN (" + toCommaSeparated(metricData.getEditions()) + ") " +
+                                                "FROM ( " +
+                                                        "SELECT COUNT(id) as num_papers, source, source_id, year " +
+                                                        "FROM dblp_pub_new " +
+                                                        "WHERE type = 'inproceedings' AND source IN (" + metricData.getSourceInfo() + ") AND source_id IN (" + metricData.getSourceIdInfo() + ") " +
+                                                        "AND calculate_num_of_pages(pages) >= " + Integer.toString(super.filter_num_pages) + " AND year IN (" + toCommaSeparated(metricData.getEditions()) + ") " +
+                                                        "GROUP BY source, source_id, year) AS aux " +
                                                 "ORDER BY year DESC";
             stmt = conn.createStatement();
             rs = stmt.executeQuery(averageNumberOfPapersQuery);

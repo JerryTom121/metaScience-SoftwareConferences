@@ -27,8 +27,17 @@ public class AverageNumberOfAuthorsPerPaper extends SQLMetric {
         List<Float> yearValue = new LinkedList<Float>();
         try {
             String query = "SELECT ROUND(AVG(avg_author_per_paper), 3) as avg " +
-                           "FROM _avg_number_authors_per_paper_per_conf_per_year " +
-                           "WHERE source IN (" + metricData.getSourceInfo() + ") AND source_id IN (" + metricData.getSourceIdInfo() + ") AND year IN (" + toCommaSeparated(metricData.getEditions()) + ")";
+                           "FROM ( " +
+                                "SELECT AVG(author_per_paper) AS avg_author_per_paper, source, source_id, year " +
+                                "FROM ( " +
+                                        "SELECT COUNT(auth.author_id) AS author_per_paper, pub.id as paper_id, source, source_id, year " +
+                                        "FROM dblp_pub_new pub JOIN dblp_authorid_ref_new auth ON pub.id = auth.id " +
+                                        "WHERE type = 'inproceedings' AND source IN (" + metricData.getSourceInfo() + ") AND source_id IN (" + metricData.getSourceIdInfo() + ") " +
+                                        "AND calculate_num_of_pages(pages) >= " + Integer.toString(super.filter_num_pages) + " AND year IN (" + toCommaSeparated(metricData.getEditions()) + ") " +
+                                        "GROUP BY paper_id, source, source_id, year) " +
+                                "AS count " +
+                                "GROUP BY source, source_id, year) " +
+                            "AS aux";
             stmt = conn.createStatement();
             rs = stmt.executeQuery(query);
 
@@ -38,8 +47,17 @@ public class AverageNumberOfAuthorsPerPaper extends SQLMetric {
             stmt.close();
 
             query = "SELECT avg_author_per_paper, year " +
-                    "FROM _avg_number_authors_per_paper_per_conf_per_year " +
-                    "WHERE source IN (" + metricData.getSourceInfo() + ") AND source_id IN (" + metricData.getSourceIdInfo() + ") AND year IN (" + toCommaSeparated(metricData.getEditions()) + ") " +
+                    "FROM ( " +
+                            "SELECT AVG(author_per_paper) AS avg_author_per_paper, source, source_id, year " +
+                            "FROM ( " +
+                                    "SELECT COUNT(auth.author_id) AS author_per_paper, pub.id as paper_id, source, source_id, year " +
+                                    "FROM dblp_pub_new pub JOIN dblp_authorid_ref_new auth ON pub.id = auth.id " +
+                                    "WHERE type = 'inproceedings' AND source IN (" + metricData.getSourceInfo() + ") AND source_id IN (" + metricData.getSourceIdInfo() + ") " +
+                                    "AND calculate_num_of_pages(pages) >= " + Integer.toString(super.filter_num_pages) + " AND year IN (" + toCommaSeparated(metricData.getEditions()) + ") " +
+                                    "GROUP BY paper_id, source, source_id, year) " +
+                            "AS count " +
+                            "GROUP BY source, source_id, year) " +
+                    "AS aux" +
                     "ORDER BY year DESC";
             stmt = conn.createStatement();
             rs = stmt.executeQuery(query);

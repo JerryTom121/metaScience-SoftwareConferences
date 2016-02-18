@@ -25,7 +25,8 @@ public class AllPapers extends SQLMetric {
         try {
             String allPapersQuery = "SELECT COUNT(*) as numPapers, year " +
                     "FROM dblp_pub_new " +
-                    "WHERE source IN (" + metricData.getSourceInfo() + ") AND source_id IN (" + metricData.getSourceIdInfo() + ") AND type = 'inproceedings' AND year IN (" + toCommaSeparated(metricData.getEditions()) + ") " +
+                    "WHERE source IN (" + metricData.getSourceInfo() + ") AND source_id IN (" + metricData.getSourceIdInfo() + ") AND type = 'inproceedings' " +
+                    "AND calculate_num_of_pages(pages) >= " + Integer.toString(super.filter_num_pages) + " AND year IN (" + toCommaSeparated(metricData.getEditions()) + ") " +
                     "GROUP BY year " +
                     "ORDER BY year DESC;";
             stmt = conn.createStatement();

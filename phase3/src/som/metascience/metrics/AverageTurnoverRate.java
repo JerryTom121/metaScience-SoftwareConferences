@@ -11,11 +11,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by valerio cosentino <valerio.cosentino@gmail.com> on 15/09/2015.
+ * Created by valerio cosentino <valerio.cosentino@gmail.com> on 19/02/2016.
  */
-public class AverageNewComersRate extends SQLMetric {
+public class AverageTurnoverRate extends SQLMetric {
 
-    public AverageNewComersRate(MetricData metricData, DBInfo dbInfo) {
+    public AverageTurnoverRate(MetricData metricData, DBInfo dbInfo) {
         super(metricData, dbInfo);
     }
 
@@ -44,7 +44,7 @@ public class AverageNewComersRate extends SQLMetric {
         return distinctAuthors;
     }
 
-    private int getNewAuthorsYear(int currentYear, int firstYear) {
+    private int getNewAuthorsYear(int currentYear, int previousYear) {
         Statement stmt = null;
         ResultSet rs = null;
         int newAuthors = 0;
@@ -58,7 +58,7 @@ public class AverageNewComersRate extends SQLMetric {
                             "LEFT JOIN " +
                             "(SELECT auth.author_id AS previous_author " +
                             "FROM dblp_pub_new pub JOIN dblp_authorid_ref_new auth ON pub.id = auth.id " +
-                            "WHERE type = 'inproceedings' AND calculate_num_of_pages(pages) >= " + Integer.toString(super.filter_num_pages) + " AND year < " + currentYear + " AND year >= " + firstYear + " AND source IN (" + metricData.getSourceInfo() + ") AND source_id IN (" + metricData.getSourceIdInfo() + ") " +
+                            "WHERE type = 'inproceedings' AND calculate_num_of_pages(pages) >= " + Integer.toString(super.filter_num_pages) + " AND year = " + previousYear + " AND source IN (" + metricData.getSourceInfo() + ") AND source_id IN (" + metricData.getSourceIdInfo() + ") " +
                             "GROUP BY author_id) AS y " +
                             "ON x.current_author = y.previous_author " +
                             "WHERE previous_author IS NULL;";
@@ -84,15 +84,14 @@ public class AverageNewComersRate extends SQLMetric {
     public String getResult() {
         List<Float> growthRates = new LinkedList<Float>();
 
-        //if(metricData.getSourceInfo().contains("MoDELS"))
-        //    System.out.print("a");
-
-        int firstEdition = metricData.getEditions().get(metricData.getEditions().size()-1);
+        int previousEdition = metricData.getEditions().get(metricData.getEditions().size()-1);
         for (int edition: metricData.getEditions().subList(0, metricData.getEditions().size()-1)) {
             int authors = getDistinctAuthorsYear(edition);
-            int newAuthors = getNewAuthorsYear(edition, firstEdition);
+            int newAuthors = getNewAuthorsYear(edition, previousEdition);
 
             growthRates.add(((((float)newAuthors)/authors)*100));
+
+            previousEdition = edition;
 
         }
 

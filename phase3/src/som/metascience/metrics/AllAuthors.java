@@ -40,7 +40,8 @@ public class AllAuthors extends SQLMetric {
             String authorsQuery = "SELECT COUNT(*) AS numAuthors, year " +
                     "FROM (SELECT airn.author_id, pub.year " +
                     "FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id " +
-                    "WHERE source IN (" + metricData.getSourceInfo() + ") AND source_id IN (" + metricData.getSourceIdInfo() + ") AND pub.type = 'inproceedings' AND pub.year IN (" + toCommaSeparated(metricData.getEditions()) + ") " +
+                    "WHERE source IN (" + metricData.getSourceInfo() + ") AND source_id IN (" + metricData.getSourceIdInfo() + ") AND pub.type = 'inproceedings' " +
+                    "AND calculate_num_of_pages(pages) >= " + Integer.toString(super.filter_num_pages) + " AND pub.year IN (" + toCommaSeparated(metricData.getEditions()) + ") " +
                     "GROUP BY airn.author_id, pub.year) AS x " +
                     "GROUP BY year " +
                     "ORDER BY year DESC;";

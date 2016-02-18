@@ -41,6 +41,7 @@ public class MetricBuilder {
             AverageNumberOfAuthorsPerPaper.class,
             AverageNumberOfPapersPerAuthor.class,
             AverageNewComersRate.class,
+            AverageTurnoverRate.class,
             AverageOpennessRate.class,
             AverageDegree.class,
             Density.class,
@@ -90,6 +91,8 @@ public class MetricBuilder {
             result = "Newcomer_papers_rate_12_Edition,Newcomer_papers_rate_23_Edition,Newcomer_papers_rate_34_Edition,Newcomer_papers_rate_45_Edition,Newcomer_Papers,Community_papers_12_Edition,Community_papers_23_Edition,Community_papers_34_Edition,Community_papers_45_Edition,Community_Papers";
         } else if (m == AverageNewComersRate.class) {
             result = "Newcomers_rate_12_Edition,Newcomers_rate_23_Edition,Newcomers_rate_34_Edition,Newcomers_rate_45_Edition,Newcomers";
+        } else if (m == AverageTurnoverRate.class) {
+            result = "Turnover_rate_12_Edition,Turnover_rate_23_Edition,Turnover_rate_34_Edition,Turnover_rate_45_Edition,Turnover";
         } else if (m == AverageDegree.class) {
             result = "AvgDegree_1_LastEdition,AvgDegree_2_LastEdition,AvgDegree_3_LastEdition,AvgDegree_4_LastEdition,AvgDegree_5_LastEdition,Avg_Degree";
         } else if (m == Density.class) {
@@ -134,6 +137,8 @@ public class MetricBuilder {
             result = new AverageOpennessRate(metricData, dbInfo);
         } else if (m == AverageNewComersRate.class) {
             result = new AverageNewComersRate(metricData, dbInfo);
+        } else if (m == AverageTurnoverRate.class) {
+            result = new AverageTurnoverRate(metricData, dbInfo);
         } else if (m == AverageDegree.class) {
             result = new AverageDegree(metricData);
         } else if (m == Density.class) {
