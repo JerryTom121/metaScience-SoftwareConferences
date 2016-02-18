@@ -205,6 +205,7 @@ public class GraphImporter {
         // Importing full graph
         ImportController ic = Lookup.getDefault().lookup(ImportController.class);
         Container container = ic.importDatabase(db, new ImporterEdgeList());
+        container.setAutoScale(false);
         container.setAllowAutoNode(false);  // Don't create missing nodes
         container.getLoader().setEdgeDefault(EdgeDefault.UNDIRECTED);   //Force UNDIRECTED
 
@@ -254,6 +255,7 @@ public class GraphImporter {
         // Importing full graph
         ImportController ic = Lookup.getDefault().lookup(ImportController.class);
         Container container = ic.importDatabase(db, new ImporterEdgeList());
+        container.setAutoScale(false);
         container.setAllowAutoNode(false);  // Don't create missing nodes
         container.getLoader().setEdgeDefault(EdgeDefault.UNDIRECTED);   //Force UNDIRECTED
 

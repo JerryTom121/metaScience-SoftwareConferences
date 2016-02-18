@@ -2,8 +2,7 @@ package som.metascience.metrics;
 
 import org.gephi.data.attributes.api.AttributeController;
 import org.gephi.data.attributes.api.AttributeModel;
-import org.gephi.graph.api.GraphController;
-import org.gephi.graph.api.GraphModel;
+import org.gephi.graph.api.*;
 import org.gephi.io.importer.api.Container;
 import org.gephi.io.importer.api.EdgeDefault;
 import org.gephi.io.importer.api.ImportController;
@@ -11,39 +10,42 @@ import org.gephi.io.processor.plugin.DefaultProcessor;
 import org.gephi.project.api.ProjectController;
 import org.gephi.project.api.Workspace;
 import org.openide.util.Lookup;
-import org.gephi.statistics.plugin.GraphDensity;
 import som.metascience.MetricData;
 
 import java.io.File;
 
 /**
- * Calculates the graph density
+ * Calculates the metric Prominent Figures in a conference
  */
-public class Density extends Metric {
+public class ProminentFigures extends Metric {
 
-    public Density(MetricData metricData) {
+    /**
+     * The threshold to be considered prominent
+     */
+    public static float THRESHOLD = 5.0f;
+
+    public ProminentFigures(MetricData metricData) {
         super(metricData);
     }
 
     @Override
     public String getResult() {
-        String graphDensityFull = calculateGraphDensity(metricData.getFullGraph());
-        String graphDensityEdition1 = calculateGraphDensity(metricData.getEditionGraphs().get(0));
-        String graphDensityEdition2 = calculateGraphDensity(metricData.getEditionGraphs().get(1));
-        String graphDensityEdition3 = calculateGraphDensity(metricData.getEditionGraphs().get(2));
-        String graphDensityEdition4 = calculateGraphDensity(metricData.getEditionGraphs().get(3));
-        String graphDensityEdition5 = calculateGraphDensity(metricData.getEditionGraphs().get(4));
+        String graphProminentFiguresFull = calculateProminentFigures(metricData.getFullGraph());
+        String ProminentFiguresEdition1 = calculateProminentFigures(metricData.getEditionGraphs().get(0));
+        String ProminentFiguresEdition2 = calculateProminentFigures(metricData.getEditionGraphs().get(1));
+        String ProminentFiguresEdition3 = calculateProminentFigures(metricData.getEditionGraphs().get(2));
+        String ProminentFiguresEdition4 = calculateProminentFigures(metricData.getEditionGraphs().get(3));
+        String ProminentFiguresEdition5 = calculateProminentFigures(metricData.getEditionGraphs().get(4));
 
-        return graphDensityEdition1 + "," + graphDensityEdition2 + "," + graphDensityEdition3 + "," + graphDensityEdition4 + "," + graphDensityEdition5 + "," + graphDensityFull;
+        return ProminentFiguresEdition1 + "," + ProminentFiguresEdition2 + "," + ProminentFiguresEdition3 + "," + ProminentFiguresEdition4 + "," + ProminentFiguresEdition5 + "," + graphProminentFiguresFull;
     }
 
-
     /**
-     * Calculates the graph density
+     * Calculates the prominent figures in the graph
      * @param graph The path to the graph
      * @return The result of the metric
      */
-    public String calculateGraphDensity(File graph) {
+    public String calculateProminentFigures(File graph) {
         ProjectController pc = Lookup.getDefault().lookup(ProjectController.class);
         pc.newProject();
         Workspace workspace = pc.getCurrentWorkspace();
@@ -64,9 +66,12 @@ public class Density extends Metric {
         GraphModel gm = Lookup.getDefault().lookup(GraphController.class).getModel();
         AttributeModel am = Lookup.getDefault().lookup(AttributeController.class).getModel();
 
-        // Graph density
-        GraphDensity graphDensity = new GraphDensity();
-        graphDensity.execute(gm, am);
-        return String.valueOf(graphDensity.getDensity());
+        NodeIterable ni = gm.getGraph().getNodes();
+        int totalClasses = 0;
+        for(Node node : ni.toArray()) {
+            if(node.getNodeData().getSize() >= THRESHOLD)
+                totalClasses++;
+        }
+        return String.valueOf(totalClasses);
     }
 }

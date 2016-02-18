@@ -4,6 +4,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses({ AverageDegreeTest.class, AveragePathLengthTest.class, ConnectedComponentsTest.class, DensityTest.class, GraphModularityTest.class})
+@Suite.SuiteClasses({ AverageDegreeTest.class, AveragePathLengthTest.class, ConnectedComponentsTest.class, DensityTest.class, GraphModularityTest.class, ProminentFiguresTest.class
+})
 public class AllTests {
 }

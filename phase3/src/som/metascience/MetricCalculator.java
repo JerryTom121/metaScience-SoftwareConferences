@@ -138,10 +138,12 @@ public class MetricCalculator {
 
                     // Getting paths to graphs
                     File fullGraph = new File(inputGraphs.getAbsolutePath() + File.separator + name + EXTENSION);
+                    //File fullGraph = new File(inputGraphs.getAbsolutePath() + File.separator + name + "_reduced_" + EXTENSION);
                     List<File> editionGraphs = new ArrayList<File>();
                     int edition = 1;
                     for(; edition <= editions.size() ; edition++) {
                         File editionGraph = new File(inputGraphs.getAbsolutePath() + File.separator + name + edition + EXTENSION);
+                        //File editionGraph = new File(inputGraphs.getAbsolutePath() + File.separator + name + "_reduced_" + edition + EXTENSION);
                         editionGraphs.add(editionGraph);
                     }
 

@@ -35,18 +35,19 @@ public class MetricBuilder {
      */
     private static Class[] metrics = {
             AllPapers.class,
-            AllAuthors.class,
             AverageNumberOfPapers.class,
+            AllAuthors.class,
             AverageNumberOfAuthors.class,
             AverageNumberOfAuthorsPerPaper.class,
             AverageNumberOfPapersPerAuthor.class,
-            AverageOpennessRate.class,
             AverageNewComersRate.class,
+            AverageOpennessRate.class,
             AverageDegree.class,
             Density.class,
             GraphModularity.class,
             ConnectedComponents.class,
-            AveragePathLength.class
+            AveragePathLength.class,
+            ProminentFigures.class
     };
 
     public MetricBuilder(MetricData metricData, DBInfo dbInfo) {
@@ -73,31 +74,33 @@ public class MetricBuilder {
     public static String getCategory(Class m) {
         String result = null;
         if (m == AllPapers.class) {
-            result = "Papers_1_Edition,Papers_2_Edition,Papers_3_Edition,Papers_4_Edition,Papers_5_Edition,Num_Papers";
+            result = "Papers_1_Edition,Papers_2_Edition,Papers_3_Edition,Papers_4_Edition,Papers_5_Edition";
         } else if (m == AllAuthors.class) {
-            result = "Authors_1_Edition,Authors_2_Edition,Authors_3_Edition,Authors_4_Edition,Authors_5_Edition,Num_authors";
+            result = "Authors_1_Edition,Authors_2_Edition,Authors_3_Edition,Authors_4_Edition,Authors_5_Edition";
         } else if (m == AverageNumberOfPapers.class) {
-            result = "Avg_papers";
+            result = "Num_Papers";
         } else if (m == AverageNumberOfAuthors.class) {
-            result = "Avg_authors";
+            result = "Num_Authors";
         } else if (m == AverageNumberOfAuthorsPerPaper.class) {
-            result = "Authors_per_paper_1_Edition,Authors_per_paper_2_Edition,Authors_per_paper_3_Edition,Authors_per_paper_4_Edition,Authors_per_paper_5_Edition,Avg_authors_per_paper";
+            result = "Authors_per_paper_1_Edition,Authors_per_paper_2_Edition,Authors_per_paper_3_Edition,Authors_per_paper_4_Edition,Authors_per_paper_5_Edition,Authors_per_Paper";
         } else if (m == AverageNumberOfPapersPerAuthor.class) {
-            result = "Papers_per_author_1_Edition,Papers_per_author_2_Edition,Papers_per_author_3_Edition,Papers_per_author_4_Edition,Papers_per_author_5_Edition,Avg_papers_per_author";
+            result = "Papers_per_author_1_Edition,Papers_per_author_2_Edition,Papers_per_author_3_Edition,Papers_per_author_4_Edition,Papers_per_author_5_Edition,Papers_per_Author";
         } else if (m == AverageOpennessRate.class) {
-            result = "Newcomer_papers_rate_12_Edition,Newcomer_papers_rate_23_Edition,Newcomer_papers_rate_34_Edition,Newcomer_papers_rate_45_Edition,Avg_newcomers_papers_rate,Community_papers_12_Edition,Community_papers_23_Edition,Community_papers_34_Edition,Community_papers_45_Edition,Average_community_papers";
+            result = "Newcomer_papers_rate_12_Edition,Newcomer_papers_rate_23_Edition,Newcomer_papers_rate_34_Edition,Newcomer_papers_rate_45_Edition,Newcomer_Papers,Community_papers_12_Edition,Community_papers_23_Edition,Community_papers_34_Edition,Community_papers_45_Edition,Community_Papers";
         } else if (m == AverageNewComersRate.class) {
-            result = "Newcomers_rate_12_Edition,Newcomers_rate_23_Edition,Newcomers_rate_34_Edition,Newcomers_rate_45_Edition,Avg_newcomers_rate";
+            result = "Newcomers_rate_12_Edition,Newcomers_rate_23_Edition,Newcomers_rate_34_Edition,Newcomers_rate_45_Edition,Newcomers";
         } else if (m == AverageDegree.class) {
-            result = "AvgDegree_allEditions,AvgDegree_1_LastEdition,AvgDegree_2_LastEdition,AvgDegree_3_LastEdition,AvgDegree_4_LastEdition,AvgDegree_5_LastEdition";
+            result = "AvgDegree_1_LastEdition,AvgDegree_2_LastEdition,AvgDegree_3_LastEdition,AvgDegree_4_LastEdition,AvgDegree_5_LastEdition,Avg_Degree";
         } else if (m == Density.class) {
-            result = "GraphDensity_allEditions,GraphDensity_1_LastEdition,GraphDensity_2_LastEdition,GraphDensity_3_LastEdition,GraphDensity_4_LastEdition,GraphDensity_5_LastEdition";
+            result = "GraphDensity_1_LastEdition,GraphDensity_2_LastEdition,GraphDensity_3_LastEdition,GraphDensity_4_LastEdition,GraphDensity_5_LastEdition,Graph_Density";
         } else if (m == GraphModularity.class) {
-            result = "GraphModularity_allEditions,GraphModularity_1_LastEdition,GraphModularity_2_LastEdition,GraphModularity_3_LastEdition,GraphModularity_4_LastEdition,GraphModularity_5_LastEdition";
+            result = "GraphModularity_1_LastEdition,GraphModularity_2_LastEdition,GraphModularity_3_LastEdition,GraphModularity_4_LastEdition,GraphModularity_5_LastEdition,Graph_Modularity";
         } else if (m == ConnectedComponents.class) {
-            result = "ConnectedComponents_allEditions,ConnectedComponents_1_LastEdition,ConnectedComponents_2_LastEdition,ConnectedComponents_3_LastEdition,ConnectedComponents_4_LastEdition,ConnectedComponents_5_LastEdition";
+            result = "ConnectedComponents_1_LastEdition,ConnectedComponents_2_LastEdition,ConnectedComponents_3_LastEdition,ConnectedComponents_4_LastEdition,ConnectedComponents_5_LastEdition,Connected_Components";
         } else if (m == AveragePathLength.class) {
-            result = "AveragePathLength_allEditions,AveragePathLength_1_LastEdition,AveragePathLength_2_LastEdition,AveragePathLength_3_LastEdition,AveragePathLength_4_LastEdition,AveragePathLength_5_LastEdition";
+            result = "AveragePathLength_1_LastEdition,AveragePathLength_2_LastEdition,AveragePathLength_3_LastEdition,AveragePathLength_4_LastEdition,AveragePathLength_5_LastEdition,Avg_Path_Length";
+        } else if (m == ProminentFigures.class) {
+            result = "ProminentFigures_1_LastEdition,ProminentFigures_2_LastEdition,ProminentFigures_3_LastEdition,ProminentFigures_4_LastEdition,ProminentFigures_5_LastEdition,Prominent_Figures";
         } else
             throw new IllegalArgumentException("There is no category for such a metric");
         return result;
@@ -138,6 +141,8 @@ public class MetricBuilder {
             result = new ConnectedComponents(metricData);
         } else if (m == AveragePathLength.class) {
             result = new AveragePathLength(metricData);
+        } else if (m == ProminentFigures.class) {
+            result = new ProminentFigures(metricData);
         } else
             throw new IllegalArgumentException("There is no builder for such a metric");
         return result;

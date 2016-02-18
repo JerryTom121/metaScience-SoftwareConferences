@@ -23,11 +23,6 @@ import java.util.HashMap;
  */
 public class GraphModularity extends Metric {
     /**
-     * Attribute table in the graph holding the info for the nodes (it depends on the language of the system)
-     */
-    public static final String ATTRIBUTE_TABLE = "Noeuds";
-
-    /**
      * The column to get from the table
      */
     public static final String ATTRIBUTE_COLUMN = "modularity_class";
@@ -46,7 +41,7 @@ public class GraphModularity extends Metric {
         String graphModularityEdition4 = calcualteGraphModularity(metricData.getEditionGraphs().get(3));
         String graphModularityEdition5 = calcualteGraphModularity(metricData.getEditionGraphs().get(4));
 
-        return graphModularityFull + "," + graphModularityEdition1 + "," + graphModularityEdition2 + "," + graphModularityEdition3 + "," + graphModularityEdition4 + "," + graphModularityEdition5;
+        return graphModularityEdition1 + "," + graphModularityEdition2 + "," + graphModularityEdition3 + "," + graphModularityEdition4 + "," + graphModularityEdition5 + "," + graphModularityFull;
     }
 
     /**
@@ -64,6 +59,7 @@ public class GraphModularity extends Metric {
         Container container;
         try {
             container = importController.importFile(graph);
+            container.setAutoScale(false);
             container.getLoader().setEdgeDefault(EdgeDefault.UNDIRECTED);   //Force DIRECTED
             container.setAllowAutoNode(false);  //Don't create missing nodes
             importController.process(container, new DefaultProcessor(), workspace);

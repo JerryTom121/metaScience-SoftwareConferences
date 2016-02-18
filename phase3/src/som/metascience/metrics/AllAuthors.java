@@ -21,10 +21,10 @@ public class AllAuthors extends SQLMetric {
     public String getResult() {
         Statement stmt = null;
         ResultSet rs = null;
-        int allAuthors = 0;
+        //int allAuthors = 0;
         List<Integer> authors = new LinkedList<Integer>();
         try {
-            String allAuthorsQuery = "SELECT COUNT(*) AS numAuthors " +
+            /**String allAuthorsQuery = "SELECT COUNT(*) AS numAuthors " +
                     "FROM (SELECT airn.author_id " +
                     "FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id " +
                     "WHERE source IN (" + metricData.getSourceInfo() + ") AND source_id IN (" + metricData.getSourceIdInfo() + ") AND pub.type = 'inproceedings' AND pub.year IN (" + toCommaSeparated(metricData.getEditions()) + ") " +
@@ -35,7 +35,7 @@ public class AllAuthors extends SQLMetric {
             rs.first();
             allAuthors = rs.getInt("numAuthors");
             rs.close();
-            stmt.close();
+            stmt.close();*/
 
             String authorsQuery = "SELECT COUNT(*) AS numAuthors, year " +
                     "FROM (SELECT airn.author_id, pub.year " +
@@ -62,6 +62,7 @@ public class AllAuthors extends SQLMetric {
         for (int a : authors)
             results += a + ",";
 
-        return results + allAuthors;
+        //return results + allAuthors; // jlcanovas: we return only the per-edition values
+        return results.substring(0, results.length()-1);
     }
 }

@@ -33,7 +33,7 @@ public class AveragePathLength extends Metric{
         String graphDistanceEdition4 = calculateGraphDistance(metricData.getEditionGraphs().get(3));
         String graphDistanceEdition5 = calculateGraphDistance(metricData.getEditionGraphs().get(4));
 
-        return graphDistanceFull + "," + graphDistanceEdition1 + "," + graphDistanceEdition2 + "," + graphDistanceEdition3 + "," + graphDistanceEdition4 + "," + graphDistanceEdition5;
+        return graphDistanceEdition1 + "," + graphDistanceEdition2 + "," + graphDistanceEdition3 + "," + graphDistanceEdition4 + "," + graphDistanceEdition5 + "," + graphDistanceFull;
     }
 
     /**
@@ -51,6 +51,7 @@ public class AveragePathLength extends Metric{
         Container container;
         try {
             container = importController.importFile(graph);
+            container.setAutoScale(false);
             container.getLoader().setEdgeDefault(EdgeDefault.UNDIRECTED);   //Force DIRECTED
             container.setAllowAutoNode(false);  //Don't create missing nodes
             importController.process(container, new DefaultProcessor(), workspace);

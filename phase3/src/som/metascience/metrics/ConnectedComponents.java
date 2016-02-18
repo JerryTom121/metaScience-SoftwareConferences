@@ -35,7 +35,7 @@ public class ConnectedComponents extends Metric {
         String graphComponentsEdition4 = calculateGraphComponents(metricData.getEditionGraphs().get(3));
         String graphComponentsEdition5 = calculateGraphComponents(metricData.getEditionGraphs().get(4));
 
-        return graphComponentsFull + "," + graphComponentsEdition1 + "," + graphComponentsEdition2 + "," + graphComponentsEdition3 + "," + graphComponentsEdition4 + "," + graphComponentsEdition5;
+        return graphComponentsEdition1 + "," + graphComponentsEdition2 + "," + graphComponentsEdition3 + "," + graphComponentsEdition4 + "," + graphComponentsEdition5 + "," + graphComponentsFull;
     }
 
     /**
@@ -53,6 +53,7 @@ public class ConnectedComponents extends Metric {
         Container container;
         try {
             container = importController.importFile(graph);
+            container.setAutoScale(false);
             container.getLoader().setEdgeDefault(EdgeDefault.UNDIRECTED);   //Force DIRECTED
             container.setAllowAutoNode(false);  //Don't create missing nodes
             importController.process(container, new DefaultProcessor(), workspace);
@@ -85,6 +86,7 @@ public class ConnectedComponents extends Metric {
         Container container;
         try {
             container = importController.importFile(graph);
+            container.setAutoScale(false);
             container.getLoader().setEdgeDefault(EdgeDefault.UNDIRECTED);   //Force DIRECTED
             container.setAllowAutoNode(false);  //Don't create missing nodes
             importController.process(container, new DefaultProcessor(), workspace);

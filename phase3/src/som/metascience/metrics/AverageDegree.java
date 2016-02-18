@@ -34,7 +34,7 @@ public class AverageDegree extends Metric {
         String avgDegreeEdition4 = calculateAverageDegree(metricData.getEditionGraphs().get(3));
         String avgDegreeEdition5 = calculateAverageDegree(metricData.getEditionGraphs().get(4));
 
-        return avgDegreeFull + "," + avgDegreeEdition1 + "," + avgDegreeEdition2 + "," + avgDegreeEdition3 + "," + avgDegreeEdition4 + "," + avgDegreeEdition5;
+        return avgDegreeEdition1 + "," + avgDegreeEdition2 + "," + avgDegreeEdition3 + "," + avgDegreeEdition4 + "," + avgDegreeEdition5 + "," + avgDegreeFull;
     }
 
     /**
@@ -52,6 +52,7 @@ public class AverageDegree extends Metric {
         Container container;
         try {
             container = importController.importFile(graph);
+            container.setAutoScale(false);
             container.getLoader().setEdgeDefault(EdgeDefault.UNDIRECTED);   //Force DIRECTED
             container.setAllowAutoNode(false);  //Don't create missing nodes
             importController.process(container, new DefaultProcessor(), workspace);

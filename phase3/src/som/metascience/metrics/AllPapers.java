@@ -50,7 +50,7 @@ public class AllPapers extends SQLMetric {
             results += p + ",";
         }
 
-        return results + allPapers;
-
+        // return results + allPapers; // jlcanovas: we only return the per-year values
+        return results.substring(0, results.length()-1);
     }
 }
