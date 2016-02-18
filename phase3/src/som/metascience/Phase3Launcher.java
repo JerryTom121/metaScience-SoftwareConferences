@@ -10,7 +10,7 @@ import java.util.Properties;
 public class Phase3Launcher {
     public static final String dbPropertiesPath = "phase3/db.properties";
     public static final String GRAPHS = "data/graphs";
-    public static final String OUTPUT = "data/results_new.csv";
+    public static final String OUTPUT = "data/newResults.csv";
     public static final String CONF = "data/importData";
 
     public static void main(String[] args) throws Exception {
