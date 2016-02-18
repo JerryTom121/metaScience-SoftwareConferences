@@ -5,7 +5,7 @@ CONFIG = {
             'password': 'root',
             'host': 'localhost',
             'port': '3306',
-            'database': 'dblp',
+            'database': 'dblp_old',
             'raise_on_warnings': False,
             'charset': 'utf8',
             'buffered': True
