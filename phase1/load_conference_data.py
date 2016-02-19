@@ -14,7 +14,7 @@ cnx = mysql.connector.connect(**db_connection.CONFIG)
 
 #input/output data
 CONFERENCE_FILE = 'data/treated_output.json'
-DESTINATION_FOLDER = 'output'
+DESTINATION_FOLDER = '../data/importData'
 
 #selection conference parameters
 THRESHOLD_EDITIONS = 5
@@ -118,7 +118,7 @@ def get_editions_count(source, source_id):
     query = "SELECT COUNT(*) AS editions " \
             "FROM (" \
             "SELECT year FROM dblp_pub_new " \
-            "WHERE source IN (" + source + ") AND source_id IN (" + source_id + ") AND type = 'inproceedings' " \
+            "WHERE source IN (" + source + ") AND source_id IN (" + source_id + ") AND type = 'inproceedings' AND calculate_num_of_pages(pages) >= " + str(FILTER_NUMBER_PAGES) + " " + \
             "GROUP BY year) AS x"
     cursor.execute(query)
     row = cursor.fetchone()
@@ -132,7 +132,7 @@ def get_year_editions(source, source_id):
     cursor = cnx.cursor()
     query = "SELECT year " \
             "FROM dblp_pub_new " \
-            "WHERE source IN (" + source + ") AND source_id IN (" + source_id + ") AND type = 'inproceedings' " \
+            "WHERE source IN (" + source + ") AND source_id IN (" + source_id + ") AND type = 'inproceedings' AND calculate_num_of_pages(pages) >= " + str(FILTER_NUMBER_PAGES) + " " + \
             "GROUP BY year " \
             "ORDER BY year DESC"
     cursor.execute(query)
@@ -148,7 +148,12 @@ def get_year_editions(source, source_id):
 
 
 def get_last_edition(years):
-    return max(years)
+    try:
+        last_edition = max(years)
+    except:
+        last_edition = 0
+
+    return last_edition
 
 
 def serialize_conference_info(conferences):
