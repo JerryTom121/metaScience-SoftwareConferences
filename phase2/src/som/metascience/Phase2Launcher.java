@@ -27,8 +27,14 @@ public class Phase2Launcher {
         String pass = dbProperties.getProperty("pass");
         int port = Integer.valueOf(dbProperties.getProperty("port"));
 
+        long startTime = System.currentTimeMillis();
+
         GraphImporter importer = new GraphImporter(host, db, user, pass, port, new File(CONF), new File(OUTPUT), new Phase2Logger());
         importer.execute();
+
+        long stopTime = System.currentTimeMillis();
+        long elapsedTime = stopTime - startTime;
+        System.out.println(elapsedTime);
     }
 }
 
