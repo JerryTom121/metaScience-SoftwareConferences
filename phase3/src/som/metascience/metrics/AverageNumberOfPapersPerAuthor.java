@@ -34,7 +34,7 @@ public class AverageNumberOfPapersPerAuthor extends SQLMetric {
                                          "WHERE type = 'inproceedings' AND source IN (" + metricData.getSourceInfo() + ") AND source_id IN (" + metricData.getSourceIdInfo() + ") " +
                                          "AND calculate_num_of_pages(pages) >= " + Integer.toString(super.filter_num_pages) + " AND year IN (" + toCommaSeparated(metricData.getEditions()) + ") " +
                                          "GROUP BY author_id, source, source_id, year) " +
-                                   "AS count" +
+                                   "AS count " +
                            "GROUP BY source, source_id, year) AS aux";
             stmt = conn.createStatement();
             rs = stmt.executeQuery(query);
@@ -53,7 +53,7 @@ public class AverageNumberOfPapersPerAuthor extends SQLMetric {
                                     "WHERE type = 'inproceedings' AND source IN (" + metricData.getSourceInfo() + ") AND source_id IN (" + metricData.getSourceIdInfo() + ") " +
                                     "AND calculate_num_of_pages(pages) >= " + Integer.toString(super.filter_num_pages) + " AND year IN (" + toCommaSeparated(metricData.getEditions()) + ") " +
                                     "GROUP BY author_id, source, source_id, year) " +
-                            "AS count" +
+                            "AS count " +
                     "GROUP BY source, source_id, year) AS aux " +
                     "ORDER BY year DESC";
             stmt = conn.createStatement();

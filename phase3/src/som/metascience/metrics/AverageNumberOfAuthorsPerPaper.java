@@ -57,7 +57,7 @@ public class AverageNumberOfAuthorsPerPaper extends SQLMetric {
                                     "GROUP BY paper_id, source, source_id, year) " +
                             "AS count " +
                             "GROUP BY source, source_id, year) " +
-                    "AS aux" +
+                    "AS aux " +
                     "ORDER BY year DESC";
             stmt = conn.createStatement();
             rs = stmt.executeQuery(query);
