@@ -21,7 +21,7 @@ public abstract class SQLMetric extends Metric {
      * and kept alive all the live cycle
      */
     Connection conn;
-    protected final int filter_num_pages = 4;
+    protected final int filter_num_pages = 5;
 
     public SQLMetric(MetricData metricData, DBInfo dbInfo) {
         super(metricData);

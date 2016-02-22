@@ -18,7 +18,7 @@ DESTINATION_FOLDER = '../data/importData'
 
 #selection conference parameters
 THRESHOLD_EDITIONS = 5
-THRESHOLD_LAST_EDITION = 2014
+THRESHOLD_LAST_EDITION = 2015
 
 #serialization settings
 DEBUG = False
@@ -29,7 +29,7 @@ ACTIVATE_QUERIES_PER_EDITION = True
 ACTIVATE_QUERIES_CONFERENCE_EVOLUTION = True
 
 LAST_EDITIONS = True
-FILTER_NUMBER_PAGES = 4
+FILTER_NUMBER_PAGES = 5
 
 
 def create_file_name(title):
@@ -170,7 +170,7 @@ def serialize_conference_info(conferences):
         years = get_year_editions(source, source_id)
         last_edition = get_last_edition(years)
         if editions >= THRESHOLD_EDITIONS and last_edition >= THRESHOLD_LAST_EDITION:
-            create_config_file(title, source, source_id, years, editions, url, rank)
+            create_config_file(str(serialized) + '-' + title, source, source_id, years, editions, url, rank)
             serialized += 1
         else:
             if DEBUG:
