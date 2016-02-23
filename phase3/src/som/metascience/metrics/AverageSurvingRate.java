@@ -13,9 +13,9 @@ import java.util.List;
 /**
  * Created by valerio cosentino <valerio.cosentino@gmail.com> on 19/02/2016.
  */
-public class AverageTurnoverRate extends SQLMetric {
+public class AverageSurvingRate extends SQLMetric {
 
-    public AverageTurnoverRate(MetricData metricData, DBInfo dbInfo) {
+    public AverageSurvingRate(MetricData metricData, DBInfo dbInfo) {
         super(metricData, dbInfo);
     }
 
@@ -49,25 +49,24 @@ public class AverageTurnoverRate extends SQLMetric {
         ResultSet rs = null;
         int newAuthors = 0;
         try {
-            String query =  "SELECT count(*) AS new_authors " +
+            String query =  "SELECT count(*) AS survived_authors " +
                             "FROM ( " +
                             "SELECT auth.author_id AS current_author " +
                             "FROM dblp_pub_new pub JOIN dblp_authorid_ref_new auth ON pub.id = auth.id " +
                             "WHERE type = 'inproceedings' AND calculate_num_of_pages(pages) >= " + Integer.toString(super.filter_num_pages) + " AND year = " + currentYear + " AND source IN (" + metricData.getSourceInfo() + ") AND source_id IN (" + metricData.getSourceIdInfo() + ") " +
                             "GROUP BY author_id) as x " +
-                            "LEFT JOIN " +
+                            "JOIN " +
                             "(SELECT auth.author_id AS previous_author " +
                             "FROM dblp_pub_new pub JOIN dblp_authorid_ref_new auth ON pub.id = auth.id " +
                             "WHERE type = 'inproceedings' AND calculate_num_of_pages(pages) >= " + Integer.toString(super.filter_num_pages) + " AND year = " + previousYear + " AND source IN (" + metricData.getSourceInfo() + ") AND source_id IN (" + metricData.getSourceIdInfo() + ") " +
                             "GROUP BY author_id) AS y " +
-                            "ON x.current_author = y.previous_author " +
-                            "WHERE previous_author IS NULL;";
+                            "ON x.current_author = y.previous_author";
 
             stmt = conn.createStatement();
             rs = stmt.executeQuery(query);
 
             rs.first();
-            newAuthors = rs.getInt("new_authors");
+            newAuthors = rs.getInt("survived_authors");
             rs.close();
             stmt.close();
 
@@ -84,14 +83,14 @@ public class AverageTurnoverRate extends SQLMetric {
     public String getResult() {
         List<Float> growthRates = new LinkedList<Float>();
 
-        int previousEdition = metricData.getEditions().get(metricData.getEditions().size()-1);
-        for (int edition: metricData.getEditions().subList(0, metricData.getEditions().size()-1)) {
-            int authors = getDistinctAuthorsYear(edition);
-            int newAuthors = getNewAuthorsYear(edition, previousEdition);
+        List a = metricData.getEditions();
+        for (int i = 0; i < metricData.getEditions().size()-1; i++) {
+            int previousEdition = metricData.getEditions().get(i+1);
+            int currentEdition = metricData.getEditions().get(i);
+            int authors = getDistinctAuthorsYear(currentEdition);
+            int newAuthors = getNewAuthorsYear(currentEdition, previousEdition);
 
             growthRates.add(((((float)newAuthors)/authors)*100));
-
-            previousEdition = edition;
 
         }
 

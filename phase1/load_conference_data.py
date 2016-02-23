@@ -18,10 +18,10 @@ DESTINATION_FOLDER = '../data/importData'
 
 #selection conference parameters
 THRESHOLD_EDITIONS = 5
-THRESHOLD_LAST_EDITION = 2015
+THRESHOLD_LAST_EDITION = 2014
 
 #serialization settings
-DEBUG = False
+DEBUG = True
 ACTIVATE_QUERY_ALL_EDITIONS = False
 ACTIVATE_QUERY_LAST_EDITIONS = True
 
@@ -118,7 +118,7 @@ def get_editions_count(source, source_id):
     query = "SELECT COUNT(*) AS editions " \
             "FROM (" \
             "SELECT year FROM dblp_pub_new " \
-            "WHERE source IN (" + source + ") AND source_id IN (" + source_id + ") AND type = 'inproceedings' AND calculate_num_of_pages(pages) >= " + str(FILTER_NUMBER_PAGES) + " " + \
+            "WHERE year <= " + str(THRESHOLD_LAST_EDITION) + " AND source IN (" + source + ") AND source_id IN (" + source_id + ") AND type = 'inproceedings' AND calculate_num_of_pages(pages) >= " + str(FILTER_NUMBER_PAGES) + " " + \
             "GROUP BY year) AS x"
     cursor.execute(query)
     row = cursor.fetchone()
@@ -132,7 +132,7 @@ def get_year_editions(source, source_id):
     cursor = cnx.cursor()
     query = "SELECT year " \
             "FROM dblp_pub_new " \
-            "WHERE source IN (" + source + ") AND source_id IN (" + source_id + ") AND type = 'inproceedings' AND calculate_num_of_pages(pages) >= " + str(FILTER_NUMBER_PAGES) + " " + \
+            "WHERE year <= " + str(THRESHOLD_LAST_EDITION) + " AND source IN (" + source + ") AND source_id IN (" + source_id + ") AND type = 'inproceedings' AND calculate_num_of_pages(pages) >= " + str(FILTER_NUMBER_PAGES) + " " + \
             "GROUP BY year " \
             "ORDER BY year DESC"
     cursor.execute(query)
@@ -169,6 +169,7 @@ def serialize_conference_info(conferences):
         editions = get_editions_count(source, source_id)
         years = get_year_editions(source, source_id)
         last_edition = get_last_edition(years)
+        # select conferences with at least 5 editions before 2014 (included) and with the last edition before 2014 (included)
         if editions >= THRESHOLD_EDITIONS and last_edition >= THRESHOLD_LAST_EDITION:
             create_config_file(str(serialized) + '-' + title, source, source_id, years, editions, url, rank)
             serialized += 1
