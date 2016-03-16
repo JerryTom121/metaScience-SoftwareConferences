@@ -4,9 +4,17 @@ import java.io.*;
 
 /**
  * Logs messages from Phase 2 and controls the last file analyzed (to allow recovering from errors)
+ *
+ * @author Javier Canovas (me@jlcanovas.es)
  */
 public class Phase2Logger {
+    /**
+     * String path to store the log file
+     */
     public static final String LOG_FILE = "phase2/phase2.log";
+    /**
+     * String path to store the control file where the last analyzed conference will be stored
+     */
     public static final String CONTROL_FILE = "phase2/phase2_control.log";
 
     FileOutputStream log;
@@ -14,7 +22,7 @@ public class Phase2Logger {
 
     /**
      * Inits the streams to log and control. Note that if there is a control file, the variable is NOT created, thus
-     * the developer has to check such file {@link Phase2Logger.lastControl()}
+     * the developer has to check such file {@link Phase2Logger#lastControl()}
      */
     public Phase2Logger() {
         try {
@@ -28,6 +36,7 @@ public class Phase2Logger {
 
     /**
      * Logs a message
+     *
      * @param message The message to be logged
      */
     public void log(String message) {
@@ -62,6 +71,8 @@ public class Phase2Logger {
 
     /**
      * Returns the last list of the control file
+     *
+     * @return Last list of the control file
      */
     public String lastControl() {
         if(!(new File(CONTROL_FILE).exists()))

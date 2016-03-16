@@ -7,7 +7,10 @@ import java.util.List;
 /**
  * This class encapsulates the info needed to retrieve the graph data for each conference.
  *
- * Queries to get the full graph are required but queries to get specific editions are optional
+ * Queries to get the full graph are required (used in the constructor) but queries to get specific editions are
+ * optional (they have to be added by calling {@link GraphImportData#addEditionQuery(String, String)})
+ *
+ * @author Javier Canovas (me@jlcanovas.es)
  */
 public class GraphImportData {
     /**
@@ -71,7 +74,12 @@ public class GraphImportData {
         this.editionEdgesQuery = new ArrayList<String>();
     }
 
-
+    /**
+     * Adds a new pair of queries for a particular edition
+     *
+     * @param nodesQuery SQL query to get the nodes
+     * @param edgesQuery SQL query to get the edges
+     */
     public void addEditionQuery(String nodesQuery, String edgesQuery) {
         if(nodesQuery == null || nodesQuery.equals("") || edgesQuery == null || edgesQuery.equals(""))
             throw new IllegalArgumentException("The query for nodes/edges cannot be null or empty");
@@ -80,30 +88,57 @@ public class GraphImportData {
         this.editionEdgesQuery.add(edgesQuery);
     }
 
+    /**
+     * Returns the name of the conference
+     *
+     * @return String The name of the conference
+     */
     public String getName() {
         return name;
     }
 
-    public String getFullName() {
-        return fullName;
-    }
-
+    /**
+     * Returns the {@link File} for the property file
+     *
+     * @return The {@link File} for the property file
+     */
     public File getSource() {
         return source;
     }
 
+    /**
+     * Gets the SQL query to to get all the nodes (i.e., authors) of the co-authorship graph
+     *
+     * @return String of the SQL query
+     */
     public String getFullNodesQuery() {
         return fullNodesQuery;
     }
 
+    /**
+     * Gets the SQL query to to get all the edges (i.e., co-authorship relations) of the co-authorship graph
+     *
+     * @return String of the SQL query
+     */
     public String getFullEdgesQuery() {
         return fullEdgesQuery;
     }
 
+    /**
+     * Returns the number of editions added (with {@link GraphImportData#addEditionQuery(String, String)})
+     *
+     * @return Number of editions
+     */
     public int getEditions() {
         return this.editionNodesQuery.size();
     }
 
+    /**
+     * Returns the specific query to get the nodes of a particular edition (previously added with
+     * {@link GraphImportData#addEditionQuery(String, String)})
+     *
+     * @return String of the SQL query
+     */
     public String getEditionNodesQuery(int position) {
         if(position < 0 || position > Integer.MAX_VALUE)
             throw new IllegalArgumentException("The edition must be a positive integer value");
@@ -112,6 +147,12 @@ public class GraphImportData {
         return editionNodesQuery.get(position);
     }
 
+    /**
+     * Returns the specific query to get the edges of a particular edition (previously added with
+     * {@link GraphImportData#addEditionQuery(String, String)})
+     *
+     * @return String of the SQL query
+     */
     public String getEditionEdgesQuery(int position) {
         if(position < 0 || position > Integer.MAX_VALUE)
             throw new IllegalArgumentException("The edition must be a positive integer value");

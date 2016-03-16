@@ -22,32 +22,76 @@ import java.sql.Timestamp;
 import java.util.*;
 
 /**
- * This class connects to MySQL and creates a Gephi graph.
+ * This class connects to MySQL and creates a GEXF graph.
  *
- * The importer reads the properties files located in conf folder. Each file represents
- * a conference and indicate the name, the queries to get the full graph and the set of queries to get previous
- * editions (cf. properties files to learn what to put).
+ * The importer reads the properties files located in conf folder (see javadoc for {@link Phase2Launcher} for
+ * more imformation). In a nutshell, each file represents a conference and indicate the name, the queries to get the
+ * full graph and the set of queries to get previous editions (cf. properties files to learn what to put).
  *
  * For each conference, a new graph file is generated for the full period of editions and then one more per edition
- * (if indicated in the property file). The output graphs will be stored in output folder
+ * (if indicated in the property file). The output graphs will be stored in output folder.
  *
+ * @author Javier Canovas (me@jlcanovas.es)
  */
 public class GraphImporter {
+    /**
+     * The format to be used for the generated co-authorship graphs
+     */
     public static final String EXTENSION = ".gexf";
 
+    /**
+     * Minimun Size of the connected component
+     * @deprecated Not used in the final version
+     */
     public static final int SIZE = 3;
 
+    /**
+     * Database host
+     */
     private String dbHost;
+    /**
+     * Database name
+     */
     private String dbName;
+    /**
+     * Database user
+     */
     private String dbUser;
+    /**
+     * Database password
+     */
     private String dbPass;
+    /**
+     * Database port
+     */
     private int dbPort;
 
+    /**
+     * Path to the folder containing the set of property files
+     */
     private File confPath;
+    /**
+     * Path where the generated graphs will be stored
+     */
     private File outputPath;
 
+    /**
+     * Logger to keep track of everything
+     */
     private Phase2Logger logger;
 
+    /**
+     * Constructs a new {@link GraphImporter}
+     *
+     * @param dbHost Database host
+     * @param dbName Database name
+     * @param dbUser Database user
+     * @param dbPass Database password
+     * @param dbPort Database port
+     * @param confPath Path to the folder containing the set of property files
+     * @param outputPath Path where the generated graphs will be stored
+     * @param logger Logger to keep track of everything
+     */
     public GraphImporter(String dbHost, String dbName, String dbUser, String dbPass, int dbPort, File confPath, File outputPath, Phase2Logger logger) {
         if(dbHost == null || dbHost.equals("") || dbName == null || dbName.equals("") || dbUser == null || dbUser.equals("") || dbPass == null || dbPass.equals("") || dbPort < 0 || dbPort > Integer.MAX_VALUE)
             throw new IllegalArgumentException("The database configuration data is not correct");
@@ -70,6 +114,9 @@ public class GraphImporter {
         this.logger = logger;
     }
 
+    /**
+     * Executes the importer for a specific folder containing the set of property files.
+     */
     public void execute() {
         logger.log("Starting importer at " + new Timestamp((new Date()).getTime()));
         List<GraphImportData> importData = getImportData();
@@ -78,7 +125,8 @@ public class GraphImporter {
     }
 
     /**
-     * Obtains the importation data configuration. Note that there a check on the last files analyzed
+     * Obtains the importation data configuration. Note that there is a check on the last files analyzed
+     *
      * @return A list with the import data
      */
     private List<GraphImportData> getImportData() {
@@ -154,8 +202,8 @@ public class GraphImporter {
             File fullGraph = new File(outputPath.getAbsolutePath() + File.separator + importData.getName() + EXTENSION);
             generateGraph(importData.getFullNodesQuery(), importData.getFullEdgesQuery(), fullGraph);
 
-            File reducedfullGraph = new File(outputPath.getAbsolutePath() + File.separator + importData.getName() + "_reduced_" + EXTENSION);
-            generateReducedGraph(importData.getFullNodesQuery(), importData.getFullEdgesQuery(), SIZE, reducedfullGraph);
+            //File reducedfullGraph = new File(outputPath.getAbsolutePath() + File.separator + importData.getName() + "_reduced_" + EXTENSION);
+            //generateReducedGraph(importData.getFullNodesQuery(), importData.getFullEdgesQuery(), SIZE, reducedfullGraph);
 
             // Exporting editions
             int edition = 0;
@@ -166,8 +214,8 @@ public class GraphImporter {
                 File graph = new File(outputPath.getAbsolutePath() + File.separator + importData.getName() + (edition+1) + EXTENSION);
                 generateGraph(editionNodes, editionEdges, graph);
 
-                File reducedGraph = new File(outputPath.getAbsolutePath() + File.separator + importData.getName() + "_reduced_" + (edition+1) + EXTENSION);
-                generateReducedGraph(editionNodes, editionEdges, SIZE, reducedGraph);
+                //File reducedGraph = new File(outputPath.getAbsolutePath() + File.separator + importData.getName() + "_reduced_" + (edition+1) + EXTENSION);
+                //generateReducedGraph(editionNodes, editionEdges, SIZE, reducedGraph);
             }
             logger.log("Added graph for " + importData.getName() + " and " + edition + " editions");
             logger.control(importData.getSource().getAbsolutePath());
@@ -219,16 +267,17 @@ public class GraphImporter {
         } catch (IOException ex) {
             logger.log("Error serializing at " + outputPath);
         }
-
     }
 
     /**
      * Uses Gephi to create a graph and serializes it as a GEXF. Removes components smaller than a specific
-     * size
+     * size.
+     *
      * @param nodes The query to get the nodes from the database
      * @param edges The query to get the edges from the database
      * @param size The size for the components (they must be bigger than this number)
      * @param outputPath The File path to serialize the GEXF
+     * @deprecated
      */
     private void generateReducedGraph(String nodes, String edges, int size, File outputPath) {
         if(nodes == null || nodes.equals(""))
