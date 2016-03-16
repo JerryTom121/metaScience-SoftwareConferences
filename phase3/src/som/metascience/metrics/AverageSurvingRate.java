@@ -44,10 +44,10 @@ public class AverageSurvingRate extends SQLMetric {
         return distinctAuthors;
     }
 
-    private int getNewAuthorsYear(int currentYear, int previousYear) {
+    private int getSurvivedAuthorsYear(int currentYear, int previousYear) {
         Statement stmt = null;
         ResultSet rs = null;
-        int newAuthors = 0;
+        int survivedAuthors = 0;
         try {
             String query =  "SELECT count(*) AS survived_authors " +
                             "FROM ( " +
@@ -66,7 +66,7 @@ public class AverageSurvingRate extends SQLMetric {
             rs = stmt.executeQuery(query);
 
             rs.first();
-            newAuthors = rs.getInt("survived_authors");
+            survivedAuthors = rs.getInt("survived_authors");
             rs.close();
             stmt.close();
 
@@ -75,7 +75,7 @@ public class AverageSurvingRate extends SQLMetric {
             e.printStackTrace();
         }
 
-        return newAuthors;
+        return survivedAuthors;
     }
 
     @Override
@@ -88,7 +88,7 @@ public class AverageSurvingRate extends SQLMetric {
             int previousEdition = metricData.getEditions().get(i+1);
             int currentEdition = metricData.getEditions().get(i);
             int authors = getDistinctAuthorsYear(currentEdition);
-            int newAuthors = getNewAuthorsYear(currentEdition, previousEdition);
+            int newAuthors = getSurvivedAuthorsYear(currentEdition, previousEdition);
 
             growthRates.add(((((float)newAuthors)/authors)*100));
 
