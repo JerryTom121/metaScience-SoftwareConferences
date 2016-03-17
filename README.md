@@ -6,8 +6,10 @@ This project describes a three-phased process to calculate metrics in co-authors
 The current implementation has been adapted to calculate the metrics required in the research work presented in the paper titled *Analysis of co-authorship Graphs of CORE-Ranked Software Conferences*, currently under review. In our work, we calculate a set of metrics for a subset of software conferences included in the [CORE ranking list](http://www.core.edu.au/). 
 
 You can find the **metric results used in our study** in:
- - [Metric results](data/phase3-results.xlsx), containing the metric results for each conference considered in our study.
+ - [Metric results](data/phase3-results.xlsx), containing the metric results for each conference considered in our study. 
  - [Metric results grouped](data/phase3-results-groupedPerCORERank.xlsx), containing the results grouped by the CORE rank. 
+ 
+In both files, 1-edition metrics include the values for each one of the last 5 editions (and average value of such values), growth metrics include the values between consecutive editions (and average value of such values) and 5-edition metrics include the value considering the last 5 edition.
  
 Also, you can find the set of [co-authorship graphs](data/graphs) used in our study.
 
