@@ -3,8 +3,11 @@ out
 gephi-toolkit-test
 phase2/db.properties
 phase3/db.properties
-data/graphs/*
+data/*.spv
+data/*.sav
+**/.RHistory
+**/.RData
+data/old
 **/*.iml
 **/*.log
-data
 /phase1/*.pyc

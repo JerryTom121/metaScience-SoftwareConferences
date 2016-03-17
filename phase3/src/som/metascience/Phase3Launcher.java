@@ -25,7 +25,7 @@ public class Phase3Launcher {
     /**
      * String path for the file storing the metric results
      */
-    public static final String OUTPUT = "data/results-shit2.csv";
+    public static final String OUTPUT = "data/results.csv";
     /**
      * String path to the folder containing the set of property files
      */
