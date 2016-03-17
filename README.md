@@ -59,7 +59,7 @@ Absolutely!. You can follow the typical GitHub contribution flow to ask/contribu
 
 Whatever your contribution is, you will have an answer from us in less than 7 days.
 
-You can find our (simple) governance rules in this [file](governance.md).
+You can find our (simple) governance rules in this [file](GOVERNANCE.md).
 
 Who is behind this project?
 ===========================
