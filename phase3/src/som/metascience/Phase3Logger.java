@@ -5,10 +5,14 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+
 /**
- * Basic logger for phase 3
+ * Logs messages from Phase 3.
  */
 public class Phase3Logger {
+    /**
+     * String path to store the log file
+     */
     public static final String LOG_FILE = "phase3/phase3.log";
 
     FileOutputStream log;

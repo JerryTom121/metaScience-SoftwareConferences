@@ -11,14 +11,33 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by valerio cosentino <valerio.cosentino@gmail.com> on 19/02/2016.
+ * Calculates the percentage of survivors for a conference, that is, authors who repeat between two consecutive editions
+ * of the conference (i.e., they have at least one paper published in both editions).
+ *
+ * The metric calculates two sets of values:
+ * <ol>
+ *     <li>Survivors per edition of a conference</li>
+ *     <li>Average survivors for the full timespan considered</li>
+ * </ol>
+ *
+ * By default, we consider 5 years of period of time to be analyzed
  */
 public class AverageSurvingRate extends SQLMetric {
-
+    /**
+     * Constructs the {@link AverageSurvingRate} class
+     * @param metricData Main information to calculate the data
+     * @param dbInfo Database credentials
+     */
     public AverageSurvingRate(MetricData metricData, DBInfo dbInfo) {
         super(metricData, dbInfo);
     }
 
+    /**
+     * Calculates the number of distinct authors in a conference for a specific edition (i.e., year)
+     *
+     * @param year The year to consider
+     * @return Number of distinct authors
+     */
     private int getDistinctAuthorsYear(int year) {
         Statement stmt = null;
         ResultSet rs = null;
@@ -27,7 +46,7 @@ public class AverageSurvingRate extends SQLMetric {
             String query = "SELECT COUNT(DISTINCT auth.author_id) as authors " +
                     "FROM dblp_pub_new pub JOIN dblp_authorid_ref_new auth ON pub.id = auth.id " +
                     "WHERE source IN (" + metricData.getSourceInfo() + ") AND source_id IN (" + metricData.getSourceIdInfo() + ") " +
-                    "AND calculate_num_of_pages(pages) >= " + Integer.toString(super.filter_num_pages) + " AND type = 'inproceedings' AND year = " + year + " ;";
+                    "AND calculate_num_of_pages(pages) >= " + Integer.toString(super.FILTER_NUM_PAGES) + " AND type = 'inproceedings' AND year = " + year + " ;";
             stmt = conn.createStatement();
             rs = stmt.executeQuery(query);
 
@@ -44,6 +63,13 @@ public class AverageSurvingRate extends SQLMetric {
         return distinctAuthors;
     }
 
+    /**
+     * Calculate the number of survivors for an edition.
+     *
+     * @param currentYear The year to consider when detecting newcomers
+     * @param previousYear The starting point (time window) to set
+     * @return Number of survivors
+     */
     private int getSurvivedAuthorsYear(int currentYear, int previousYear) {
         Statement stmt = null;
         ResultSet rs = null;
@@ -53,12 +79,12 @@ public class AverageSurvingRate extends SQLMetric {
                             "FROM ( " +
                             "SELECT auth.author_id AS current_author " +
                             "FROM dblp_pub_new pub JOIN dblp_authorid_ref_new auth ON pub.id = auth.id " +
-                            "WHERE type = 'inproceedings' AND calculate_num_of_pages(pages) >= " + Integer.toString(super.filter_num_pages) + " AND year = " + currentYear + " AND source IN (" + metricData.getSourceInfo() + ") AND source_id IN (" + metricData.getSourceIdInfo() + ") " +
+                            "WHERE type = 'inproceedings' AND calculate_num_of_pages(pages) >= " + Integer.toString(super.FILTER_NUM_PAGES) + " AND year = " + currentYear + " AND source IN (" + metricData.getSourceInfo() + ") AND source_id IN (" + metricData.getSourceIdInfo() + ") " +
                             "GROUP BY author_id) as x " +
                             "JOIN " +
                             "(SELECT auth.author_id AS previous_author " +
                             "FROM dblp_pub_new pub JOIN dblp_authorid_ref_new auth ON pub.id = auth.id " +
-                            "WHERE type = 'inproceedings' AND calculate_num_of_pages(pages) >= " + Integer.toString(super.filter_num_pages) + " AND year = " + previousYear + " AND source IN (" + metricData.getSourceInfo() + ") AND source_id IN (" + metricData.getSourceIdInfo() + ") " +
+                            "WHERE type = 'inproceedings' AND calculate_num_of_pages(pages) >= " + Integer.toString(super.FILTER_NUM_PAGES) + " AND year = " + previousYear + " AND source IN (" + metricData.getSourceInfo() + ") AND source_id IN (" + metricData.getSourceIdInfo() + ") " +
                             "GROUP BY author_id) AS y " +
                             "ON x.current_author = y.previous_author";
 

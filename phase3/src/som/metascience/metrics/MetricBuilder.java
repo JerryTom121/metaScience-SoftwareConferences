@@ -12,10 +12,12 @@ import java.util.List;
  *
  * To add new metrics, follow these steps:
  * 1. Implement your metric as a subclass of {@link Metric}
- * 2. Add your class to the "metrics" array (as a class)
+ * 2. Add your class to the "metrics" array (as a .class)
  * 3. Add a new case in "getCategory()" method, which will return the category of the metric
  *    (in a CSV style if it covers several categories)
  * 4. Add a new case in "buildMetric()" method to build an instance of your metric
+ *
+ * You can see the current implementation to get inspiration
  *
  * The set of metrics will be retrieved and executed by {@link som.metascience.MetricCalculator}
  */
@@ -42,16 +44,22 @@ public class MetricBuilder {
             AverageNumberOfPapersPerAuthor.class,
             AverageNewComersRate.class,
             AverageSurvingRate.class,
-            AverageOpennessRate.class//,
-//            AverageDegree.class,
-//            Density.class,
-//            GraphModularity.class,
-//            ConnectedComponents.class,
-//            AveragePathLength.class,
-//            ProminentFigures.class,
-//            CommunitySize.class
+            AverageOpennessRate.class,
+            AverageDegree.class,
+            Density.class,
+            GraphModularity.class,
+            ConnectedComponents.class,
+            AveragePathLength.class,
+            ProminentFigures.class,
+            CommunitySize.class
     };
 
+    /**
+     * Constructs a new {@link MetricBuilder}
+     *
+     * @param metricData Data required for each metric
+     * @param dbInfo Credentials for the database
+     */
     public MetricBuilder(MetricData metricData, DBInfo dbInfo) {
         this.metricData = metricData;
         this.dbInfo = dbInfo;
@@ -92,7 +100,7 @@ public class MetricBuilder {
         } else if (m == AverageNewComersRate.class) {
             result = "Newcomers_rate_12_Edition,Newcomers_rate_23_Edition,Newcomers_rate_34_Edition,Newcomers_rate_45_Edition,Newcomers";
         } else if (m == AverageSurvingRate.class) {
-            result = "Surving_rate_12_Edition,Surving_rate_23_Edition,Surving_rate_34_Edition,Surving_rate_45_Edition,Surving";
+            result = "Surviving_rate_12_Edition,Surviving_rate_23_Edition,Surviving_rate_34_Edition,Surviving_rate_45_Edition,Survivors";
         } else if (m == AverageDegree.class) {
             result = "AvgDegree_1_LastEdition,AvgDegree_2_LastEdition,AvgDegree_3_LastEdition,AvgDegree_4_LastEdition,AvgDegree_5_LastEdition,Avg_Degree";
         } else if (m == Density.class) {

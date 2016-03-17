@@ -9,10 +9,16 @@ import java.util.List;
 import java.util.LinkedList;
 
 /**
- * This metric calculates the number of papers per conference
+ * This metric calculates the number of papers per conference per edition (by default, we perform the calculations
+ * for the last 5 editions so this metric will actually return 5 values)
  */
 public class AllPapers extends SQLMetric {
 
+    /**
+     * Constructs the {@link AllPapers} class
+     * @param metricData Basic information to calculate the data
+     * @param dbInfo Database credentials
+     */
     public AllPapers(MetricData metricData, DBInfo dbInfo) {
         super(metricData, dbInfo);
     }
@@ -26,7 +32,7 @@ public class AllPapers extends SQLMetric {
             String allPapersQuery = "SELECT COUNT(*) as numPapers, year " +
                     "FROM dblp_pub_new " +
                     "WHERE source IN (" + metricData.getSourceInfo() + ") AND source_id IN (" + metricData.getSourceIdInfo() + ") AND type = 'inproceedings' " +
-                    "AND calculate_num_of_pages(pages) >= " + Integer.toString(super.filter_num_pages) + " AND year IN (" + toCommaSeparated(metricData.getEditions()) + ") " +
+                    "AND calculate_num_of_pages(pages) >= " + Integer.toString(super.FILTER_NUM_PAGES) + " AND year IN (" + toCommaSeparated(metricData.getEditions()) + ") " +
                     "GROUP BY year " +
                     "ORDER BY year DESC;";
             stmt = conn.createStatement();

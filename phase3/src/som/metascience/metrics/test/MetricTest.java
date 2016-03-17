@@ -14,8 +14,8 @@ public class MetricTest {
 
     /**
      * Builds a test MetricData with useless data.
-     * DO NOT USE IT
-     * @return
+     * DO NOT USE IT in real life
+     * @return Mock {@link MetricData}
      */
     MetricData buildTestMetricData() {
         List<Integer> editions = new ArrayList<Integer>();
@@ -32,6 +32,12 @@ public class MetricTest {
         return metricData;
     }
 
+    /**
+     * Builds a {@link MetricData} for a particular proerty file
+     * @param inputGraphs Where to find the co-authorship graphs
+     * @param file Where to find the property file with data for a conference
+     * @return The {@link MetricData}
+     */
     MetricData buildMetricData(File inputGraphs, File file) {
         try {
             Properties properties = new Properties();
@@ -80,6 +86,7 @@ public class MetricTest {
 
     /**
      * Rounds a Double value to two decimals
+     *
      * @param value The value to round
      * @return the rounded value
      */

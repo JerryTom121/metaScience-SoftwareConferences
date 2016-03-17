@@ -11,14 +11,33 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by valerio cosentino <valerio.cosentino@gmail.com> on 15/09/2015.
+ * Calculates the percentage of newcomers for a conference, that is, people that have never published a paper in there
+ * before (where by "before" we mean the first considered edition as starting point).
+ *
+ * The metric calculates two sets of values:
+ * <ol>
+ *     <li>Newcomers per edition of a conference</li>
+ *     <li>Average newcomers for the full timespan considered</li>
+ * </ol>
+ *
+ * By default, we consider 5 years of period of time to be analyzed
  */
 public class AverageNewComersRate extends SQLMetric {
-
+    /**
+     * Constructs the {@link AverageNewComersRate} class
+     * @param metricData Main information to calculate the data
+     * @param dbInfo Database credentials
+     */
     public AverageNewComersRate(MetricData metricData, DBInfo dbInfo) {
         super(metricData, dbInfo);
     }
 
+    /**
+     * Calculates the number of distinct authors in a conference for a specific edition (i.e., year)
+     *
+     * @param year The year to consider
+     * @return Number of distinct authors
+     */
     private int getDistinctAuthorsYear(int year) {
         Statement stmt = null;
         ResultSet rs = null;
@@ -27,7 +46,7 @@ public class AverageNewComersRate extends SQLMetric {
             String query = "SELECT COUNT(DISTINCT auth.author_id) as authors " +
                     "FROM dblp_pub_new pub JOIN dblp_authorid_ref_new auth ON pub.id = auth.id " +
                     "WHERE source IN (" + metricData.getSourceInfo() + ") AND source_id IN (" + metricData.getSourceIdInfo() + ") " +
-                    "AND calculate_num_of_pages(pages) >= " + Integer.toString(super.filter_num_pages) + " AND type = 'inproceedings' AND year = " + year + " ;";
+                    "AND calculate_num_of_pages(pages) >= " + Integer.toString(super.FILTER_NUM_PAGES) + " AND type = 'inproceedings' AND year = " + year + " ;";
             stmt = conn.createStatement();
             rs = stmt.executeQuery(query);
 
@@ -44,6 +63,13 @@ public class AverageNewComersRate extends SQLMetric {
         return distinctAuthors;
     }
 
+    /**
+     * Calculate the number of newcomers for an edition.
+     *
+     * @param currentYear The year to consider when detecting newcomers
+     * @param firstYear The starting point (time window) to set
+     * @return Number of newcomers
+     */
     private int getNewAuthorsYear(int currentYear, int firstYear) {
         Statement stmt = null;
         ResultSet rs = null;
@@ -53,12 +79,12 @@ public class AverageNewComersRate extends SQLMetric {
                             "FROM ( " +
                             "SELECT auth.author_id AS current_author " +
                             "FROM dblp_pub_new pub JOIN dblp_authorid_ref_new auth ON pub.id = auth.id " +
-                            "WHERE type = 'inproceedings' AND calculate_num_of_pages(pages) >= " + Integer.toString(super.filter_num_pages) + " AND year = " + currentYear + " AND source IN (" + metricData.getSourceInfo() + ") AND source_id IN (" + metricData.getSourceIdInfo() + ") " +
+                            "WHERE type = 'inproceedings' AND calculate_num_of_pages(pages) >= " + Integer.toString(super.FILTER_NUM_PAGES) + " AND year = " + currentYear + " AND source IN (" + metricData.getSourceInfo() + ") AND source_id IN (" + metricData.getSourceIdInfo() + ") " +
                             "GROUP BY author_id) as x " +
                             "LEFT JOIN " +
                             "(SELECT auth.author_id AS previous_author " +
                             "FROM dblp_pub_new pub JOIN dblp_authorid_ref_new auth ON pub.id = auth.id " +
-                            "WHERE type = 'inproceedings' AND calculate_num_of_pages(pages) >= " + Integer.toString(super.filter_num_pages) + " AND year < " + currentYear + " AND year >= " + firstYear + " AND source IN (" + metricData.getSourceInfo() + ") AND source_id IN (" + metricData.getSourceIdInfo() + ") " +
+                            "WHERE type = 'inproceedings' AND calculate_num_of_pages(pages) >= " + Integer.toString(super.FILTER_NUM_PAGES) + " AND year < " + currentYear + " AND year >= " + firstYear + " AND source IN (" + metricData.getSourceInfo() + ") AND source_id IN (" + metricData.getSourceIdInfo() + ") " +
                             "GROUP BY author_id) AS y " +
                             "ON x.current_author = y.previous_author " +
                             "WHERE previous_author IS NULL;";

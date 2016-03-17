@@ -4,8 +4,6 @@ import java.io.*;
 
 /**
  * Logs messages from Phase 2 and controls the last file analyzed (to allow recovering from errors)
- *
- * @author Javier Canovas (me@jlcanovas.es)
  */
 public class Phase2Logger {
     /**

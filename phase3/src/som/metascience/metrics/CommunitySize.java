@@ -16,10 +16,18 @@ import som.metascience.MetricData;
 import java.io.File;
 
 /**
- * Calculates the size of the community (number of unique authors of the 5-edition conference graph)
+ * Calculates the size of the community (number of unique authors of co-authorship graph representing the
+ * full timespan).
+ *
+ * By default, we consider 5 years of period of time to be analyzed
+ *
+ * This class relies on the Gephi libraries to do the calculations.
  */
 public class CommunitySize extends Metric {
-
+    /**
+     * Constructs the {@link CommunitySize} class
+     * @param metricData Main metric information for performing the calculations
+     */
     public CommunitySize(MetricData metricData) {
         super(metricData);
     }
@@ -31,9 +39,9 @@ public class CommunitySize extends Metric {
         return communitySize;
     }
 
-
     /**
-     * Calculates the graph density
+     * Calculates the community size for a graph
+     *
      * @param graph The path to the graph
      * @return The result of the metric
      */

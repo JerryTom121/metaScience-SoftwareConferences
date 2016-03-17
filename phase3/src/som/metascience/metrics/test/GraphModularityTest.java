@@ -8,6 +8,9 @@ import java.io.File;
 
 import static org.junit.Assert.*;
 
+/**
+ * Test the {@link GraphModularity} class
+ */
 public class GraphModularityTest extends MetricTest {
     public static final File GRAPHS = new File("testData/graphs");
     public static final File TEST_FILE_1 = new File("testData/importData/OCL-Models.properties");

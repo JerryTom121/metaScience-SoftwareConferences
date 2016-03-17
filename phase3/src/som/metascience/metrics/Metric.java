@@ -5,14 +5,21 @@ import som.metascience.MetricData;
 import java.util.List;
 
 /**
- * Basic interface for the metrics
+ * Main root to implement metrics. New metrics has to be subclass of this abstract class, which forces them to
+ * include the method "getResult()".
+ *
+ * @author Javier Canovas (me@jlcanovas.es)
  */
 public abstract class Metric {
     /**
-     * Basic infor of the conference to calculate the metric
+     * Basic info of the conference to calculate the metric
      */
     MetricData metricData;
 
+    /**
+     * Constructs a new {@link Metric}
+     * @param metricData Basic data to be able to calculate the metric
+     */
     public Metric(MetricData metricData) {
         if(metricData == null)
             throw new IllegalArgumentException("The metricData cannot be null");
@@ -31,6 +38,7 @@ public abstract class Metric {
 
     /**
      * Converts a list of integers into a comma-separated String
+     *
      * @param list List of integer
      * @return CSV String
      */
@@ -42,7 +50,6 @@ public abstract class Metric {
             else
                 output = output + String.valueOf(i) + ", ";
         }
-
         return output;
     }
 }

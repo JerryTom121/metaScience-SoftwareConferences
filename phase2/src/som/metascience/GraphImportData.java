@@ -9,8 +9,6 @@ import java.util.List;
  *
  * Queries to get the full graph are required (used in the constructor) but queries to get specific editions are
  * optional (they have to be added by calling {@link GraphImportData#addEditionQuery(String, String)})
- *
- * @author Javier Canovas (me@jlcanovas.es)
  */
 public class GraphImportData {
     /**

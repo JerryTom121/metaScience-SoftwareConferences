@@ -10,10 +10,20 @@ import java.util.List;
 import java.util.LinkedList;
 
 /**
- * Created by valerio cosentino <valerio.cosentino@gmail.com> on 15/09/2015.
+ * Calculates the ratio of authors per paper for a conference. The metric calculates two sets of values:
+ * <ol>
+ *     <li>Authors per paper per edition of a conferece</li>
+ *     <li>Average ratio of authors per per paper for the full timespan considered</li>
+ * </ol>
+ *
+ * By default, we consider 5 years of period of time to be analyzed
  */
 public class AverageNumberOfAuthorsPerPaper extends SQLMetric {
-
+    /**
+     * Constructs the {@link AverageNumberOfAuthorsPerPaper} class
+     * @param metricData Main information to calculate the data
+     * @param dbInfo Database credentials
+     */
     public AverageNumberOfAuthorsPerPaper(MetricData metricData, DBInfo dbInfo) {
         super(metricData, dbInfo);
     }
@@ -33,7 +43,7 @@ public class AverageNumberOfAuthorsPerPaper extends SQLMetric {
                                         "SELECT COUNT(auth.author_id) AS author_per_paper, pub.id as paper_id, source, source_id, year " +
                                         "FROM dblp_pub_new pub JOIN dblp_authorid_ref_new auth ON pub.id = auth.id " +
                                         "WHERE type = 'inproceedings' AND source IN (" + metricData.getSourceInfo() + ") AND source_id IN (" + metricData.getSourceIdInfo() + ") " +
-                                        "AND calculate_num_of_pages(pages) >= " + Integer.toString(super.filter_num_pages) + " AND year IN (" + toCommaSeparated(metricData.getEditions()) + ") " +
+                                        "AND calculate_num_of_pages(pages) >= " + Integer.toString(super.FILTER_NUM_PAGES) + " AND year IN (" + toCommaSeparated(metricData.getEditions()) + ") " +
                                         "GROUP BY paper_id, source, source_id, year) " +
                                 "AS count " +
                                 "GROUP BY source, source_id, year) " +
@@ -53,7 +63,7 @@ public class AverageNumberOfAuthorsPerPaper extends SQLMetric {
                                     "SELECT COUNT(auth.author_id) AS author_per_paper, pub.id as paper_id, source, source_id, year " +
                                     "FROM dblp_pub_new pub JOIN dblp_authorid_ref_new auth ON pub.id = auth.id " +
                                     "WHERE type = 'inproceedings' AND source IN (" + metricData.getSourceInfo() + ") AND source_id IN (" + metricData.getSourceIdInfo() + ") " +
-                                    "AND calculate_num_of_pages(pages) >= " + Integer.toString(super.filter_num_pages) + " AND year IN (" + toCommaSeparated(metricData.getEditions()) + ") " +
+                                    "AND calculate_num_of_pages(pages) >= " + Integer.toString(super.FILTER_NUM_PAGES) + " AND year IN (" + toCommaSeparated(metricData.getEditions()) + ") " +
                                     "GROUP BY paper_id, source, source_id, year) " +
                             "AS count " +
                             "GROUP BY source, source_id, year) " +

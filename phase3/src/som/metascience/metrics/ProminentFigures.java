@@ -15,15 +15,30 @@ import som.metascience.MetricData;
 import java.io.File;
 
 /**
- * Calculates the metric Prominent Figures in a conference
+ * Calculates the metric Prominent Figures in a conference. A prominent figure is an author with 5 or more papers in
+ * the co-authorship graph. The metric is usually calculated in the full co-authorship graph and returns a percentage
+ * value
+ *
+ * The metric calculates two sets of values:
+ * <ol>
+ *     <li>Number of prominent figures per edition of a conference</li>
+ *     <li>Average value of the number of prominent figures for the full timespan considered</li>
+ * </ol>
+ *
+ * By default, we consider 5 years of period of time to be analyzed
+ *
+ * This class relies on the Gephi libraries to do the calculations.
  */
 public class ProminentFigures extends Metric {
-
     /**
      * The threshold to be considered prominent
      */
     public static float THRESHOLD = 5.0f;
 
+    /**
+     * Constructs the {@link ProminentFigures} class
+     * @param metricData Main metric information for performing the calculations
+     */
     public ProminentFigures(MetricData metricData) {
         super(metricData);
     }
@@ -64,14 +79,15 @@ public class ProminentFigures extends Metric {
         }
 
         GraphModel gm = Lookup.getDefault().lookup(GraphController.class).getModel();
-        AttributeModel am = Lookup.getDefault().lookup(AttributeController.class).getModel();
 
         NodeIterable ni = gm.getGraph().getNodes();
-        int totalClasses = 0;
+        int prominentFigures = 0;
         for(Node node : ni.toArray()) {
             if(node.getNodeData().getSize() >= THRESHOLD)
-                totalClasses++;
+                prominentFigures++;
         }
-        return String.valueOf(totalClasses);
+        float ratio = ((float) prominentFigures / (float) gm.getGraph().getNodeCount())*100;
+
+        return String.format("%.3f", ratio).replace(",", ".");
     }
 }

@@ -45,8 +45,6 @@ import java.sql.SQLException;
  *
  * As the data is obtained from the DBLP database, the connection properties have to be declared in the file
  * db.properties, thus including values for the keys: host, db, user, pass and port.
- *
- * @author Javier Canovas (me@jlcanovas.es)
  */
 public class Phase2Launcher {
     /**

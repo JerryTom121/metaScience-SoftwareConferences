@@ -30,8 +30,6 @@ import java.util.*;
  *
  * For each conference, a new graph file is generated for the full period of editions and then one more per edition
  * (if indicated in the property file). The output graphs will be stored in output folder.
- *
- * @author Javier Canovas (me@jlcanovas.es)
  */
 public class GraphImporter {
     /**

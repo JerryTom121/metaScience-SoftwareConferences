@@ -8,7 +8,9 @@ import java.sql.DriverManager;
 import java.util.Properties;
 
 /**
- * Common implementation for metrics using SQL to do the calculations
+ * Common implementation for metrics using SQL to do calculations
+ *
+ * @author Javier Canovas (me@jlcanovas.es)
  */
 public abstract class SQLMetric extends Metric {
     /**
@@ -21,8 +23,19 @@ public abstract class SQLMetric extends Metric {
      * and kept alive all the live cycle
      */
     Connection conn;
-    protected final int filter_num_pages = 5;
 
+    /**
+     * Constraint to filter the minimum number of pages for the papers involved in the calculations of the
+     * metrics
+     */
+    protected final int FILTER_NUM_PAGES = 5;
+
+    /**
+     * Constructs a new {@link SQLMetric}
+     *
+     * @param metricData Basic information for the metric
+     * @param dbInfo Database credentials
+     */
     public SQLMetric(MetricData metricData, DBInfo dbInfo) {
         super(metricData);
         if(dbInfo == null)
@@ -33,7 +46,8 @@ public abstract class SQLMetric extends Metric {
     }
 
     /**
-     * Obtains a connection to the databse
+     * Obtains a connection to the database
+     *
      * @return The connection to the database
      */
     private Connection getConnection() {

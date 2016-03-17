@@ -8,10 +8,15 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 /**
- * Created by valerio cosentino <valerio.cosentino@gmail.com> on 15/09/2015.
+ * This class calculates the average number of authors published in a conference for the full set of
+ * editions considered (by default, we consider the last 5 editions)
  */
 public class AverageNumberOfAuthors extends SQLMetric {
-
+    /**
+     * Constructs the {@link AverageNumberOfAuthors} class
+     * @param metricData Main information to calculate the data
+     * @param dbInfo Database credentials
+     */
     public AverageNumberOfAuthors(MetricData metricData, DBInfo dbInfo) {
         super(metricData, dbInfo);
     }
@@ -28,7 +33,7 @@ public class AverageNumberOfAuthors extends SQLMetric {
                                                         "SELECT count(auth.author_id) AS num_authors, count(distinct auth.author_id) as num_unique_authors, source, source_id, year " +
                                                         "FROM dblp_pub_new pub JOIN dblp_authorid_ref_new auth ON pub.id = auth.id " +
                                                         "WHERE type = 'inproceedings' AND source IN (" + metricData.getSourceInfo() + ") AND source_id IN (" + metricData.getSourceIdInfo() + ") " +
-                                                        "AND calculate_num_of_pages(pages) >= " + Integer.toString(super.filter_num_pages) + " AND year IN (" + toCommaSeparated(metricData.getEditions()) + ") " +
+                                                        "AND calculate_num_of_pages(pages) >= " + Integer.toString(super.FILTER_NUM_PAGES) + " AND year IN (" + toCommaSeparated(metricData.getEditions()) + ") " +
                                                         "GROUP BY source, source_id, year) " +
                                                  "AS aux";
             stmt = conn.createStatement();

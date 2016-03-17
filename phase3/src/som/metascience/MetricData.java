@@ -5,7 +5,6 @@ import java.util.List;
 
 /**
  * This class encapsulates the info needed to calculate the metrics for each conference
- *
  */
 public class MetricData {
     /**

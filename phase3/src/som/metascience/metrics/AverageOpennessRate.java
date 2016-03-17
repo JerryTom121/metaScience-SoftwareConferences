@@ -11,15 +11,33 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by valerio cosentino <valerio.cosentino@gmail.com> on 15/09/2015.
+ * Calculates the percentage of papers for which all authors are new to the community.
+ *
+ * The metric calculates two sets of values:
+ * <ol>
+ *     <li>Percentage papers coming from newcomers per edition of a conferece</li>
+ *     <li>Average percentage of papers coming from newcomers for the full timespan considered</li>
+ * </ol>
+ *
+ * By default, we consider 5 years of period of time to be analyzed
  */
 public class AverageOpennessRate extends SQLMetric {
-
+    /**
+     * Constructs the {@link AverageOpennessRate} class
+     * @param metricData Main information to calculate the data
+     * @param dbInfo Database credentials
+     */
     public AverageOpennessRate(MetricData metricData, DBInfo dbInfo) {
         super(metricData, dbInfo);
     }
 
-
+    /**
+     * Obtaines the number of papers coming from newcomers for a particular edition
+     *
+     * @param currentYear The year to consider when detecting newcomers
+     * @param firstYear The starting point (time window) to set
+     * @return Number of papers coming from newcomers
+     */
     private int[] getPapersYear(int currentYear, int firstYear) {
         Statement stmt = null;
         ResultSet rs = null;
@@ -39,14 +57,14 @@ public class AverageOpennessRate extends SQLMetric {
                                     "JOIN " +
                                     "dblp_authorid_ref_new auth " +
                                     "ON pub.id = auth.id " +
-                                    "WHERE type = 'inproceedings' AND calculate_num_of_pages(pages) >= " + Integer.toString(super.filter_num_pages) + " AND year = " + currentYear + " AND source IN (" + metricData.getSourceInfo() + ") AND source_id IN (" + metricData.getSourceIdInfo() + ")) as x_year " +
+                                    "WHERE type = 'inproceedings' AND calculate_num_of_pages(pages) >= " + Integer.toString(super.FILTER_NUM_PAGES) + " AND year = " + currentYear + " AND source IN (" + metricData.getSourceInfo() + ") AND source_id IN (" + metricData.getSourceIdInfo() + ")) as x_year " +
                                 "LEFT JOIN " +
                                     "(SELECT auth.author_id " +
                                     "FROM dblp_pub_new pub " +
                                     "JOIN " +
                                     "dblp_authorid_ref_new auth " +
                                     "ON pub.id = auth.id " +
-                                    "WHERE type = 'inproceedings' AND calculate_num_of_pages(pages) >= " + Integer.toString(super.filter_num_pages) + " AND year < " + currentYear + " AND year >= " + firstYear + " AND source IN (" + metricData.getSourceInfo() + ") AND source_id IN (" + metricData.getSourceIdInfo() + ") " +
+                                    "WHERE type = 'inproceedings' AND calculate_num_of_pages(pages) >= " + Integer.toString(super.FILTER_NUM_PAGES) + " AND year < " + currentYear + " AND year >= " + firstYear + " AND source IN (" + metricData.getSourceInfo() + ") AND source_id IN (" + metricData.getSourceIdInfo() + ") " +
                                     "GROUP BY auth.author_id) AS previous_years " +
                                 "ON x_year.author_id = previous_years.author_id " +
                                 "GROUP BY paper_id) AS openness;";
@@ -98,6 +116,12 @@ public class AverageOpennessRate extends SQLMetric {
 
     }
 
+    /**
+     * Transform the results of the metric (it's a list of floats) into a String
+     *
+     * @param list List of floats
+     * @return String to be shown as a CSV
+     */
     private String serializeResults(List<Float> list) {
         String output = "";
         float sum = 0;

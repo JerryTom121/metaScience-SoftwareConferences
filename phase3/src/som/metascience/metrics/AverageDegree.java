@@ -18,9 +18,23 @@ import java.io.File;
 import java.util.List;
 
 /**
- * Calculates the average degree of the graph
+ * Calculates the average degree of the co-authorship graph.
+ *
+ * The metric calculates two sets of values:
+ * <ol>
+ *     <li>Average degree per edition of a conference</li>
+ *     <li>Average value of the average degree for the full timespan considered</li>
+ * </ol>
+ *
+ * By default, we consider 5 years of period of time to be analyzed
+ *
+ * This class relies on the Gephi libraries to do the calculations.
  */
 public class AverageDegree extends Metric {
+    /**
+     * Constructs the {@link AverageDegree} class
+     * @param metricData Main metric information for performing the calculations
+     */
     public AverageDegree(MetricData metricData) {
         super(metricData);
     }
@@ -38,7 +52,10 @@ public class AverageDegree extends Metric {
     }
 
     /**
-     * Calculates the average degree of a graph
+     * Calculates the average degree of a graph.
+     *
+     * This implementation relies on the Gephi libraries
+     *
      * @param graph The path to the graph
      * @return The result of the metric
      */

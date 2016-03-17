@@ -9,10 +9,16 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * This metric calculates the number of authors for a conference
+ * This metric calculates the number of authors per conference per edition (by default, we perform the calculations
+ * for the last 5 editions so this metric will actually return 5 values)
  */
 public class AllAuthors extends SQLMetric {
 
+    /**
+     * Constructs the {@link AllAuthors} class
+     * @param metricData Main information to calculate the data
+     * @param dbInfo Database credentials
+     */
     public AllAuthors(MetricData metricData, DBInfo dbInfo) {
         super(metricData, dbInfo);
     }
@@ -24,24 +30,11 @@ public class AllAuthors extends SQLMetric {
         //int allAuthors = 0;
         List<Integer> authors = new LinkedList<Integer>();
         try {
-            /**String allAuthorsQuery = "SELECT COUNT(*) AS numAuthors " +
-                    "FROM (SELECT airn.author_id " +
-                    "FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id " +
-                    "WHERE source IN (" + metricData.getSourceInfo() + ") AND source_id IN (" + metricData.getSourceIdInfo() + ") AND pub.type = 'inproceedings' AND pub.year IN (" + toCommaSeparated(metricData.getEditions()) + ") " +
-                    "GROUP BY airn.author_id) AS x;";
-            stmt = conn.createStatement();
-            rs = stmt.executeQuery(allAuthorsQuery);
-
-            rs.first();
-            allAuthors = rs.getInt("numAuthors");
-            rs.close();
-            stmt.close();*/
-
             String authorsQuery = "SELECT COUNT(*) AS numAuthors, year " +
                     "FROM (SELECT airn.author_id, pub.year " +
                     "FROM dblp_pub_new pub JOIN dblp_authorid_ref_new airn ON pub.id = airn.id " +
                     "WHERE source IN (" + metricData.getSourceInfo() + ") AND source_id IN (" + metricData.getSourceIdInfo() + ") AND pub.type = 'inproceedings' " +
-                    "AND calculate_num_of_pages(pages) >= " + Integer.toString(super.filter_num_pages) + " AND pub.year IN (" + toCommaSeparated(metricData.getEditions()) + ") " +
+                    "AND calculate_num_of_pages(pages) >= " + Integer.toString(super.FILTER_NUM_PAGES) + " AND pub.year IN (" + toCommaSeparated(metricData.getEditions()) + ") " +
                     "GROUP BY airn.author_id, pub.year) AS x " +
                     "GROUP BY year " +
                     "ORDER BY year DESC;";

@@ -8,10 +8,16 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 /**
- * Created by valerio cosentino <valerio.cosentino@gmail.com> on 15/09/2015.
+ * This class calculates the average number of papers published in a conference for the full set of
+ * editions considered (by default, we consider the last 5 editions)
  */
 public class AverageNumberOfPapers extends SQLMetric {
 
+    /**
+     * Constructs the {@link AverageNumberOfPapers} class
+     * @param metricData Main information to calculate the data
+     * @param dbInfo Database credentials
+     */
     public AverageNumberOfPapers(MetricData metricData, DBInfo dbInfo) {
         super(metricData, dbInfo);
     }
@@ -28,7 +34,7 @@ public class AverageNumberOfPapers extends SQLMetric {
                                                         "SELECT COUNT(id) as num_papers, source, source_id, year " +
                                                         "FROM dblp_pub_new " +
                                                         "WHERE type = 'inproceedings' AND source IN (" + metricData.getSourceInfo() + ") AND source_id IN (" + metricData.getSourceIdInfo() + ") " +
-                                                        "AND calculate_num_of_pages(pages) >= " + Integer.toString(super.filter_num_pages) + " AND year IN (" + toCommaSeparated(metricData.getEditions()) + ") " +
+                                                        "AND calculate_num_of_pages(pages) >= " + Integer.toString(super.FILTER_NUM_PAGES) + " AND year IN (" + toCommaSeparated(metricData.getEditions()) + ") " +
                                                         "GROUP BY source, source_id, year) AS aux " +
                                                 "ORDER BY year DESC";
             stmt = conn.createStatement();

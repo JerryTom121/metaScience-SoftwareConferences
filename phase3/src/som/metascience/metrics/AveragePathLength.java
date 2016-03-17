@@ -17,9 +17,23 @@ import som.metascience.MetricData;
 import java.io.File;
 
 /**
- * Calculate the average path lenght
+ * Calculate the average path length of the co-authorship graph.
+ *
+ * The metric calculates two sets of values:
+ * <ol>
+ *     <li>Average path length per edition of a conference</li>
+ *     <li>Average value of the average path length for the full timespan considered</li>
+ * </ol>
+ *
+ * By default, we consider 5 years of period of time to be analyzed
+ *
+ * This class relies on the Gephi libraries to do the calculations.
  */
-public class AveragePathLength extends Metric{
+public class AveragePathLength extends Metric {
+    /**
+     * Constructs the {@link AveragePathLength} class
+     * @param metricData Main metric information for performing the calculations
+     */
     public AveragePathLength(MetricData metricData) {
         super(metricData);
     }
@@ -38,6 +52,7 @@ public class AveragePathLength extends Metric{
 
     /**
      * Calculates the average path length
+     *
      * @param graph The path to the graph
      * @return The result of the metric
      */

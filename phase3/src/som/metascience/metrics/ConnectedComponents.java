@@ -19,9 +19,22 @@ import java.util.List;
 
 /**
  * Calculates the number of connected components
+ *
+ * The metric calculates two sets of values:
+ * <ol>
+ *     <li>Number of connected components degree per edition of a conference</li>
+ *     <li>Average value of the number of connected components for the full timespan considered</li>
+ * </ol>
+ *
+ * By default, we consider 5 years of period of time to be analyzed
+ *
+ * This class relies on the Gephi libraries to do the calculations.
  */
 public class ConnectedComponents extends Metric {
-
+    /**
+     * Constructs the {@link ConnectedComponents} class
+     * @param metricData Main metric information for performing the calculations
+     */
     public ConnectedComponents(MetricData metricData) {
         super(metricData);
     }
@@ -39,7 +52,8 @@ public class ConnectedComponents extends Metric {
     }
 
     /**
-     * Calculates the graph componens
+     * Calculates the graph components
+     *
      * @param graph The path to the graph
      * @return The result of the metric
      */
@@ -72,6 +86,7 @@ public class ConnectedComponents extends Metric {
     }
     /**
      * Calculates the graph components and counts those one with more than a threshold of nodes
+     *
      * @param graph The path to the graph
      * @param size The threshold (component size must be bigger than this number)
      * @return The result of the metric

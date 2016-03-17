@@ -17,10 +17,23 @@ import som.metascience.MetricData;
 import java.io.File;
 
 /**
- * Calculates the graph density
+ * Calculates the graph density.
+ *
+ * The metric calculates two sets of values:
+ * <ol>
+ *     <li>Graph density degree per edition of a conference</li>
+ *     <li>Average value of the graph density for the full timespan considered</li>
+ * </ol>
+ *
+ * By default, we consider 5 years of period of time to be analyzed
+ *
+ * This class relies on the Gephi libraries to do the calculations.
  */
 public class Density extends Metric {
-
+    /**
+     * Constructs the {@link Density} class
+     * @param metricData Main metric information for performing the calculations
+     */
     public Density(MetricData metricData) {
         super(metricData);
     }

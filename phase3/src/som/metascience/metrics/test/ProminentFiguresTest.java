@@ -9,6 +9,9 @@ import java.io.File;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * Test the {@link ProminentFigures} class
+ */
 public class ProminentFiguresTest extends MetricTest {
     public static final File GRAPHS = new File("testData/graphs");
     public static final File TEST_FILE_1 = new File("testData/importData/OCL-Models.properties");
@@ -18,7 +21,7 @@ public class ProminentFiguresTest extends MetricTest {
         MetricData metricData = buildMetricData(GRAPHS, TEST_FILE_1);
         ProminentFigures pf = new ProminentFigures(metricData);
 
-        Integer result = Integer.valueOf(pf.calculateProminentFigures(metricData.getFullGraph()));
-        assertEquals(1, result.intValue());
+        String result = pf.calculateProminentFigures(metricData.getFullGraph());
+        assertEquals("1.282", result);
     }
 }

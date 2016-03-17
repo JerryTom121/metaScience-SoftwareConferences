@@ -20,14 +20,28 @@ import java.util.HashMap;
 
 /**
  * Calculates the graph modularity classes
+ *
+ * The metric calculates two sets of values:
+ * <ol>
+ *     <li>Graph modularity degree per edition of a conference</li>
+ *     <li>Average value of the graph modularity for the full timespan considered</li>
+ * </ol>
+ *
+ * By default, we consider 5 years of period of time to be analyzed
+ *
+ * This class relies on the Gephi libraries to do the calculations.
  */
 public class GraphModularity extends Metric {
     /**
-     * The column to get from the table
+     * The column to get from the table used by Gephi
      */
     public static final String ATTRIBUTE_COLUMN = "modularity_class";
 
-
+    /**
+     * Constructs the {@link Density} class
+     *
+     * @param metricData Main metric information for performing the calculations
+     */
     public GraphModularity(MetricData metricData) {
         super(metricData);
     }
@@ -46,6 +60,7 @@ public class GraphModularity extends Metric {
 
     /**
      * Calculates the graph modularity classes
+     *
      * @param graph The path to the graph
      * @return The result of the metric
      */
