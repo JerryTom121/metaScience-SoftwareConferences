@@ -1,5 +1,3 @@
-# metascience-SoftwareConferences
-
 What is this project about?
 ===========================
 
@@ -58,7 +56,8 @@ Whatever your contribution is, you will have an answer from us in less than 7 da
 You can find our (simple) governance rules in this [file](governance.md).
 
 Who is behind this project?
----------------------------
+===========================
+
 * [Javier Canovas](http://github.com/jlcanovas/ "Javier Canovas")
 * [Valerio Cosentino](https://github.com/valeriocos "Valerio Cosentino")
 * [Jordi Cabot](http://github.com/jcabot/ "Jordi Cabot")
