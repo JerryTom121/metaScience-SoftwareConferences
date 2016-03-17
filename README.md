@@ -3,7 +3,13 @@ What is this project about?
 
 This project describes a three-phased process to calculate metrics in co-authorship graphs populated from data coming from the [DBLP database](http://dblp.l3s.de). This implementation is part of [MetaScience](https://github.com/SOM-Research/metaScience), a tool service developed to help researchers analyze their research profile and that of the conferences/journals where they publish.
 
-The current implementation has been adapted to calculate the metrics required in the research work presented in the paper titled *Analysis of co-authorship Graphs of CORE-Ranked Software Conferences*, currently under review. In our work, we calculate a set of metrics for a subset of conferences included in the [CORE ranking list](http://www.core.edu.au/). The metric results used in our study are presented in [this EXCEL file](data/phase3-results.xlsx), containing the metric results for each conference, and [this EXCEL file](data/phase3-results-groupedPerCORERank.xlsx), containing the results grouped by the CORE rank 
+The current implementation has been adapted to calculate the metrics required in the research work presented in the paper titled *Analysis of co-authorship Graphs of CORE-Ranked Software Conferences*, currently under review. In our work, we calculate a set of metrics for a subset of conferences included in the [CORE ranking list](http://www.core.edu.au/). 
+
+The **metric results used in our study** are presented in:
+ - [Metric results](data/phase3-results.xlsx), containing the metric results for each conference considered in our study.
+ - [Metric results grouped](data/phase3-results-groupedPerCORERank.xlsx), containing the results grouped by the CORE rank. 
+ 
+Also, you can find the set of [co-authorship graphs](data/graphs) used in our study.
 
 The process
 ===========
