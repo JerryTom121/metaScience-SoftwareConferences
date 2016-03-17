@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gexf xmlns="http://www.gexf.net/1.2draft" version="1.2" xmlns:viz="http://www.gexf.net/1.2draft/viz" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.gexf.net/1.2draft http://www.gexf.net/1.2draft/gexf.xsd">
+  <meta lastmodifieddate="2016-02-26">
+    <creator>Gephi 0.8.1</creator>
+    <description></description>
+  </meta>
+  <graph defaultedgetype="undirected" mode="static">
+    <nodes>
+      <node id="479003" label="Gary T. Leavens">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-270.31213" y="481.9347" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="518423" label="Gunter Mussbacher">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="328.25275" y="108.03754" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="740238" label="Jörg Kienzle">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="93.66016" y="-237.80042" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="748048" label="José Sánchez">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="54.403687" y="84.54956" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1000328" label="Matthias Schöttle">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-240.16245" y="-308.55188" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1009207" label="Mehmet Aksit">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="486.22925" y="-423.65662" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1131512" label="Omar Alam">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="22.082458" y="111.52112" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1401109" label="Somayeh Malakuti">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="432.86877" y="-483.6485" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+    </nodes>
+    <edges>
+      <edge source="479003" target="748048">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="518423" target="740238">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="518423" target="1000328">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="518423" target="1131512">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="740238" target="1000328">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="740238" target="1131512">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="1000328" target="1131512">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="1009207" target="1401109">
+        <attvalues></attvalues>
+      </edge>
+    </edges>
+  </graph>
+</gexf>

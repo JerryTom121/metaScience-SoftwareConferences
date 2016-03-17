@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gexf xmlns="http://www.gexf.net/1.2draft" version="1.2" xmlns:viz="http://www.gexf.net/1.2draft/viz" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.gexf.net/1.2draft http://www.gexf.net/1.2draft/gexf.xsd">
+  <meta lastmodifieddate="2016-02-26">
+    <creator>Gephi 0.8.1</creator>
+    <description></description>
+  </meta>
+  <graph defaultedgetype="undirected" mode="static">
+    <nodes>
+      <node id="137165" label="Aswin van den Berg">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-228.8327" y="-481.88812" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="354839" label="Dirk Janssens">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-100.456024" y="490.28674" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="407269" label="Éric Tanter">
+        <attvalues></attvalues>
+        <viz:size value="3.0"></viz:size>
+        <viz:position x="-453.8298" y="-58.47467" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="582565" label="Hridesh Rajan">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-161.00745" y="214.6167" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="618354" label="Ismael Figueroa">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="233.50543" y="11.850616" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1089358" label="Naoyasu Ubayashi">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="385.65955" y="-32.11731" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1106390" label="Nicolas Tabareau">
+        <attvalues></attvalues>
+        <viz:size value="2.0"></viz:size>
+        <viz:position x="343.68848" y="-17.485565" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1163336" label="Paul Leger">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="506.23132" y="76.815735" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1248660" label="Rémi Douence">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="382.29932" y="6.6640015" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1252210" label="Rex D. Fernando">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="459.96924" y="-22.847687" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1267283" label="Robert Dyer 0001">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-14.772125" y="-246.46707" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1481972" label="Thomas Cottenier">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="100.80286" y="479.1361" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1494235" label="Tim Molderez">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="168.38403" y="73.391785" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1628146" label="Yasutaka Kamei">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-341.7173" y="194.6571" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="4995529" label="Thomas Weigert">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="340.82892" y="179.62012" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+    </nodes>
+    <edges>
+      <edge source="137165" target="1481972">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="137165" target="4995529">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="354839" target="1494235">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="407269" target="618354">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="407269" target="1106390" weight="2.0">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="407269" target="1163336">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="407269" target="1248660">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="582565" target="1252210">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="582565" target="1267283">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="618354" target="1106390">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="1089358" target="1628146">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="1106390" target="1248660">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="1252210" target="1267283">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="1481972" target="4995529">
+        <attvalues></attvalues>
+      </edge>
+    </edges>
+  </graph>
+</gexf>

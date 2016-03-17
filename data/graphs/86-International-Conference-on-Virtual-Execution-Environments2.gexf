@@ -1,0 +1,781 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gexf xmlns="http://www.gexf.net/1.2draft" version="1.2" xmlns:viz="http://www.gexf.net/1.2draft/viz" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.gexf.net/1.2draft http://www.gexf.net/1.2draft/gexf.xsd">
+  <meta lastmodifieddate="2016-02-26">
+    <creator>Gephi 0.8.1</creator>
+    <description></description>
+  </meta>
+  <graph defaultedgetype="undirected" mode="static">
+    <nodes>
+      <node id="29995" label="Adrian Perrig">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="157.03394" y="396.19653" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="77517" label="Amit Vasudevan">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-1.5445557" y="254.39648" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="169414" label="Bernhard Egger">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="217.29895" y="23.031982" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="178076" label="Björn Franke">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="344.58636" y="-223.91501" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="179383" label="Bo Li 0005">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="306.9123" y="-262.7126" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="210565" label="Carl Strickland">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="156.0105" y="-91.388855" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="228380" label="Changyeon Jo">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="62.570984" y="-228.87201" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="228970" label="Chao Li">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-229.32788" y="-132.53253" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="235029" label="Chen Chen">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-396.6099" y="116.42395" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="244031" label="Chien-Min Wang">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="240.24927" y="427.43164" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="268682" label="Chun Yang">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-263.0327" y="-126.51239" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="268768" label="Chun-Chen Hsu">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="401.84186" y="159.13281" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="271840" label="Chunming Hu">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="96.16522" y="-35.59488" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="353212" label="Ding-Yong Hong">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-406.10553" y="-449.0201" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="362363" label="Dong Tong">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-235.25119" y="-356.63446" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="408695" label="Erik Gustafsson">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="371.8534" y="421.99896" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="430543" label="Fang Liu">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="177.55176" y="-372.00607" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="533141" label="Haibo Chen">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="197.2204" y="438.3557" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="538879" label="Han-Lin Li">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="339.63654" y="348.54358" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="571015" label="Hiroshi Yamada">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="223.08154" y="-265.1868" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="592988" label="Hussain Al-Aqrabi">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-301.04858" y="-234.09329" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="658017" label="Jan-Jan Wu">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-20.147919" y="-387.89682" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="683133" label="Jeongseok Son">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="328.27606" y="444.753" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="692522" label="Jian Yang">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-23.107422" y="32.16504" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="693457" label="Jianbao Ren">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="424.78796" y="84.707214" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="695883" label="Jiannan Ouyang">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-21.183167" y="165.43365" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="696650" label="Jianxin Li">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-480.6312" y="-489.6704" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="698260" label="Jicheng Shi">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-10.275879" y="-442.16672" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="704249" label="Jing Wang">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="202.81165" y="199.76215" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="707522" label="Jinpeng Huai">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-215.74573" y="-420.1386" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="728635" label="John R. Lange">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-377.62393" y="-207.74164" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="761165" label="Jui-Hao Chiang">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="161.2771" y="-303.87604" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="796140" label="Karthik Kumar">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="479.67957" y="-343.58673" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="813446" label="Kenji Kono">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-35.80835" y="-249.09224" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="820778" label="Keyi Wang">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-230.29813" y="-476.23718" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="840402" label="Kshitij A. Doshi">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="311.2259" y="-96.144714" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="863406" label="Laurie J. Hendren">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="40.71753" y="396.52386" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="866979" label="Lei Cui">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="409.79004" y="69.53082" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="894108" label="Lu Liu">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-473.73874" y="423.59674" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="949074" label="Marco Kaufmann">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-209.14783" y="-284.35413" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="977527" label="Martin Dimitrov">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="102.770996" y="205.55432" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1026506" label="Michael R. Jantz">
+        <attvalues></attvalues>
+        <viz:size value="2.0"></viz:size>
+        <viz:position x="-207.53204" y="-343.06375" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1112996" label="Ning Jia">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-339.6601" y="37.1933" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1122068" label="Nurudeen Lameed">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-353.9898" y="45.161987" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1149793" label="Pangfeng Liu">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="139.0506" y="-74.67587" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1173396" label="Pen-Chung Yew">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-425.69077" y="100.425476" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1185586" label="Petros Maniatis">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="179.6518" y="-170.17126" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1201687" label="Prasad A. Kulkarni">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-102.17203" y="254.98138" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1230646" label="Rainer G. Spallek">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="64.87793" y="467.61597" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1238155" label="Ran Liu 0003">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="263.1599" y="287.93835" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1294651" label="Ruijin Zhou">
+        <attvalues></attvalues>
+        <viz:size value="2.0"></viz:size>
+        <viz:position x="386.50043" y="191.95612" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1466990" label="Tao Li">
+        <attvalues></attvalues>
+        <viz:size value="2.0"></viz:size>
+        <viz:position x="-242.4476" y="-282.27194" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1491536" label="Tianyu Wo">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-336.76093" y="-86.22153" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1499812" label="Tobias J. K. Edler von Koch">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-146.17786" y="188.94507" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1520096" label="Tzi-cker Chiueh">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-44.049225" y="-233.13406" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1556413" label="Vyas Sekar">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-158.05713" y="-158.8638" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1568642" label="Wei-Chung Hsu">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="379.05145" y="235.4837" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1595054" label="Xiang Song">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-353.2499" y="-320.65454" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1599886" label="Xiaoguang Wang">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="290.91736" y="-239.17038" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1610375" label="Xuan Yu">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-294.37872" y="-220.30215" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1621290" label="Yangchun Fu">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-138.95035" y="421.79572" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1632000" label="Yi Shi">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-114.34531" y="-241.97037" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1642413" label="Yong Qi">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-341.9246" y="145.88214" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1660071" label="Yue-hua Dai">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="256.78308" y="305.55188" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1688709" label="Zhiqiang Lin">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-119.801636" y="47.706116" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+    </nodes>
+    <edges>
+      <edge source="29995" target="77517">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="29995" target="235029">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="29995" target="1185586">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="29995" target="1556413">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="77517" target="235029">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="77517" target="1185586">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="77517" target="1556413">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="169414" target="228380">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="169414" target="408695">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="169414" target="683133">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="178076" target="1499812">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="179383" target="271840">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="179383" target="592988">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="179383" target="696650">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="179383" target="707522">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="179383" target="866979">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="179383" target="894108">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="179383" target="1491536">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="210565" target="796140">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="210565" target="840402">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="210565" target="977527">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="210565" target="1026506">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="228380" target="408695">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="228380" target="683133">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="228970" target="430543">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="228970" target="1294651">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="228970" target="1466990">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="235029" target="1185586">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="235029" target="1556413">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="244031" target="268768">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="244031" target="353212">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="244031" target="658017">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="244031" target="1149793">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="244031" target="1173396">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="244031" target="1568642">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="268682" target="362363">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="268682" target="704249">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="268682" target="820778">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="268682" target="1112996">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="268768" target="353212">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="268768" target="658017">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="268768" target="1149793">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="268768" target="1173396">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="268768" target="1568642">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="271840" target="592988">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="271840" target="696650">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="271840" target="707522">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="271840" target="866979">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="271840" target="894108">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="271840" target="1491536">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="353212" target="658017">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="353212" target="1149793">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="353212" target="1173396">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="353212" target="1568642">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="362363" target="704249">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="362363" target="820778">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="362363" target="1112996">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="408695" target="683133">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="430543" target="1294651">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="430543" target="1466990">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="533141" target="692522">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="533141" target="698260">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="533141" target="1238155">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="533141" target="1595054">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="538879" target="761165">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="538879" target="1520096">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="571015" target="813446">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="592988" target="696650">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="592988" target="707522">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="592988" target="866979">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="592988" target="894108">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="592988" target="1491536">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="658017" target="1149793">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="658017" target="1173396">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="658017" target="1568642">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="692522" target="698260">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="692522" target="1238155">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="692522" target="1595054">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="693457" target="1599886">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="693457" target="1610375">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="693457" target="1632000">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="693457" target="1642413">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="693457" target="1660071">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="695883" target="728635">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="696650" target="707522">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="696650" target="866979">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="696650" target="894108">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="696650" target="1491536">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="698260" target="1238155">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="698260" target="1595054">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="704249" target="820778">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="704249" target="1112996">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="707522" target="866979">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="707522" target="894108">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="707522" target="1491536">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="761165" target="1520096">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="796140" target="840402">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="796140" target="977527">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="796140" target="1026506">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="820778" target="1112996">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="840402" target="977527">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="840402" target="1026506">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="863406" target="1122068">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="866979" target="894108">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="866979" target="1491536">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="894108" target="1491536">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="949074" target="1230646">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="977527" target="1026506">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="1026506" target="1201687">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="1149793" target="1173396">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="1149793" target="1568642">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="1173396" target="1568642">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="1185586" target="1556413">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="1238155" target="1595054">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="1294651" target="1466990" weight="2.0">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="1599886" target="1610375">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="1599886" target="1632000">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="1599886" target="1642413">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="1599886" target="1660071">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="1610375" target="1632000">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="1610375" target="1642413">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="1610375" target="1660071">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="1621290" target="1688709">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="1632000" target="1642413">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="1632000" target="1660071">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="1642413" target="1660071">
+        <attvalues></attvalues>
+      </edge>
+    </edges>
+  </graph>
+</gexf>

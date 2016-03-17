@@ -1,0 +1,574 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gexf xmlns="http://www.gexf.net/1.2draft" version="1.2" xmlns:viz="http://www.gexf.net/1.2draft/viz" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.gexf.net/1.2draft http://www.gexf.net/1.2draft/gexf.xsd">
+  <meta lastmodifieddate="2016-02-26">
+    <creator>Gephi 0.8.1</creator>
+    <description></description>
+  </meta>
+  <graph defaultedgetype="undirected" mode="static">
+    <nodes>
+      <node id="42866" label="Alain Giorgetti">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-144.1152" y="-43.454376" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="56616" label="Alexander Kampmann">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-270.74203" y="438.42987" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="92710" label="Andreas Zeller">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-342.57965" y="-21.017456" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="103285" label="Angelo Gargantini">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-417.14246" y="128.51404" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="169612" label="Bernhard K. Aichernig">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-295.2983" y="103.49518" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="177267" label="Birgit Vera Schmidt">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-258.0667" y="-385.2029" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="222185" label="Céline Alec">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-177.72656" y="6.385071" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="289135" label="Cyrille Comar">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="326.39374" y="-341.38528" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="392153" label="Elisabeth Jöbstl">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-9.262909" y="433.21893" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="396046" label="Elvinia Riccobene">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-290.4549" y="-152.03387" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="400782" label="Emyr Rees">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="5.164917" y="59.416748" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="438014" label="Felix Kurth">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-326.4771" y="9.42984" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="438427" label="Felix Wolf">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-82.4046" y="-72.07132" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="455631" label="Frank Hilken">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="505.1916" y="-30.600525" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="516318" label="Guillaume Petiot">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="418.4256" y="47.77057" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="642516" label="Jacques Julliand">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-218.43213" y="-106.56937" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="646454" label="Jakob Auer">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-117.1944" y="222.54156" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="685398" label="Jérôme Guitton">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="55.73407" y="433.4649" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="715595" label="Jochen Schimmel">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="410.67865" y="-55.3537" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="719933" label="Johannes Kanig">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-352.62555" y="-305.07477" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="781689" label="K. Rustan M. Leino">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-177.10034" y="238.79834" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="792472" label="Kari Kähkönen">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="266.4809" y="-400.8482" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="808179" label="Keijo Heljanko">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="240.90417" y="-332.5188" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="978132" label="Martin Gogolla">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="254.43726" y="-438.6242" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="978480" label="Martin Hentschel 0002">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-426.3111" y="321.3955" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="993076" label="Mathias Soeken">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-186.39236" y="-469.59674" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1000876" label="Matthieu Lemerre">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-36.596344" y="509.52295" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1011705" label="Melanie Diepenbeck">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-285.284" y="343.40955" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1035061" label="Mickaël Delahaye">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-0.35604858" y="36.287903" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1082577" label="Nada Amin">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-379.27954" y="37.72003" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1103886" label="Nico Koprowski">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="302.57233" y="407.401" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1109757" label="Nikolai Kosmatov">
+        <attvalues></attvalues>
+        <viz:size value="3.0"></viz:size>
+        <viz:position x="346.54773" y="231.18" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1131629" label="Omar Chebaro">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-103.71442" y="41.318176" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1150909" label="Paolo Arcaini">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="85.96912" y="-66.30698" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1189170" label="Philipp Niemann">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-353.61542" y="-420.147" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1247671" label="Reiner Hähnle">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-119.93823" y="184.73419" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1256369" label="Richard Bubel">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-80.508575" y="-310.67108" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1270025" label="Robert Korosec">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="376.115" y="-274.8803" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1273811" label="Robert Wille">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-462.50107" y="322.7619" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1277457" label="Roderick Chapman">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="231.50299" y="506.0429" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1282422" label="Rolf Drechsler">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="45.62567" y="273.91394" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1296365" label="Rupert Schlick">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="353.96173" y="214.36176" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1347297" label="Sébastien Bardin">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="290.8891" y="-4.3394775" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1388885" label="Sibylle Schupp">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-462.1296" y="150.34967" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1418238" label="Stephan Weißleder">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="316.3982" y="77.96539" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1491645" label="Tiark Rompf">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-44.447235" y="-267.40045" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1523611" label="Ulrich Kühne">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-383.09296" y="484.85974" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1585730" label="Willibald Krenn">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="393.27655" y="-375.50537" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="1623078" label="Yannick Moy">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="-127.64194" y="-364.8282" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="5345407" label="Ali Jannesari">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="83.544556" y="-22.36029" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+      <node id="6240720" label="Juan Pablo Galeotti">
+        <attvalues></attvalues>
+        <viz:size value="1.0"></viz:size>
+        <viz:position x="378.68445" y="-321.64368" z="0.0"></viz:position>
+        <viz:color r="153" g="153" b="153"></viz:color>
+      </node>
+    </nodes>
+    <edges>
+      <edge source="42866" target="516318">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="42866" target="642516">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="42866" target="1109757">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="56616" target="92710">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="56616" target="6240720">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="92710" target="6240720">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="103285" target="396046">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="103285" target="1150909">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="169612" target="177267">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="169612" target="392153">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="169612" target="646454">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="169612" target="1270025">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="169612" target="1296365">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="169612" target="1585730">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="177267" target="392153">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="177267" target="646454">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="177267" target="1270025">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="177267" target="1296365">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="177267" target="1585730">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="222185" target="1000876">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="222185" target="1109757">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="289135" target="400782">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="289135" target="685398">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="289135" target="719933">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="289135" target="1277457">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="289135" target="1623078">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="392153" target="646454">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="392153" target="1270025">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="392153" target="1296365">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="392153" target="1585730">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="396046" target="1150909">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="400782" target="685398">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="400782" target="719933">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="400782" target="1277457">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="400782" target="1623078">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="438014" target="1388885">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="438014" target="1418238">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="438427" target="715595">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="438427" target="1103886">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="438427" target="5345407">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="455631" target="978132">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="455631" target="1189170">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="455631" target="1273811">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="516318" target="642516">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="516318" target="1109757">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="642516" target="1109757">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="646454" target="1270025">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="646454" target="1296365">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="646454" target="1585730">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="685398" target="719933">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="685398" target="1277457">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="685398" target="1623078">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="715595" target="1103886">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="715595" target="5345407">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="719933" target="1277457">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="719933" target="1623078">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="781689" target="1082577">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="781689" target="1491645">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="792472" target="808179">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="978132" target="1189170">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="978132" target="1273811">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="978480" target="1247671">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="978480" target="1256369">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="993076" target="1011705">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="993076" target="1282422">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="993076" target="1523611">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="1000876" target="1109757">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="1011705" target="1282422">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="1011705" target="1523611">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="1035061" target="1109757">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="1035061" target="1131629">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="1035061" target="1347297">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="1082577" target="1491645">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="1103886" target="5345407">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="1109757" target="1131629">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="1109757" target="1347297">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="1131629" target="1347297">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="1189170" target="1273811">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="1247671" target="1256369">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="1270025" target="1296365">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="1270025" target="1585730">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="1277457" target="1623078">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="1282422" target="1523611">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="1296365" target="1585730">
+        <attvalues></attvalues>
+      </edge>
+      <edge source="1388885" target="1418238">
+        <attvalues></attvalues>
+      </edge>
+    </edges>
+  </graph>
+</gexf>
