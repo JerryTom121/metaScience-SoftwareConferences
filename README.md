@@ -45,9 +45,15 @@ More details regarding this phase can be found in [this folder](phase3)
 What can you find in this repository
 ====================================
 
-The project structure include a folder containing the source code for each phase of the process. Additionally, the folder [data](data) includes the results used in our research work titled *Analysis of co-authorship Graphs of CORE-Ranked Software Conferences*.
+The project structure include a folder containing the source code for each phase of the process. In each folder you will find the corresponding entry points to execute the phase:
 
-Note that the process relies on a MySQL database includeing the DBLP dataset provided [here](http://dblp.l3s.de).
+ - **Phase 1**. The Python scripts called [load_conference_data](phase1/load_conference_data.py) and [match_core_dblp_conferences](phase1/match_core_dblp_conferences.py) are in charge of performing the conference selection process and conference name matching (with the DBLP database), respectively.
+ - **Phase 2**. The Java class [Phase2Launcher](phase2/src/som/metascience/Phase2Launcher) is in charge of launching this phase. Please have a look at the JavaDoc included in the source code to perform the execution.
+ - **Phase 3**. The Java class [Phase3Launcher](phase3/src/som/metascience/Phase3Launcher) is in charge of launching this phase. Please have a look at the JavaDoc included in the source code to perform the execution.
+
+Additionally, the folder [data](data) includes the results used in our research work titled *Analysis of co-authorship Graphs of CORE-Ranked Software Conferences*.
+
+Note that the process relies on a MySQL database including the DBLP dataset provided [here](http://dblp.l3s.de).
 
 Can I collaborate?
 ==================
